@@ -15,8 +15,9 @@
         }
 
         body {
-            background-color: #0d1117;
+            background-color: #0b0f17;
             color: #fff;
+            overflow-x: hidden;
         }
 
         /* Header / Navigasyon Barı */
@@ -24,13 +25,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #0a0e14;
+            background-color: #070a0f;
             padding: 10px 40px;
-            border-bottom: 2px solid #00a8ff; /* Mavi Tema Çizgisi */
+            border-bottom: 2px solid #00a8ff;
             box-shadow: 0 4px 20px rgba(0, 168, 255, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        /* Sol Kısım: Logo ve Menü */
         .nav-left {
             display: flex;
             align-items: center;
@@ -38,7 +41,7 @@
         }
 
         .logo {
-            height: 60px; /* Logonun boyutu */
+            height: 60px;
             width: auto;
             transition: transform 0.3s ease;
         }
@@ -58,170 +61,13 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .nav-item a:hover, .nav-item.active a {
-            color: #00a8ff; /* Aktif/Üzerine gelinen menü rengi */
-            text-shadow: 0 0 10px rgba(0, 168, 255, 0.6);
-        }
-
-        /* Orta Kısım: IP Adresi Alanı */
-        .server-ip-box {
-            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-            padding: 8px 18px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .server-ip-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 100, 247, 0.4);
-        }
-
-        .server-ip-box i {
-            font-size: 16px;
-        }
-
-        .ip-text {
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Sağ Kısım: Sepet ve Profil */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        /* Sepet */
-        .cart-box {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart-box i {
-            font-size: 22px;
-            color: #fff;
             transition: color 0.3s ease;
         }
 
-        .cart-box:hover i {
+        .nav-item a:hover, .nav-item.active a {
             color: #00a8ff;
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.6);
         }
 
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: #00a8ff;
-            color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 50%;
-            border: 2px solid #0a0e14;
-        }
-
-        /* Kullanıcı Profili */
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-left: 20px;
-            border-left: 1px solid #2f3136;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 4px;
-            image-rendering: pixelated; /* Minecraft kafası net görünsün diye */
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .username {
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .menu-lbl {
-            font-size: 11px;
-            color: #00a8ff;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header / Navigasyon Başlangıcı -->
-    <nav class="navbar">
-        
-        <!-- Sol taraf: Logo ve Linkler -->
-        <div class="nav-left">
-            <!-- image_936c07.png dosyasındaki logonuzu buraya ekleyin -->
-            <img src="logo.png" alt="Syfielbox Logo" class="logo">
-            
-            <ul class="nav-menu">
-                <li class="nav-item active"><a href="#">Anasayfa</a></li>
-                <li class="nav-item"><a href="#">Mağaza</a></li>
-                <li class="nav-item"><a href="#">Sandık</a></li>
-                <li class="nav-item"><a href="#">Kredi Yükle</a></li>
-                <li class="nav-item"><a href="#">Kredi Gönder</a></li>
-            </ul>
-        </div>
-
-        <!-- Orta taraf: IP Adresi -->
-        <div class="server-ip-box" onclick="copyIP()">
-            <i class="fa-solid fa-server"></i>
-            <span class="ip-text" id="ipAddress">syfielbox.fun</span>
-        </div>
-
-        <!-- Sağ taraf: Sepet ve Oyuncu Paneli -->
-        <div class="nav-right">
-            <!-- Sepet -->
-            <div class="cart-box">
-                <i class="fa-solid fa-shopping-basket"></i>
-                <span class="cart-badge">0</span>
-            </div>
-
-            <!-- Profil (Örnek Steve Kafası ve Kullanıcı Adı) -->
-            <div class="user-profile">
-                <img src="https://mc-heads.net/avatar/steve" alt="Oyuncu Kafası" class="avatar">
-                <div class="user-info">
-                    <span class="username">kittgamead</span>
-                    <span class="menu-lbl">MENU</span>
-                </div>
-            </div>
-        </div>
-
-    </nav>
-    <!-- Header / Navigasyon Bitişi -->
-
-    <script>
-        // IP adresine tıklandığında panoya kopyalama işlevi
-        function copyIP() {
-            const ipText = document.getElementById("ipAddress").innerText;
-            navigator.clipboard.writeText(ipText).then(() => {
-                alert("IP Adresi kopyalandı: " + ipText);
-            }).catch(err => {
-                console.error("Kopyalanamadı: ", err);
-            });
-        }
-    </script>
-
-</body>
-</html>
+        .server-ip-box {
+            background: linear-gradient(135deg, #0052d4, #43
