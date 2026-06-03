@@ -27,8 +27,8 @@
             align-items: center;
             background-color: #070a0f;
             padding: 10px 40px;
-            border-bottom: 2px solid #00a8ff;
-            box-shadow: 0 4px 20px rgba(0, 168, 255, 0.15);
+            border-bottom: 2px solid #ff7b00; /* Ateş temalı turuncu çizgi */
+            box-shadow: 0 4px 20px rgba(255, 123, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,12 +66,12 @@
         }
 
         .nav-item a:hover, .nav-item.active a {
-            color: #00a8ff;
-            text-shadow: 0 0 10px rgba(0, 168, 255, 0.6);
+            color: #ff7b00;
+            text-shadow: 0 0 10px rgba(255, 123, 0, 0.6);
         }
 
         .server-ip-box {
-            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+            background: linear-gradient(135deg, #cc5a01, #ff7b00, #ffa200);
             padding: 8px 18px;
             border-radius: 6px;
             display: flex;
@@ -84,7 +84,7 @@
 
         .server-ip-box:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 100, 247, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
         }
 
         .ip-text {
@@ -92,12 +92,12 @@
             font-size: 14px;
         }
 
-        /* Sağ Taraf: Sepet ve Profil (Tıklanamaz Yapıldı) */
+        /* Sağ Taraf: Sepet ve Profil (Tıklanamaz ve Giriş Yapılamaz) */
         .nav-right {
             display: flex;
             align-items: center;
             gap: 25px;
-            pointer-events: none; /* Tıklamaları tamamen engeller */
+            pointer-events: none; /* Tıklamaları ve etkileşimi tamamen kapatır */
             user-select: none;
         }
 
@@ -114,7 +114,7 @@
             position: absolute;
             top: -8px;
             right: -10px;
-            background-color: #00a8ff;
+            background-color: #ff7b00;
             color: #fff;
             font-size: 11px;
             font-weight: bold;
@@ -145,7 +145,7 @@
 
         .menu-lbl {
             font-size: 11px;
-            color: #00a8ff;
+            color: #ff7b00;
             font-weight: bold;
         }
 
@@ -153,14 +153,14 @@
         .hero {
             text-align: center;
             padding: 100px 20px;
-            background: radial-gradient(circle, rgba(0,168,255,0.1) 0%, rgba(11,15,23,1) 70%);
+            background: radial-gradient(circle, rgba(255, 123, 0, 0.08) 0%, rgba(11,15,23,1) 70%);
         }
 
         .hero h1 {
             font-size: 48px;
             margin-bottom: 15px;
             color: #fff;
-            text-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+            text-shadow: 0 0 20px rgba(255, 123, 0, 0.3);
         }
 
         .hero p {
@@ -182,7 +182,7 @@
             font-size: 32px;
             margin-bottom: 40px;
             position: relative;
-            color: #00a8ff;
+            color: #ff7b00;
         }
 
         .section-title::after {
@@ -190,18 +190,18 @@
             display: block;
             width: 60px;
             height: 3px;
-            background-color: #00a8ff;
+            background-color: #ff7b00;
             margin: 10px auto 0 auto;
             border-radius: 2px;
         }
 
         /* Sayfa Bölümleri Kontrolü */
         .page-section {
-            display: none; /* Varsayılan olarak bölümleri gizler */
+            display: none;
         }
 
         .page-section.active-page {
-            display: block; /* Sadece aktif olan sayfayı gösterir */
+            display: block;
         }
 
         /* 🛍️ MAĞAZA KATEGORİLERİ 🛍️ */
@@ -223,6 +223,7 @@
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
+        /* Elmas Mavisi Geçişli Geçişli Arka Planlar */
         .cat-vip { background: linear-gradient(135deg, rgba(7, 48, 102, 0.8), rgba(0, 168, 255, 0.4)); }
         .cat-kasa { background: linear-gradient(135deg, rgba(21, 31, 61, 0.9), rgba(67, 100, 247, 0.5)); }
         .cat-gear { background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(111, 177, 252, 0.5)); }
@@ -282,34 +283,35 @@
 
         /* Oyun Modları Bölümü */
         .modes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            display: flex;
+            justify-content: center;
         }
 
         .mode-card {
             background-color: #121824;
             border: 1px solid #1f293d;
             border-radius: 10px;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
+            max-width: 500px;
+            width: 100%;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .mode-card:hover {
             transform: translateY(-5px);
-            border-color: #00a8ff;
-            box-shadow: 0 10px 20px rgba(0, 168, 255, 0.1);
+            border-color: #ff7b00;
+            box-shadow: 0 10px 20px rgba(255, 123, 0, 0.1);
         }
 
         .mode-card i {
-            font-size: 40px;
-            color: #00a8ff;
+            font-size: 45px;
+            color: #ff7b00;
             margin-bottom: 20px;
         }
 
-        .mode-card h3 { font-size: 22px; margin-bottom: 12px; }
-        .mode-card p { color: #b9bbbe; font-size: 14px; line-height: 1.6; }
+        .mode-card h3 { font-size: 26px; margin-bottom: 15px; }
+        .mode-card p { color: #b9bbbe; font-size: 15px; line-height: 1.6; }
 
         /* Yetkili Kadrosu Bölümü */
         .team-grid {
@@ -331,7 +333,7 @@
 
         .team-card:hover {
             transform: scale(1.05);
-            border-color: #00a8ff;
+            border-color: #ff7b00;
         }
 
         .team-avatar {
@@ -383,7 +385,7 @@
         .rule-item:last-child { border-bottom: none; }
 
         .rule-number {
-            background-color: #00a8ff;
+            background-color: #ff7b00;
             color: #fff;
             font-weight: bold;
             width: 28px;
@@ -413,7 +415,6 @@
 </head>
 <body>
 
-    <!-- Header / Navigasyon -->
     <nav class="navbar">
         <div class="nav-left">
             <img src="logo.png" alt="Syfielbox Logo" class="logo">
@@ -431,54 +432,39 @@
             <span class="ip-text" id="ipAddress">syfielbox.fun</span>
         </div>
 
-        <!-- Sağ Taraf (Tıklanamaz Alan) -->
         <div class="nav-right">
             <div class="cart-box">
                 <i class="fa-solid fa-shopping-basket"></i>
                 <span class="cart-badge">0</span>
             </div>
             <div class="user-profile">
-                <img src="https://mc-heads.net/avatar/Kittgamead" alt="Oyuncu Kafası" class="avatar">
+                <img src="https://mc-heads.net/avatar/triggermain01" alt="Oyuncu Kafası" class="avatar">
                 <div class="user-info">
-                    <span class="username">Kittgamead</span>
+                    <span class="username">triggermain01</span>
                     <span class="menu-lbl">MENU</span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Giriş Alanı (Hero) -->
     <section class="hero">
         <h1>Syfielbox Sunucusuna Hoş Geldin!</h1>
-        <p>Türkiye'nin en aktif ve eğlenceli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak kopyalayabilirsin.</p>
+        <p>Türkiye'nin en hareketli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak konyalayabilirsin.</p>
     </section>
 
 
-    <!-- ================= ANASAYFA İÇERİĞİ ================= -->
     <div id="page-anasayfa" class="page-section active-page">
-        <!-- Oyun Modları -->
         <section class="container">
-            <h2 class="section-title">Oyun Modlarımız</h2>
+            <h2 class="section-title">Oyun Modumuz</h2>
             <div class="modes-grid">
                 <div class="mode-card">
-                    <i class="fa-solid fa-cube"></i>
-                    <h3>Survival</h3>
-                    <p>Zorlu doğa şartlarında hayatta kal, kendi klanını kur ve diğer oyuncularla amansız bir mücadeleye giriş!</p>
-                </div>
-                <div class="mode-card">
-                    <i class="fa-solid fa-cloud"></i>
-                    <h3>Skyblock</h3>
-                    <p>Boşluktaki küçük bir adada başla, görevleri tamamla, adanı büyüt ve sunucunun en zengin adası ol!</p>
-                </div>
-                <div class="mode-card">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h3>Bedwars</h3>
-                    <p>Kendi yatağını koru, düşman yataklarını yok et ve takımınla birlikte zafere ulaş!</p>
+                    <i class="fa-solid fa-feather-pointed"></i>
+                    <h3>Elytra PvP</h3>
+                    <p>Gökyüzünün hakimi ol! Elytra kanatlarınla havada süzülürken rakiplerine karşı yeteneklerini sergile, kombolar yap ve zirveye tırman!</p>
                 </div>
             </div>
         </section>
 
-        <!-- Yetkili Kadrosu -->
         <section class="container">
             <h2 class="section-title">Yetkili Kadromuz</h2>
             <div class="team-grid">
@@ -505,7 +491,6 @@
             </div>
         </section>
 
-        <!-- Kurallar -->
         <section class="container">
             <h2 class="section-title">Sunucu Kuralları</h2>
             <div class="rules-list">
@@ -535,13 +520,11 @@
     </div>
 
 
-    <!-- ================= MAĞAZA İÇERİĞİ (Sadece Kategoriler) ================= -->
     <div id="page-magaza" class="page-section">
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
             <div class="category-grid">
                 
-                <!-- VİP Kutusu -->
                 <div class="category-card cat-vip">
                     <i class="fa-solid fa-crown"></i>
                     <h3>VİP Üyelikler</h3>
@@ -549,7 +532,6 @@
                     <button class="category-btn">Görüntüle</button>
                 </div>
 
-                <!-- Kasa Kutusu -->
                 <div class="category-card cat-kasa">
                     <i class="fa-solid fa-box-open"></i>
                     <h3>Kasa Anahtarları</h3>
@@ -557,7 +539,6 @@
                     <button class="category-btn">Görüntüle</button>
                 </div>
 
-                <!-- Gear Kutusu -->
                 <div class="category-card cat-gear">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <h3>Gear & Editler</h3>
@@ -570,23 +551,18 @@
     </div>
 
 
-    <!-- Footer -->
     <footer>
         &copy; 2026 Syfielbox. Tüm Hakları Saklıdır. Bu sitenin Mojang veya Microsoft ile bir bağı yoktur.
     </footer>
 
-    <!-- Sayfa Yönetim ve Kopyalama Scripti -->
     <script>
         function showPage(pageName) {
-            // Tüm sayfaları gizle
             document.getElementById('page-anasayfa').classList.remove('active-page');
             document.getElementById('page-magaza').classList.remove('active-page');
             
-            // Menü aktiflik durumlarını temizle
             document.getElementById('menu-anasayfa').classList.remove('active');
             document.getElementById('menu-magaza').classList.remove('active');
             
-            // İstenen sayfayı aç ve menüyü yakla
             if(pageName === 'anasayfa') {
                 document.getElementById('page-anasayfa').classList.add('active-page');
                 document.getElementById('menu-anasayfa').classList.add('active');
