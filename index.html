@@ -70,4 +70,533 @@
         }
 
         .server-ip-box {
-            background: linear-gradient(135deg, #0052d4, #43
+            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+            padding: 8px 18px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .server-ip-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 100, 247, 0.4);
+        }
+
+        .ip-text {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .cart-box {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-box i {
+            font-size: 22px;
+            color: #fff;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #00a8ff;
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+            border: 2px solid #070a0f;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-left: 20px;
+            border-left: 1px solid #2f3136;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            image-rendering: pixelated;
+        }
+
+        .username {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .menu-lbl {
+            font-size: 11px;
+            color: #00a8ff;
+            font-weight: bold;
+        }
+
+        /* Tanıtım Alanı (Hero Section) */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle, rgba(0,168,255,0.1) 0%, rgba(11,15,23,1) 70%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+        }
+
+        .hero p {
+            color: #b9bbbe;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Ortak Bölüm Tasarımı */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            color: #00a8ff;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #00a8ff;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* 👑 ÖZEL KATEGORİLER ALANI (YENİ) 👑 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Her Kategorinin Kendine Özel Geçişli (Gradient) Arka Planı */
+        .cat-vip {
+            background: linear-gradient(135deg, rgba(7, 48, 102, 0.8), rgba(0, 168, 255, 0.4));
+        }
+
+        .cat-kasa {
+            background: linear-gradient(135deg, rgba(21, 31, 61, 0.9), rgba(67, 100, 247, 0.5));
+        }
+
+        .cat-gear {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(111, 177, 252, 0.5));
+        }
+
+        /* Kartların Üzerine Gelince Oluşan Parlama Efektleri */
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: #00a8ff;
+            box-shadow: 0 15px 35px rgba(0, 168, 255, 0.3);
+        }
+
+        .category-card i {
+            font-size: 50px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .category-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .category-card p {
+            color: #e2e8f0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .category-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        .category-card:hover .category-btn {
+            background-color: #fff;
+            color: #0b0f17;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+
+        /* Oyun Modları Bölümü */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .mode-card {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            border-color: #00a8ff;
+            box-shadow: 0 10px 20px rgba(0, 168, 255, 0.1);
+        }
+
+        .mode-card i {
+            font-size: 40px;
+            color: #00a8ff;
+            margin-bottom: 20px;
+        }
+
+        .mode-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .mode-card p {
+            color: #b9bbbe;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Yetkili Kadrosu Bölümü */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            border-radius: 8px;
+            padding: 25px 20px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            border-color: #00a8ff;
+        }
+
+        .team-avatar {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 15px;
+            image-rendering: pixelated;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .team-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .team-role {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .role-kurucu { background-color: #ea2027; color: #fff; }
+        .role-admin { background-color: #f79f1f; color: #fff; }
+        .role-mod { background-color: #20bf6b; color: #fff; }
+        .role-rehber { background-color: #00a8ff; color: #fff; }
+
+        /* Kurallar Bölümü */
+        .rules-list {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #1f293d;
+        }
+
+        .rule-item:last-child {
+            border-bottom: none;
+        }
+
+        .rule-number {
+            background-color: #00a8ff;
+            color: #fff;
+            font-weight: bold;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .rule-text h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .rule-text p {
+            color: #b9bbbe;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #070a0f;
+            text-align: center;
+            padding: 20px;
+            color: #72767d;
+            font-size: 14px;
+            border-top: 1px solid #1f293d;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigasyon -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="logo.png" alt="Syfielbox Logo" class="logo">
+            <ul class="nav-menu">
+                <li class="nav-item active"><a href="#">Anasayfa</a></li>
+                <li class="nav-item"><a href="#">Mağaza</a></li>
+                <li class="nav-item"><a href="#">Sandık</a></li>
+                <li class="nav-item"><a href="#">Kredi Yükle</a></li>
+                <li class="nav-item"><a href="#">Kredi Gönder</a></li>
+            </ul>
+        </div>
+
+        <div class="server-ip-box" onclick="copyIP()">
+            <i class="fa-solid fa-server"></i>
+            <span class="ip-text" id="ipAddress">syfielbox.fun</span>
+        </div>
+
+        <div class="nav-right">
+            <div class="cart-box">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span class="cart-badge">0</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://mc-heads.net/avatar/Kittgamead" alt="Oyuncu Kafası" class="avatar">
+                <div class="user-info">
+                    <span class="username">Kittgamead</span>
+                    <span class="menu-lbl">MENU</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Giriş Alanı -->
+    <section class="hero">
+        <h1>Syfielbox Sunucusuna Hoş Geldin!</h1>
+        <p>Türkiye'nin en aktif ve eğlenceli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak kopyalayabilirsin.</p>
+    </section>
+
+    <!-- 🛍️ MAĞAZA KATEGORİLERİ BÖLÜMÜ (YENİ) 🛍️ -->
+    <section class="container">
+        <h2 class="section-title">Sunucu Mağazası</h2>
+        <div class="category-grid">
+            
+            <!-- VİP Kutusu -->
+            <div class="category-card cat-vip">
+                <i class="fa-solid fa-crown"></i>
+                <h3>VİP Üyelikler</h3>
+                <p>Sunucuda özel yetkilere, havalı isim renklerine ve muhteşem kitlere sahip olarak öne geçin!</p>
+                <button class="category-btn">Görüntüle</button>
+            </div>
+
+            <!-- Kasa Kutusu -->
+            <div class="category-card cat-kasa">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>Kasa Anahtarları</h3>
+                <p>Şansınızı deneyin! Birbirinden değerli eşyalar, özel kozmetikler ve gizemli ödüller kazandıran kasaları açın.</p>
+                <button class="category-btn">Görüntüle</button>
+            </div>
+
+            <!-- Gear Kutusu -->
+            <div class="category-card cat-gear">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Gear & Editler</h3>
+                <p>Savaş meydanlarında rakiplerinizi alt edecek özel yapım setlere, silahlara ve takviyelere göz atın.</p>
+                <button class="category-btn">Görüntüle</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Oyun Modları -->
+    <section class="container">
+        <h2 class="section-title">Oyun Modlarımız</h2>
+        <div class="modes-grid">
+            <div class="mode-card">
+                <i class="fa-solid fa-cube"></i>
+                <h3>Survival</h3>
+                <p>Zorlu doğa şartlarında hayatta kal, kendi klanını kur ve diğer oyuncularla amansız bir mücadeleye giriş!</p>
+            </div>
+            <div class="mode-card">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Skyblock</h3>
+                <p>Boşluktaki küçük bir adada başla, görevleri tamamla, adanı büyüt ve sunucunun en zengin adası ol!</p>
+            </div>
+            <div class="mode-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Bedwars</h3>
+                <p>Kendi yatağını koru, düşman yataklarını yok et ve takımınla birlikte zafere ulaş!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yetkili Kadrosu -->
+    <section class="container">
+        <h2 class="section-title">Yetkili Kadromuz</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://mc-heads.net/avatar/Kittgamead" alt="Kittgamead" class="team-avatar">
+                <div class="team-name">Kittgamead</div>
+                <span class="team-role role-kurucu">Kurucu</span>
+            </div>
+            <div class="team-card">
+                <img src="https://mc-heads.net/avatar/triggermain" alt="triggermain" class="team-avatar">
+                <div class="team-name">triggermain</div>
+                <span class="team-role role-admin">Admin</span>
+            </div>
+            <div class="team-card">
+                <img src="https://mc-heads.net/avatar/syn3val" alt="syn3val" class="team-avatar">
+                <div class="team-name">syn3val</div>
+                <span class="team-role role-mod">Moderatör</span>
+            </div>
+            <div class="team-card">
+                <img src="https://mc-heads.net/avatar/waxy" alt="waxy" class="team-avatar">
+                <div class="team-name">waxy</div>
+                <span class="team-role role-mod">Moderatör</span>
+            </div>
+            <div class="team-card">
+                <img src="https://mc-heads.net/avatar/rulling" alt="rulling" class="team-avatar">
+                <div class="team-name">rulling</div>
+                <span class="team-role role-rehber">Rehber</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kurallar -->
+    <section class="container">
+        <h2 class="section-title">Sunucu Kuralları</h2>
+        <div class="rules-list">
+            <div class="rule-item">
+                <div class="rule-number">1</div>
+                <div class="rule-text">
+                    <h4>Hile ve Üçüncü Parti Yazılımlar</h4>
+                    <p>Sunucumuzda diğer oyunculara haksız üstünlük sağlayacak hile, makro veya istemcilerin kullanımı kesinlikle yasaktır.</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-number">2</div>
+                <div class="rule-text">
+                    <h4>Saygılı Sohbet</h4>
+                    <p>Küfür, argo, hakaret, siyaset veya diğer oyuncuları rahatsız edici sohbet davranışları cezalandırılır.</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-number">3</div>
+                <div class="rule-text">
+                    <h4>Oyun İçi Hatalar (Bug)</h4>
+                    <p>Oyun içinde bulunan herhangi bir hatayı kendi çıkarınız için kullanmak yasaktır. Lütfen bulduğunuz hataları yetkililere bildirin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Syfielbox. Tüm Hakları Saklıdır. Bu sitenin Mojang veya Microsoft ile bir bağı yoktur.
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ipText = document.getElementById("ipAddress").innerText;
+            navigator.clipboard.writeText(ipText).then(() => {
+                alert("IP Adresi kopyalandı: " + ipText + " - Sunucumuza davetlisin!");
+            }).catch(err => {
+                console.error("Kopyalanamadı: ", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
