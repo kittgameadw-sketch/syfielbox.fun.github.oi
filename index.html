@@ -27,8 +27,8 @@
             align-items: center;
             background-color: #070a0f;
             padding: 10px 40px;
-            border-bottom: 2px solid #ff7b00; /* Ateş temalı turuncu çizgi */
-            box-shadow: 0 4px 20px rgba(255, 123, 0, 0.15);
+            border-bottom: 2px solid #00a8ff; /* Mavi Geçiş Teması Başlangıcı */
+            box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -66,12 +66,12 @@
         }
 
         .nav-item a:hover, .nav-item.active a {
-            color: #ff7b00;
-            text-shadow: 0 0 10px rgba(255, 123, 0, 0.6);
+            color: #00b4db;
+            text-shadow: 0 0 10px rgba(0, 180, 219, 0.6);
         }
 
         .server-ip-box {
-            background: linear-gradient(135deg, #cc5a01, #ff7b00, #ffa200);
+            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc); /* Mavi geçişli buton */
             padding: 8px 18px;
             border-radius: 6px;
             display: flex;
@@ -84,7 +84,7 @@
 
         .server-ip-box:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(67, 100, 247, 0.4);
         }
 
         .ip-text {
@@ -97,7 +97,7 @@
             display: flex;
             align-items: center;
             gap: 25px;
-            pointer-events: none; /* Tıklamaları ve etkileşimi tamamen kapatır */
+            pointer-events: none; /* Tıklamayı engeller */
             user-select: none;
         }
 
@@ -114,7 +114,7 @@
             position: absolute;
             top: -8px;
             right: -10px;
-            background-color: #ff7b00;
+            background: linear-gradient(135deg, #0052d4, #00a8ff);
             color: #fff;
             font-size: 11px;
             font-weight: bold;
@@ -145,7 +145,7 @@
 
         .menu-lbl {
             font-size: 11px;
-            color: #ff7b00;
+            color: #00b4db;
             font-weight: bold;
         }
 
@@ -153,14 +153,14 @@
         .hero {
             text-align: center;
             padding: 100px 20px;
-            background: radial-gradient(circle, rgba(255, 123, 0, 0.08) 0%, rgba(11,15,23,1) 70%);
+            background: radial-gradient(circle, rgba(0, 180, 219, 0.08) 0%, rgba(11,15,23,1) 70%);
         }
 
         .hero h1 {
             font-size: 48px;
             margin-bottom: 15px;
             color: #fff;
-            text-shadow: 0 0 20px rgba(255, 123, 0, 0.3);
+            text-shadow: 0 0 20px rgba(0, 180, 219, 0.3);
         }
 
         .hero p {
@@ -182,7 +182,10 @@
             font-size: 32px;
             margin-bottom: 40px;
             position: relative;
-            color: #ff7b00;
+            color: #00b4db;
+            background: linear-gradient(to right, #00b4db, #00ff87);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-title::after {
@@ -190,7 +193,7 @@
             display: block;
             width: 60px;
             height: 3px;
-            background-color: #ff7b00;
+            background: linear-gradient(to right, #00b4db, #00ff87);
             margin: 10px auto 0 auto;
             border-radius: 2px;
         }
@@ -223,7 +226,6 @@
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Elmas Mavisi Geçişli Geçişli Arka Planlar */
         .cat-vip { background: linear-gradient(135deg, rgba(7, 48, 102, 0.8), rgba(0, 168, 255, 0.4)); }
         .cat-kasa { background: linear-gradient(135deg, rgba(21, 31, 61, 0.9), rgba(67, 100, 247, 0.5)); }
         .cat-gear { background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(111, 177, 252, 0.5)); }
@@ -300,13 +302,13 @@
 
         .mode-card:hover {
             transform: translateY(-5px);
-            border-color: #ff7b00;
-            box-shadow: 0 10px 20px rgba(255, 123, 0, 0.1);
+            border-color: #00b4db;
+            box-shadow: 0 10px 20px rgba(0, 180, 219, 0.15);
         }
 
         .mode-card i {
             font-size: 45px;
-            color: #ff7b00;
+            color: #00b4db;
             margin-bottom: 20px;
         }
 
@@ -318,7 +320,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 25px;
         }
 
         .team-card {
@@ -326,14 +328,15 @@
             border: 1px solid #1f293d;
             border-radius: 8px;
             padding: 25px 20px;
-            width: 200px;
+            width: 210px;
             text-align: center;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .team-card:hover {
             transform: scale(1.05);
-            border-color: #ff7b00;
+            border-color: #00b4db;
+            box-shadow: 0 5px 15px rgba(0, 180, 219, 0.1);
         }
 
         .team-avatar {
@@ -348,21 +351,23 @@
         .team-name {
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .team-role {
             font-size: 12px;
             font-weight: bold;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 4px;
             display: inline-block;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .role-kurucu { background-color: #ea2027; color: #fff; }
-        .role-owner { background-color: #ff3838; color: #fff; }
-        .role-manager { background-color: #20bf6b; color: #fff; }
+        /* Mavi Temaya Uygun Rol Renkleri */
+        .role-kurucu { background: linear-gradient(135deg, #0052d4, #4364f7); color: #fff; }
+        .role-owner { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
+        .role-manager { background: linear-gradient(135deg, #11998e, #38ef7d); color: #fff; }
 
         /* Kurallar Bölümü */
         .rules-list {
@@ -385,7 +390,7 @@
         .rule-item:last-child { border-bottom: none; }
 
         .rule-number {
-            background-color: #ff7b00;
+            background: linear-gradient(135deg, #00b4db, #0052d4);
             color: #fff;
             font-weight: bold;
             width: 28px;
@@ -415,6 +420,7 @@
 </head>
 <body>
 
+    <!-- Header / Navigasyon -->
     <nav class="navbar">
         <div class="nav-left">
             <img src="logo.png" alt="Syfielbox Logo" class="logo">
@@ -432,6 +438,7 @@
             <span class="ip-text" id="ipAddress">syfielbox.fun</span>
         </div>
 
+        <!-- Sağ Taraf (Tıklanamaz ve Giriş Yapılamaz Alan) -->
         <div class="nav-right">
             <div class="cart-box">
                 <i class="fa-solid fa-shopping-basket"></i>
@@ -447,13 +454,16 @@
         </div>
     </nav>
 
+    <!-- Giriş Alanı (Hero) -->
     <section class="hero">
         <h1>Syfielbox Sunucusuna Hoş Geldin!</h1>
-        <p>Türkiye'nin en hareketli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak konyalayabilirsin.</p>
+        <p>Türkiye'nin en hareketli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak kopyalayabilirsin.</p>
     </section>
 
 
+    <!-- ================= ANASAYFA İÇERİĞİ ================= -->
     <div id="page-anasayfa" class="page-section active-page">
+        <!-- Oyun Modları -->
         <section class="container">
             <h2 class="section-title">Oyun Modumuz</h2>
             <div class="modes-grid">
@@ -465,9 +475,16 @@
             </div>
         </section>
 
+        <!-- Yetkili Kadrosu -->
         <section class="container">
             <h2 class="section-title">Yetkili Kadromuz</h2>
             <div class="team-grid">
+                <!-- Kittgamead Eklendi -->
+                <div class="team-card">
+                    <img src="https://mc-heads.net/avatar/Kittgamead" alt="Kittgamead" class="team-avatar">
+                    <div class="team-name">Kittgamead</div>
+                    <span class="team-role role-kurucu">Kurucu</span>
+                </div>
                 <div class="team-card">
                     <img src="https://mc-heads.net/avatar/triggermain01" alt="triggermain01" class="team-avatar">
                     <div class="team-name">triggermain01</div>
@@ -491,6 +508,7 @@
             </div>
         </section>
 
+        <!-- Kurallar -->
         <section class="container">
             <h2 class="section-title">Sunucu Kuralları</h2>
             <div class="rules-list">
@@ -520,11 +538,13 @@
     </div>
 
 
+    <!-- ================= MAĞAZA İÇERİĞİ ================= -->
     <div id="page-magaza" class="page-section">
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
             <div class="category-grid">
                 
+                <!-- VİP Kutusu -->
                 <div class="category-card cat-vip">
                     <i class="fa-solid fa-crown"></i>
                     <h3>VİP Üyelikler</h3>
@@ -532,6 +552,7 @@
                     <button class="category-btn">Görüntüle</button>
                 </div>
 
+                <!-- Kasa Kutusu -->
                 <div class="category-card cat-kasa">
                     <i class="fa-solid fa-box-open"></i>
                     <h3>Kasa Anahtarları</h3>
@@ -539,6 +560,7 @@
                     <button class="category-btn">Görüntüle</button>
                 </div>
 
+                <!-- Gear Kutusu -->
                 <div class="category-card cat-gear">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <h3>Gear & Editler</h3>
@@ -551,10 +573,12 @@
     </div>
 
 
+    <!-- Footer -->
     <footer>
         &copy; 2026 Syfielbox. Tüm Hakları Saklıdır. Bu sitenin Mojang veya Microsoft ile bir bağı yoktur.
     </footer>
 
+    <!-- Sayfa Yönetim ve Kopyalama Scripti -->
     <script>
         function showPage(pageName) {
             document.getElementById('page-anasayfa').classList.remove('active-page');
