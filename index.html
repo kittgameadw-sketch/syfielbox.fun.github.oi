@@ -92,7 +92,7 @@
             font-size: 14px;
         }
 
-        /* Sağ Taraf: Profil ve Sepet (Sepet Tıklanamaz, Profil Giriş Ekranını Açar) */
+        /* Sağ Taraf: Profil ve Sepet */
         .nav-right {
             display: flex;
             align-items: center;
@@ -101,7 +101,7 @@
 
         .cart-box {
             position: relative;
-            pointer-events: none; /* Sepet tıklanamaz durumda kalıyor */
+            pointer-events: none;
             user-select: none;
         }
 
@@ -129,7 +129,7 @@
             gap: 12px;
             padding-left: 20px;
             border-left: 1px solid #2f3136;
-            cursor: pointer; /* Tıklanabilir yapıldı */
+            cursor: pointer;
         }
 
         .avatar {
@@ -463,7 +463,7 @@
             height: 100vh;
             background-color: #0b0f17;
             z-index: 200;
-            display: none; /* Varsayılan olarak kapalı */
+            display: none;
             overflow-y: auto;
         }
 
@@ -676,7 +676,7 @@
             <span class="ip-text" id="ipAddress">syfielbox.fun</span>
         </div>
 
-        <!-- Sağ Taraf (Profil Tıklandığında Giriş Panelini Açar) -->
+        <!-- Sağ Taraf -->
         <div class="nav-right">
             <div class="cart-box">
                 <i class="fa-solid fa-shopping-basket"></i>
@@ -685,7 +685,7 @@
             <div class="user-profile" onclick="openAuth('login')">
                 <img src="https://mc-heads.net/avatar/triggermain01" alt="Oyuncu Kafası" class="avatar">
                 <div class="user-info">
-                    <span class="username">Giriş Yap</span>
+                    <span class="username" id="nav-username-display">Giriş Yap</span>
                     <span class="menu-lbl">MENU</span>
                 </div>
             </div>
@@ -814,7 +814,7 @@
     </div>
 
 
-    <!-- ================= GİRİŞ YAP OVERLAY PANELİ (image_88781e.png Düzeni) ================= -->
+    <!-- ================= GİRİŞ YAP OVERLAY PANELİ ================= -->
     <div id="auth-login-overlay" class="auth-overlay">
         <div class="auth-container">
             <div class="auth-left">
@@ -827,17 +827,18 @@
                         <p>Hesabına erişmek için giriş yap.</p>
                     </div>
                 </div>
-                <form onsubmit="event.preventDefault();">
+                <!-- onsubmit eylemi simülasyon fonksiyonuna bağlandı -->
+                <form onsubmit="handleLogin(event)">
                     <div class="auth-form-group">
                         <label class="auth-label">Kullanıcı Adı</label>
-                        <input type="text" class="auth-input" placeholder="Kullanıcı Adı">
+                        <input type="text" id="login-username" class="auth-input" placeholder="Kullanıcı Adı" required>
                     </div>
                     <div class="auth-form-group">
                         <div style="display: flex; justify-content: space-between;">
                             <label class="auth-label">Şifre</label>
                             <a class="auth-link">Şifremi Unuttum</a>
                         </div>
-                        <input type="password" class="auth-input" placeholder="******">
+                        <input type="password" class="auth-input" placeholder="******" required>
                     </div>
                     <div class="form-footer-links">
                         <a class="auth-link" onclick="openAuth('register')">Kayıt Ol</a>
@@ -856,7 +857,7 @@
     </div>
 
 
-    <!-- ================= KAYIT OL OVERLAY PANELİ (image_8874f8.png Düzeni) ================= -->
+    <!-- ================= KAYIT OL OVERLAY PANELİ ================= -->
     <div id="auth-register-overlay" class="auth-overlay">
         <div class="auth-container">
             <div class="auth-left">
@@ -869,24 +870,25 @@
                         <p>Sunucumuza katılmak için kayıt ol.</p>
                     </div>
                 </div>
-                <form onsubmit="event.preventDefault();">
+                <!-- onsubmit eylemi simülasyon fonksiyonuna bağlandı -->
+                <form onsubmit="handleRegister(event)">
                     <div class="auth-form-row">
                         <div class="auth-form-group">
                             <label class="auth-label">Kullanıcı Adı</label>
-                            <input type="text" class="auth-input" placeholder="Kullanıcı Adı">
+                            <input type="text" id="register-username" class="auth-input" placeholder="Kullanıcı Adı" required>
                         </div>
                         <div class="auth-form-group">
                             <label class="auth-label">E-Posta</label>
-                            <input type="email" class="auth-input" placeholder="E-Posta">
+                            <input type="email" class="auth-input" placeholder="E-Posta" required>
                         </div>
                     </div>
                     <div class="auth-form-group">
                         <label class="auth-label">Şifre</label>
-                        <input type="password" class="auth-input" placeholder="******">
+                        <input type="password" class="auth-input" placeholder="******" required>
                     </div>
                     <div class="auth-form-group">
                         <label class="auth-label">Şifre (Tekrar)</label>
-                        <input type="password" class="auth-input" placeholder="******">
+                        <input type="password" class="auth-input" placeholder="******" required>
                     </div>
                     <div class="form-footer-links">
                         <a class="auth-link" onclick="openAuth('login')">Giriş Yap</a>
@@ -919,7 +921,6 @@
             const menuAnasayfa = document.getElementById('menu-anasayfa');
             const menuMagaza = document.getElementById('menu-magaza');
 
-            // Aktif olanı bul ve pürüzsüzce kapat
             const activeSection = document.querySelector('.page-section.active-page');
             if (activeSection) {
                 activeSection.style.opacity = '0';
@@ -952,19 +953,45 @@
 
         // Giriş Yap / Kayıt Ol Pencere Kontrolleri
         function openAuth(mode) {
-            closeAuth(); // Önce açık olanı temizle
+            closeAuth(); 
             if (mode === 'login') {
                 document.getElementById('auth-login-overlay').style.display = 'block';
             } else if (mode === 'register') {
                 document.getElementById('auth-register-overlay').style.display = 'block';
             }
-            document.body.style.overflow = 'hidden'; // Arka planın kaymasını engeller
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeAuth() {
             document.getElementById('auth-login-overlay').style.display = 'none';
             document.getElementById('auth-register-overlay').style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+
+        // 🛠️ FIX: Kayıt Olma Fonksiyonu
+        function handleRegister(event) {
+            event.preventDefault(); // Sayfa yenilenmesini engelle
+            const username = document.getElementById('register-username').value;
+            
+            alert("Başarıyla kayıt olundu! Hoş geldin, " + username + ". Şimdi giriş yapabilirsin.");
+            
+            // Kayıt sonrası otomatik olarak Giriş Yap ekranına yönlendir
+            openAuth('login');
+            document.getElementById('login-username').value = username; // İsmi giriş alanına taşı
+        }
+
+        // 🛠️ FIX: Giriş Yapma Fonksiyonu
+        function handleLogin(event) {
+            event.preventDefault(); // Sayfa yenilenmesini engelle
+            const username = document.getElementById('login-username').value;
+            
+            alert("Başarıyla giriş yapıldı! Keyifli oyunlar, " + username + ".");
+            
+            // Sağ üstteki "Giriş Yap" yazısını oyuncu ismiyle güncelle
+            document.getElementById('nav-username-display').innerText = username;
+            
+            // Paneli kapat
+            closeAuth();
         }
 
         // IP Kopyalama Fonksiyonu
