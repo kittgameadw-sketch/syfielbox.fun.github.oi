@@ -1,1159 +1,242 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syfielbox - Minecraft Sunucusu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
-        /* Genel Ayarlar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #0b0f17;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Header / Navigasyon Barı */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #070a0f;
-            padding: 10px 40px;
-            border-bottom: 2px solid #00a8ff;
-            box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 90;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .logo {
-            height: 60px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        .nav-item a {
-            color: #b9bbbe;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .nav-item a:hover, .nav-item.active a {
-            color: #00b4db;
-            text-shadow: 0 0 10px rgba(0, 180, 219, 0.6);
-        }
-
-        .server-ip-box {
-            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
-            padding: 8px 18px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .server-ip-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 100, 247, 0.4);
-        }
-
-        .ip-text {
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        /* Sağ Taraf: Profil ve Sepet */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .cart-box {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart-box i {
-            font-size: 22px;
-            color: #fff;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: linear-gradient(135deg, #0052d4, #00a8ff);
-            color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 50%;
-            border: 2px solid #070a0f;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-left: 20px;
-            border-left: 1px solid #2f3136;
-            cursor: pointer;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 4px;
-            image-rendering: pixelated;
-        }
-
-        .username {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .menu-lbl {
-            font-size: 11px;
-            color: #00b4db;
-            font-weight: bold;
-        }
-
-        /* Admin Bildirim Rozeti */
-        .admin-badge {
-            background-color: #ff3838;
-            color: white;
-            font-size: 10px;
-            padding: 1px 5px;
-            border-radius: 3px;
-            margin-left: 5px;
-            display: none;
-        }
-
-        /* Tanıtım Alanı (Hero) */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: radial-gradient(circle, rgba(0, 180, 219, 0.08) 0%, rgba(11,15,23,1) 70%);
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            margin-bottom: 15px;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(0, 180, 219, 0.3);
-        }
-
-        .hero p {
-            color: #b9bbbe;
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 25px auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .hero-btn {
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0052d4, #00a8ff);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background-color: #121824;
-            color: #fff;
-            border: 1px solid #1f293d;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            border-color: #00b4db;
-            box-shadow: 0 5px 15px rgba(0, 180, 219, 0.1);
-        }
-
-        /* Ortak Bölüm Tasarımları */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
-            position: relative;
-            color: #00b4db;
-            background: linear-gradient(to right, #00b4db, #00ff87);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, #00b4db, #00ff87);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Sayfa Bölümleri Geçiş Efektleri */
-        .page-section {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .page-section.active-page {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* MAĞAZA KATEGORİ KARTLARI */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .category-card {
-            position: relative;
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .cat-vip { background: linear-gradient(135deg, rgba(7, 48, 102, 0.8), rgba(0, 168, 255, 0.4)); }
-        .cat-kasa { background: linear-gradient(135deg, rgba(21, 31, 61, 0.9), rgba(67, 100, 247, 0.5)); }
-        .cat-gear { background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(111, 177, 252, 0.5)); }
-
-        .category-card:hover, .category-card.active-card {
-            transform: translateY(-5px);
-            border-color: #00a8ff;
-            box-shadow: 0 10px 25px rgba(0, 168, 255, 0.3);
-        }
-
-        .category-card i {
-            font-size: 50px;
-            color: #fff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-
-        .category-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; }
-        .category-card p { color: #e2e8f0; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-
-        .category-btn {
-            background-color: rgba(255, 255, 255, 0.15);
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
-
-        .category-card:hover .category-btn, .category-card.active-card .category-btn {
-            background-color: #fff;
-            color: #0b0f17;
-        }
-
-        /* DETAYLI MAĞAZA ÜRÜN PANELİ */
-        .shop-sub-panel {
-            background-color: #121824;
-            border: 1px solid #1f293d;
-            border-radius: 12px;
-            padding: 35px;
-            margin-top: 20px;
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .sub-panel-title {
-            font-size: 22px;
-            color: #00b4db;
-            margin-bottom: 25px;
-            border-left: 4px solid #00b4db;
-            padding-left: 15px;
-            text-transform: uppercase;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background-color: #070a0f;
-            border: 1px solid #1f293d;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .product-card:hover {
-            border-color: #00b4db;
-            transform: translateY(-3px);
-        }
-
-        .product-icon {
-            font-size: 36px;
-            color: #00b4db;
-            margin-bottom: 15px;
-        }
-
-        .product-card h4 { font-size: 20px; margin-bottom: 10px; color: #fff; }
-        .product-card p { color: #b9bbbe; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
-        
-        .product-price-tag {
-            font-size: 22px;
-            font-weight: 800;
-            color: #00ff87;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .buy-submit-btn {
-            background: linear-gradient(135deg, #0052d4, #00a8ff);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: box-shadow 0.2s;
-        }
-
-        .buy-submit-btn:hover {
-            box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4);
-        }
-
-        /* SANDIK SİSTEMİ */
-        .chest-container {
-            background-color: #121824;
-            border: 1px solid #1f293d;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .chest-empty {
-            text-align: center;
-            color: #72767d;
-            padding: 40px 0;
-            font-size: 16px;
-        }
-
-        .chest-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .chest-item {
-            background-color: #070a0f;
-            border: 1px solid #1f293d;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            transition: border-color 0.2s;
-        }
-
-        .chest-item:hover { border-color: #00b4db; }
-        .chest-item i { font-size: 36px; color: #00b4db; margin-bottom: 12px; }
-        .chest-item h4 { font-size: 18px; margin-bottom: 8px; }
-        .chest-item p { color: #b9bbbe; font-size: 13px; margin-bottom: 15px; }
-
-        .activate-btn {
-            background: linear-gradient(135deg, #00cc7d, #00a8ff);
-            color: #fff;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-
-        .activate-btn:hover { transform: translateY(-2px); }
-
-        /* KREDİ YÜKLE ALANI */
-        .credit-wrapper {
-            background-color: #121824;
-            border: 1px solid #1f293d;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 550px;
-            margin: 0 auto;
-        }
-
-        .credit-info-box {
-            background-color: rgba(0, 180, 219, 0.1);
-            border-left: 4px solid #00b4db;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            font-size: 14px;
-            color: #e2e8f0;
-        }
-
-        /* YÖNETİM PANELİ */
-        .admin-wrapper {
-            background-color: #121824;
-            border: 1px solid #ff3838;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 0 25px rgba(255, 56, 56, 0.15);
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .admin-box {
-            background-color: #070a0f;
-            border: 1px solid #1f293d;
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        .admin-box h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #ff3838;
-            border-bottom: 1px solid #1f293d;
-            padding-bottom: 10px;
-        }
-
-        .admin-btn {
-            background: linear-gradient(135deg, #ff3838, #ff8d38);
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* Form Düzenleri */
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; font-size: 14px; font-weight: 600; color: #b9bbbe; margin-bottom: 8px; }
-        .form-input {
-            width: 100%;
-            background-color: #070a0f;
-            border: 1px solid #1f293d;
-            padding: 12px 14px;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-        }
-        .form-input:focus { border-color: #00b4db; }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #0052d4, #00a8ff);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* Anasayfa Kadro ve Modlar */
-        .modes-grid { display: flex; justify-content: center; margin-bottom: 50px; }
-        .mode-card {
-            background-color: #121824; border: 1px solid #1f293d; border-radius: 10px;
-            padding: 40px; text-align: center; max-width: 500px; width: 100%;
-        }
-        .mode-card i { font-size: 45px; color: #00b4db; margin-bottom: 20px; }
-        .mode-card h3 { font-size: 26px; margin-bottom: 15px; }
-        .mode-card p { color: #b9bbbe; font-size: 15px; line-height: 1.6; }
-
-        .team-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
-        .team-card {
-            background-color: #121824; border: 1px solid #1f293d; border-radius: 8px;
-            padding: 25px 20px; width: 210px; text-align: center; transition: transform 0.3s, border-color 0.3s;
-        }
-        .team-card:hover { transform: translateY(-5px); border-color: #00b4db; }
-        .team-avatar { width: 70px; height: 70px; margin-bottom: 15px; image-rendering: pixelated; border-radius: 8px; }
-        .team-name { font-weight: bold; font-size: 16px; margin-bottom: 10px; }
-        .team-role { font-size: 12px; font-weight: bold; padding: 5px 14px; border-radius: 4px; display: inline-block; text-transform: uppercase; }
-        
-        .role-kurucu { background: linear-gradient(135deg, #0052d4, #4364f7); color: #fff; }
-        .role-owner { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
-        .role-manager { background: linear-gradient(135deg, #11998e, #38ef7d); color: #fff; }
-
-        /* 🚪 GİRİŞ & KAYIT PANELLERİ 🚪 */
-        .auth-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100vw; 
-            height: 100vh; 
-            background-color: #0b0f17; 
-            z-index: 200; 
-            display: none; 
-            overflow-y: auto; 
-        }
-
-        .auth-animate-in {
-            animation: authFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .auth-animate-out {
-            animation: authFadeOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .auth-container { display: flex; min-height: 100vh; width: 100%; }
-        .auth-left { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; max-width: 650px; background-color: #0b0f17; }
-        .auth-right { flex: 1; background-color: #070a0f; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; border-left: 1px solid rgba(255, 255, 255, 0.05); }
-        .back-btn { position: absolute; top: 30px; right: 40px; background-color: #121824; color: #fff; border: 1px solid #1f293d; padding: 10px 20px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 10; }
-        
-        .auth-welcome-text {
-            font-size: 20px;
-            font-weight: 800;
-            color: #00ff87;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(0, 255, 135, 0.2);
-        }
-
-        .auth-header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
-        .auth-icon-wrapper { border-right: 2px solid #00b4db; padding-right: 20px; }
-        .auth-icon-wrapper i { font-size: 40px; color: #00b4db; }
-        .auth-title-container h2 { font-size: 28px; text-transform: uppercase; background: linear-gradient(to right, #00b4db, #4364f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .auth-title-container p { color: #72767d; font-size: 14px; margin-top: 4px; }
-        .auth-form-group { margin-bottom: 25px; }
-        .auth-input { width: 100%; background-color: #121824; border: 1px solid #1f293d; padding: 14px 16px; border-radius: 8px; color: #fff; font-size: 15px; outline: none; }
-        .auth-input:focus { border-color: #00b4db; }
-        .auth-label { display: block; font-size: 14px; font-weight: 600; color: #b9bbbe; margin-bottom: 8px; }
-        .form-footer-links { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
-        .auth-link { color: #72767d; text-decoration: none; font-size: 14px; cursor: pointer; }
-        .auth-link:hover { color: #00b4db; }
-        .auth-submit-btn { background: linear-gradient(135deg, #0052d4, #00a8ff); color: #fff; border: none; padding: 14px 35px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: box-shadow 0.2s; }
-        .auth-submit-btn:hover { box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4); }
-        
-        .big-logo-side { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .big-logo-side img { height: 120px; width: auto; filter: drop-shadow(0 0 25px rgba(0, 168, 255, 0.4)); transition: transform 0.3s; }
-        .big-logo-side img:hover { transform: scale(1.05); }
-        .big-logo-side h3 { font-size: 24px; letter-spacing: 2px; text-transform: uppercase; color: #b9bbbe; font-weight: 700; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes authFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes authFadeOut {
-            from { opacity: 1; transform: translateY(0); }
-            to { opacity: 0; transform: translateY(-30px); }
-        }
-
-        footer { background-color: #070a0f; text-align: center; padding: 20px; color: #72767d; font-size: 14px; border-top: 1px solid #1f293d; margin-top: 40px; }
+        body { transition: opacity ease-in 0.2s; } 
+        body[unresolved] { opacity: 0; display: block; overflow: hidden; position: relative; } 
     </style>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="LeaderOS">
+    <link rel="shortcut icon" type="image/x-icon" href="https://demo-site.leaderos.net/favicon.ico?cache=1750630063">
+
+    <title>LeaderOS - Minecraft Server</title>
+    <meta name="description" content="">
+    <link rel="canonical" href="https://demo-site.leaderos.net/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LeaderOS - Minecraft Server">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://demo-site.leaderos.net">
+    <meta property="og:site_name" content="LeaderOS">
+    
+    <!-- CSRF -->
+    <meta name="csrf-token" content="2b9f97a6b7d8218c443f4a8132ac8a008e15245a0d72221d791cb3fc2572cc6a">
+
+    <!-- EXTRAS -->
+    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/sweetalert2.min.css">
+    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/select2.min.css">
+    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+
+    <!-- THEMES -->
+    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/app.1775153159.css">
+    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/bootstrap-grid.min.1750251520.css">
+    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/content-styles.1750251520.css">
+    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/scale.min.css">
+
+    <!-- AlpineJS Plugins & Core -->
+    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min.js.indir"></script>
+    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min(1).js.indir"></script>
+    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min(2).js.indir"></script>
+    
+    <!-- Fast Average Color Plugin & Theme -->
+    <script src="./LeaderOS - Minecraft Server_files/index.browser.min.js.indir"></script>
+    <script src="./LeaderOS - Minecraft Server_files/theme.1750251520.js.indir"></script>
+
+    <!-- THEME SETTINGS -->
+    <style>
+        :root {
+            --color-indigo-50: 240 249 255; --color-indigo-100: 224 242 254; --color-indigo-200: 186 230 253;
+            --color-indigo-300: 125 211 252; --color-indigo-400: 56 189 248; --color-indigo-500: 14 165 233;
+            --color-indigo-600: 2 132 199; --color-indigo-700: 3 105 161; --color-indigo-800: 7 89 133;
+            --color-indigo-900: 12 74 110; --color-voon-950: 8 8 8;
+            --color-voon-900: 10 10 10;
+            --color-voon-800: 14 14 14;
+            --color-voon-700: 18 18 18;
+            --color-voon-background: 18 18 18;
+            --color-voon-card: 14 14 14;
+            --color-neutral-900: 23 23 23;
+            --color-zinc-600: 82 82 91;        
+        }
+    </style>
+        
+    <!-- CUSTOM CSS -->
+    <style type="text/css">
+        .role__admin {
+            color: #fff !important;
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 0%, rgba(255,0,0,1) 100%) !important;
+        }
+        .username__admin {
+            color: #ff0000 !important
+        }    
+    </style>
+    
+    <!-- Font Awesome (İkonlar için gerekli olabilir, ekledim) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
 
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="logo.png" alt="Syfielbox Logo" class="logo">
-            <ul class="nav-menu">
-                <li class="nav-item active" id="menu-anasayfa"><a onclick="showPage('anasayfa')">Anasayfa</a></li>
-                <li class="nav-item" id="menu-magaza"><a onclick="showPage('magaza')">Mağaza</a></li>
-                <li class="nav-item" id="menu-sandik"><a onclick="showPage('sandik')">Sandık</a></li>
-                <li class="nav-item" id="menu-krediyukle"><a onclick="showPage('krediyukle')">Kredi Yükle</a></li>
-                <li class="nav-item" id="menu-admin" style="display: none;"><a onclick="showPage('admin')" style="color: #ff3838;"><i class="fa-solid fa-screwdriver-wrench"></i> Yönetim Paneli <span class="admin-badge" id="admin-badge-count">0</span></a></li>
-            </ul>
-        </div>
-
-        <div class="server-ip-box" onclick="copyIP()">
-            <i class="fa-solid fa-server"></i>
-            <span class="ip-text" id="ipAddress">syfielbox.fun</span>
-        </div>
-
-        <div class="nav-right">
-            <div class="cart-box" onclick="showPage('sandik')">
-                <i class="fa-solid fa-box-open"></i>
-                <span class="cart-badge" id="global-chest-count">0</span>
+<body x-data="body">
+<div id="app">
+    
+    <!-- HEADER -->
+    <header id="header" class="hidden sm:block">
+        <div class="section flex justify-between items-center py-3">
+            <div class="flex gap-20 items-center">
+                <a href="https://demo-site.leaderos.net/">
+                    <img class="h-[5.5rem]" src="./LeaderOS - Minecraft Server_files/d671265c6425823502a7e0d518025053.png" alt="LeaderOS - Logo">
+                </a>
+                <nav class="gap-6 lg:flex">
+                    <a href="https://demo-site.leaderos.net/" class="nav-item mr-2 active">Anasayfa</a>
+                    <a href="https://demo-site.leaderos.net/store" class="nav-item mr-2 ">Mağaza</a>
+                    <a href="https://demo-site.leaderos.net/forum" class="nav-item mr-2 ">Forum</a>
+                    <a href="https://demo-site.leaderos.net/help" class="nav-item mr-2 ">Yardım</a>
+                    <a href="https://demo-site.leaderos.net/support/tickets" class="nav-item mr-2 ">Destek</a>
+                </nav>
             </div>
-            <div class="user-profile" onclick="openAuth('login')">
-                <img src="https://mc-heads.net/avatar/steve" alt="Oyuncu Kafası" class="avatar" id="global-avatar">
-                <div class="user-info">
-                    <span class="username" id="nav-username-display">Giriş Yap</span>
-                    <span class="menu-lbl" id="nav-user-credit">0 TL</span>
+            <div>
+                <a href="https://demo-site.leaderos.net/login/" class="rounded-xl bg-indigo-500 py-3 px-6 text-white text-sm flex gap-3 items-center font-medium">
+                    Giriş Yap <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="sm:hidden" id="mobile-menu" x-data="{mainMenu: false}">
+        <div class="flex items-center justify-between space-y-1 px-2 pt-2 pb-3">
+            <a href="https://demo-site.leaderos.net/">
+                <img class="h-[3rem]" src="./LeaderOS - Minecraft Server_files/d671265c6425823502a7e0d518025053.png" alt="LeaderOS - Logo">
+            </a>
+            <button @click="mainMenu = ! mainMenu" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg x-show="!mainMenu" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                </svg>
+                <svg x-show="mainMenu" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" style="display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div x-show="mainMenu" class="space-y-1 px-2 pt-2 pb-3" style="display: none;">
+            <a href="https://demo-site.leaderos.net/" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Anasayfa</a>
+            <a href="https://demo-site.leaderos.net/store" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Mağaza</a>
+            <a href="https://demo-site.leaderos.net/forum" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Forum</a>
+            <a href="https://demo-site.leaderos.net/help" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Yardım</a>
+            <a href="https://demo-site.leaderos.net/support/tickets" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Destek</a>
+            <a href="https://demo-site.leaderos.net/login/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Giriş Yap</a>
+            <a href="https://demo-site.leaderos.net/register/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Kayıt Ol</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" role="main">
+        
+        <!-- HERO SECTION -->
+        <section id="__heroSection" x-data="carousel()" x-init="init()">
+            <div class="carousel overflow-hidden flickity-enabled" x-ref="carousel" tabindex="0">
+                <div class="flickity-viewport" style="height: 855.972px;">
+                    <div class="flickity-slider" style="transform: translateX(0%);">
+                        <div class="flickity-cell is-selected" style="transform: translateX(0%); w-full">
+                            <div class="absolute top-0 left-0 bg-cover bg-center w-full h-full" style="background-image: url('/assets/gale/img/bg-hero.png?cache=1750630063')">
+                                <div class="bg-gradient-to-tl from-indigo-800/50 to-indigo-800/20 absolute top-0 left-0 w-full h-full"></div>
+                            </div>
+                            <div class="section pt-36 pb-60 lg:pt-48 lg:pb-96 relative px-6 z-20">
+                                <h1 class="text-white text-5xl font-extrabold mt-6 max-w-2xl">
+                                    1 Numaralı Minecraft Sunucusuna Katılın!
+                                </h1>
+                                <p class="text-white/75 text-xl font-semibold max-w-lg mt-2">
+                                    LeaderOS ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!
+                                </p>
+                                <div class="flex items-center gap-4 mt-10 relative z-10">
+                                    <a href="https://demo-site.leaderos.net/play/" class="rounded-2xl py-3 px-8 font-semibold bg-gradient-to-r from-indigo-500 to-indigo-600 text-white relative flex items-center">
+                                        <i class="fas fa-gamepad text-2xl mr-3"></i> Şimdi Oyna
+                                    </a>
+                                    <a href="https://demo-site.leaderos.net/register/" class="font-semibold bg-voon-800 rounded-2xl relative text-white py-3 px-8 flex items-center">
+                                        <i class="fas fa-user-plus text-2xl mr-3"></i> Kayıt Ol
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+            <svg class="absolute -bottom-12 w-full left-0 z-20" style="filter: drop-shadow(0 -85px 45px rgba(0, 0, 0, .5))" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1366 134">
+                <path class="fill-voon-bg" d="M0,91.94C43.71,59.18,114.51,16.29,207.47,3.82c6.79-0.91,32.2-3.96,66.16-3.42 c107.54,1.74,148.6,36.78,252.32,50.55c34.39,4.57,60.71,5.41,78.43,5.96c42.7,1.34,62.27-1.19,67.62-1.92 c32.33-4.43,52.86-13.09,65-17c55.04-17.72,92.95,11.78,189,35c44.78,10.83,82.19,14.22,157,21c0,0,136.88,12.41,195.62-26.42 c0.33-0.22,3.48-2.33,7.91-4.91c4.28-2.49,9.99-5.54,16.95-8.53C1328,43.62,1350.63,41.3,1366,41c0,31,0,62,0,93 c-455.33,0-910.67,0-1366,0C0,119.98,0,105.96,0,91.94z"></path>
+            </svg>
+        </section>
 
-    <section class="hero">
-        <h1>Syfielbox Sunucusuna Hoş Geldin!</h1>
-        <p>Türkiye'nin en hareketli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak kopyalayabilirsin.</p>
-        <div class="hero-buttons">
-            <button class="hero-btn btn-primary" onclick="copyIP()"><i class="fa-solid fa-gamepad"></i> Şimdi Oyna</button>
-            <button class="hero-btn btn-secondary" onclick="openAuth('register')"><i class="fa-solid fa-user-plus"></i> Kayıt Ol</button>
-        </div>
-    </section>
-
-    <div id="page-anasayfa" class="page-section active-page">
-        <section class="container">
-            <h2 class="section-title">Oyun Modumuz</h2>
-            <div class="modes-grid">
-                <div class="mode-card">
-                    <i class="fa-solid fa-feather-pointed"></i>
-                    <h3>Elytra PvP</h3>
-                    <p>Gökyüzünün hakimi ol! Elytra kanatlarınla havada süzülürken rakiplerine karşı yeteneklerini sergile!</p>
+        <!-- JOIN WIDGET -->
+        <section class="relative z-20 pb-10 -mt-32 section">
+            <div class="grid gap-12 lg:grid-cols-10">
+                <div class="lg:col-span-10 card card-simple p-6 text-white" style="background-color: var(--color-voon-card); border-radius: 1rem;">
+                    <div class="absolute opacity-5 top-0 left-0 w-full h-full bg-cover bg-bottom" style="background-image: url('/assets/gale/img/join-widget-bg.png')"></div>
+                    <div class="flex flex-col md:flex-row justify-between gap-6 items-center text-center md:text-left relative">
+                        <div>
+                            <div>
+                                <h2 class="font-bold text-2xl mb-2">Oyuna dahil olma zamanı!</h2>
+                            </div>
+                            <div class="text-indigo-100/75">
+                                LeaderOS ile minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="cursor-pointer btn-before rounded-lg bg-indigo-600 py-3 px-5 text-white relative font-semibold" data-toggle="copyip" data-clipboard-action="copy" data-clipboard-text="play.hypixel.net">
+                                play.hypixel.net
+                            </div>
+                            <span class="text-white/50 text-sm mt-3 active" data-toggle="onlinebox">
+                                <span class="text-white font-bold" data-toggle="onlinetext" server-ip="play.hypixel.net">33645</span> oyuncu aktif
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-title">Yetkili Kadrosu</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/28grad" alt="Kurucu" class="team-avatar">
-                    <div class="team-name">28grad</div>
-                    <div class="team-role role-kurucu">Kurucu</div>
-                </div>
-                <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/elytragainner76_" alt="Yönetici" class="team-avatar">
-                    <div class="team-name">ElytraGamer</div>
-                    <div class="team-role role-manager">Yönetici</div>
-                </div>
-                <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/Notch" alt="Admin" class="team-avatar">
-                    <div class="team-name">Kral</div>
-                    <div class="team-role role-owner">Owner</div>
+        <!-- NEWS SECTION -->
+        <section class="section pt-12 pb-20 gap-12 grid lg:grid-cols-10">
+            <div class="lg:col-span-7">
+                <h3 class="text-white font-bold text-2xl">Haber</h3>
+                <div class="grid gap-12 mt-12">
+                    
+                    <!-- NEWS CARD -->
+                    <div class="flex flex-col lg:flex-row group" style="background-color: var(--color-voon-card); border-radius: 1.5rem;">
+                        <div class="flex-1">
+                            <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="block rounded-l-3xl relative overflow-hidden h-full">
+                                <div class="bg-cover bg-center h-72 lg:h-full w-full group-hover:scale-110 transition-all duration-300 group-hover:rotate-3" style="background-image: url('/assets/core/images/blog/posts/88a1d1eea79993724fdcdc5a78850d9d.png')"></div>
+                                <div class="absolute bottom-0 left-0 right-0 pb-3 pt-20 px-5 bg-gradient-to-t from-black/75 flex items-center"></div>
+                            </a>
+                        </div>
+                        <div class="flex-1 flex flex-col p-6">
+                            <div class="py-3">
+                                <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="block">
+                                    <h3 class="line-clamp-1 text-2xl font-semibold text-gray-200 hover:text-indigo-400 transition-colors">
+                                        What is Lorem Ipsum?
+                                    </h3>
+                                </a>
+                                <div class="text-indigo-50/75 mt-4 text-sm line-clamp-3 leading-relaxed">
+                                    The standard Lorem Ipsum passage, used since the 1500s"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la......
+                                </div>
+                            </div>
+                            
+                            <!-- BURA YARIM KALMIŞTI, TAMAMLANDI VE DÜZELTİLDİ -->
+                            <div class="mt-auto flex justify-between items-center border-t border-gray-800 pt-4 mt-4">
+                                <span class="text-xs text-gray-400 font-medium"><i class="far fa-calendar-alt mr-1"></i> 14 Mayıs 2026</span>
+                                <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="text-sm text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+                                    Devamını Oku <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                            <!-- YARIM KALAN KISIM BİTİŞ -->
+                            
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>
-    </div>
-
-    <div id="page-magaza" class="page-section">
-        <section class="container">
-            <h2 class="section-title">Sunucu Mağazası</h2>
-            <div class="category-grid">
-                <div class="category-card cat-vip" id="card-vip" onclick="toggleShopCategory('vip')">
-                    <i class="fa-solid fa-crown"></i>
-                    <h3>VİP Üyelikler</h3>
-                    <button class="category-btn">Paketleri Gör</button>
-                </div>
-                <div class="category-card cat-kasa" id="card-kasa" onclick="toggleShopCategory('kasa')">
-                    <i class="fa-solid fa-box-open"></i>
-                    <h3>Kasa Anahtarları</h3>
-                    <button class="category-btn">Anahtarları Gör</button>
-                </div>
-                <div class="category-card cat-gear" id="card-gear" onclick="toggleShopCategory('gear')">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h3>Gear & Editler</h3>
-                    <button class="category-btn">Gearları Gör</button>
-                </div>
-            </div>
-
-            <div class="shop-sub-panel" id="shop-sub-panel">
-                <h3 class="sub-panel-title" id="sub-panel-title">Ürünler</h3>
-                <div class="products-grid" id="products-grid"></div>
-            </div>
-        </section>
-    </div>
-
-    <div id="page-sandik" class="page-section">
-        <section class="container">
-            <h2 class="section-title">Oyuncu Sandığı</h2>
-            <div class="chest-container">
-                <div id="chest-empty-msg" class="chest-empty">
-                    Sandığınızda şu an hiç ürün bulunmamaktadır.
-                </div>
-                <div id="chest-items-grid" class="chest-grid" style="display: none;"></div>
-            </div>
-        </section>
-    </div>
-
-    <div id="page-krediyukle" class="page-section">
-        <section class="container">
-            <h2 class="section-title">Kredi Yükle</h2>
-            <div class="credit-wrapper">
-                <div class="credit-info-box">
-                    <i class="fa-solid fa-circle-info"></i> Ödemeleriniz 3D Secure güvencesiyle anında hesabınıza yansır.
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Yüklenecek Tutar (TL)</label>
-                    <input type="number" class="form-input" placeholder="Örn: 50" min="1">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Ödeme Yöntemi</label>
-                    <select class="form-input">
-                        <option>Kredi / Banka Kartı</option>
-                        <option>İninal Kart</option>
-                        <option>Papara</option>
-                        <option>Mobil Ödeme</option>
-                    </select>
-                </div>
-                <button class="submit-btn" onclick="Swal.fire({icon:'info', title:'Ödeme Adımı', text:'Bu özellik test aşamasındadır.'})">Ödemeye Geç</button>
-            </div>
-        </section>
-    </div>
-
-    <div id="page-admin" class="page-section">
-        <section class="container">
-            <h2 class="section-title" style="color: #ff3838;">Yönetim Paneli</h2>
-            <div class="admin-wrapper">
-                <div class="admin-grid">
-                    <div class="admin-box">
-                        <h3>Oyuncu İşlemleri</h3>
-                        <button class="admin-btn">Oyuncu Banla</button>
-                        <button class="admin-btn">Mute At</button>
-                    </div>
-                    <div class="admin-box">
-                        <h3>Sunucu İşlemleri</h3>
-                        <button class="admin-btn">Sunucuyu Kapat (Stop)</button>
-                        <button class="admin-btn">Bakım Modunu Aç</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="auth-login-overlay" class="auth-overlay">
-        <div class="auth-container">
-            <div class="auth-left">
-                <div class="auth-welcome-text">Syfielbox Hoşgeldin!</div>
-                <div class="auth-header">
-                    <div class="auth-icon-wrapper"><i class="fa-solid fa-right-to-bracket"></i></div>
-                    <div class="auth-title-container">
-                        <h2>Giriş Yap</h2>
-                        <p>Hesabına erişmek için giriş yap.</p>
-                    </div>
-                </div>
-                <form onsubmit="handleLogin(event)">
-                    <div class="auth-form-group">
-                        <label class="auth-label">Kullanıcı Adı</label>
-                        <input type="text" id="login-username" class="auth-input" placeholder="Kullanıcı Adı" required>
-                    </div>
-                    <div class="auth-form-group">
-                        <label class="auth-label">Şifre</label>
-                        <input type="password" id="login-password" class="auth-input" placeholder="******" required>
-                    </div>
-                    <div class="form-footer-links">
-                        <a class="auth-link" onclick="openAuth('register')">Kayıt Ol</a>
-                        <button type="submit" class="auth-submit-btn">Giriş Yap</button>
-                    </div>
-                </form>
-            </div>
-            <div class="auth-right">
-                <button class="back-btn" onclick="closeAuthWithAnimation('auth-login-overlay')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
-                <div class="big-logo-side">
-                    <img src="logo.png" alt="Syfielbox Logo">
-                    <h3>GİRİŞ YAP</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="auth-register-overlay" class="auth-overlay">
-        <div class="auth-container">
-            <div class="auth-left">
-                <div class="auth-welcome-text">Syfielbox Hoşgeldin!</div>
-                <div class="auth-header">
-                    <div class="auth-icon-wrapper"><i class="fa-solid fa-user-plus"></i></div>
-                    <div class="auth-title-container">
-                        <h2>Kayıt Ol</h2>
-                        <p>Sunucumuza katılmak için kayıt ol.</p>
-                    </div>
-                </div>
-                <form onsubmit="handleRegister(event)">
-                    <div class="auth-form-group">
-                        <label class="auth-label">Kullanıcı Adı</label>
-                        <input type="text" id="register-username" class="auth-input" placeholder="Kullanıcı Adı" required>
-                    </div>
-                    <div class="auth-form-group">
-                        <label class="auth-label">E-Posta</label>
-                        <input type="email" class="auth-input" placeholder="E-Posta" required>
-                    </div>
-                    <div class="auth-form-group">
-                        <label class="auth-label">Şifre</label>
-                        <input type="password" id="register-password" class="auth-input" placeholder="******" required>
-                    </div>
-                    <div class="form-footer-links">
-                        <a class="auth-link" onclick="openAuth('login')">Zaten Hesabım Var</a>
-                        <button type="submit" class="auth-submit-btn">Kayıt Ol</button>
-                    </div>
-                </form>
-            </div>
-            <div class="auth-right">
-                <button class="back-btn" onclick="closeAuthWithAnimation('auth-register-overlay')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
-                <div class="big-logo-side">
-                    <img src="logo.png" alt="Syfielbox Logo">
-                    <h3>KAYIT OL</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 Syfielbox. Tüm Hakları Saklıdır.
-    </footer>
-
-    <script>
-        let currentUser = null;
-        let userCredit = 0;
-        let userChest = [];
-
-        // Kayıt olan kullanıcıları ve şifrelerini geçici olarak tutacağımız veritabanı (Obje)
-        const registeredUsers = {};
-
-        const shopData = {
-            vip: {
-                title: "VİP Üyelik Paketleri",
-                products: [
-                    { name: "VIP", price: 15, desc: "Temel VIP özellikleri", icon: "fa-crown" },
-                    { name: "Elite", price: 25, desc: "Gelişmiş Elite özellikleri", icon: "fa-gem" },
-                    { name: "Custom VIP", price: 40, desc: "En üst düzey yetkiler", icon: "fa-dragon" }
-                ]
-            },
-            kasa: {
-                title: "Kasa Anahtarı Paketleri",
-                products: [
-                    { name: "Syfiel Crate", price: 20, desc: "Nadir oyun içi eşyalar", icon: "fa-box-open" },
-                    { name: "Koth Crate", price: 15, desc: "Rekabetçi ödüller", icon: "fa-key" }
-                ]
-            },
-            gear: {
-                title: "Gear & Edit Ekipmanlar",
-                products: [
-                    { name: "Panda Gear", price: 30, desc: "Özel Panda efektli set", icon: "fa-shield-halved" },
-                    { name: "Fish Gear", price: 40, desc: "Efsanevi Fish Edit seti", icon: "fa-fish" }
-                ]
-            }
-        };
-
-        function showPage(pageName) {
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active-page');
-                section.style.opacity = '0';
-            });
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-
-            const targetPage = document.getElementById('page-' + pageName);
-            const targetMenu = document.getElementById('menu-' + pageName);
-            
-            if(targetPage) {
-                targetPage.classList.add('active-page');
-                if(targetMenu) targetMenu.classList.add('active');
-                setTimeout(() => {
-                    targetPage.style.opacity = '1';
-                    targetPage.style.transform = 'translateY(0)';
-                }, 50);
-            }
-            if(pageName === 'sandik') { renderChest(); }
-        }
-
-        function toggleShopCategory(catKey) {
-            const panel = document.getElementById('shop-sub-panel');
-            const grid = document.getElementById('products-grid');
-            const titleEl = document.getElementById('sub-panel-title');
-            
-            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active-card'));
-
-            if (panel.style.display === 'block' && panel.dataset.current === catKey) {
-                panel.style.display = 'none';
-                return;
-            }
-
-            document.getElementById('card-' + catKey).classList.add('active-card');
-            
-            panel.dataset.current = catKey;
-            titleEl.innerText = shopData[catKey].title;
-            grid.innerHTML = '';
-
-            shopData[catKey].products.forEach(prod => {
-                const pCard = document.createElement('div');
-                pCard.className = 'product-card';
-                pCard.innerHTML = `
-                    <div>
-                        <div class="product-icon"><i class="fa-solid ${prod.icon}"></i></div>
-                        <h4>${prod.name}</h4>
-                        <p>${prod.desc}</p>
-                    </div>
-                    <div>
-                        <span class="product-price-tag">${prod.price} TL</span>
-                        <button class="buy-submit-btn" onclick="buyItem('${prod.name}', ${prod.price})"><i class="fa-solid fa-shopping-cart"></i> Satın Al</button>
-                    </div>
-                `;
-                grid.appendChild(pCard);
-            });
-
-            panel.style.display = 'block';
-        }
-
-        function openAuth(mode) {
-            document.getElementById('auth-login-overlay').style.display = 'none';
-            document.getElementById('auth-register-overlay').style.display = 'none';
-            document.getElementById('auth-login-overlay').classList.remove('auth-animate-in', 'auth-animate-out');
-            document.getElementById('auth-register-overlay').classList.remove('auth-animate-in', 'auth-animate-out');
-
-            let targetId = (mode === 'login') ? 'auth-login-overlay' : 'auth-register-overlay';
-            let el = document.getElementById(targetId);
-            
-            el.style.display = 'block';
-            el.classList.add('auth-animate-in');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAuthWithAnimation(overlayId) {
-            let el = document.getElementById(overlayId);
-            el.classList.remove('auth-animate-in');
-            el.classList.add('auth-animate-out');
-            
-            setTimeout(() => {
-                el.style.display = 'none';
-                el.classList.remove('auth-animate-out');
-                document.body.style.overflow = 'auto';
-            }, 350);
-        }
-
-        // KAYIT OLMA MANTIĞI VE ŞİFRE KONTROLLERİ
-        function handleRegister(event) {
-            event.preventDefault();
-            const username = document.getElementById('register-username').value;
-            const password = document.getElementById('register-password').value;
-
-            // 1. Kural: 4 haneden uzun olmalı
-            if (password.length <= 4) {
-                Swal.fire({ 
-                    icon: 'warning', 
-                    title: 'Güvensiz Şifre', 
-                    text: 'Şifreniz 4 karakterden uzun olmalıdır!', 
-                    confirmButtonText: 'Tekrar Dene',
-                    iconColor: '#ff8d38'
-                });
-                return;
-            }
-
-            // 2. Kural: En az bir büyük harf içermeli
-            if (!/[A-Z]/.test(password)) {
-                Swal.fire({ 
-                    icon: 'warning', 
-                    title: 'Güvensiz Şifre', 
-                    text: 'Şifreniz en az bir büyük harf içermelidir (Örn: Abcd123)!', 
-                    confirmButtonText: 'Tekrar Dene',
-                    iconColor: '#ff8d38'
-                });
-                return;
-            }
-
-            // Kurallara uyuyorsa kullanıcıyı sisteme kaydet
-            registeredUsers[username.toLowerCase()] = {
-                password: password
-            };
-            
-            closeAuthWithAnimation('auth-register-overlay');
-            setTimeout(() => {
-                openAuth('login');
-                document.getElementById('login-username').value = username;
-                document.getElementById('login-password').value = '';
-                Swal.fire({ 
-                    icon: 'success', 
-                    title: 'Başarılı!', 
-                    text: 'Kayıt olundu, şimdi belirlediğiniz şifre ile giriş yapabilirsiniz.', 
-                    confirmButtonText: 'Tamam', 
-                    iconColor: '#00cc7d' 
-                });
-            }, 355);
-        }
-
-        // GİRİŞ YAPMA MANTIĞI VE ŞİFRE DOĞRULAMASI
-        function handleLogin(event) {
-            event.preventDefault();
-            const inputUsername = document.getElementById('login-username').value;
-            const inputPassword = document.getElementById('login-password').value;
-            const userKey = inputUsername.toLowerCase();
-
-            // Kullanıcı hiç kayıt olmamışsa veya şifresi uyuşmuyorsa
-            if (!registeredUsers[userKey] || registeredUsers[userKey].password !== inputPassword) {
-                Swal.fire({ 
-                    icon: 'error', 
-                    title: 'Hatalı Giriş', 
-                    text: 'Kullanıcı adı veya şifre yanlış! Lütfen kayıt olduğunuzdan ve şifreyi doğru yazdığınızdan emin olun.', 
-                    confirmButtonText: 'Tekrar Dene' 
-                });
-                return;
-            }
-
-            // Giriş Başarılıysa
-            currentUser = inputUsername;
-            document.getElementById('nav-username-display').innerText = currentUser;
-            document.getElementById('global-avatar').src = 'https://mc-heads.net/avatar/' + currentUser;
-            
-            if(currentUser.toLowerCase() === '28grad') {
-                document.getElementById('menu-admin').style.display = 'block';
-                document.getElementById('admin-badge-count').style.display = 'inline-block';
-                document.getElementById('admin-badge-count').innerText = 'Kral';
-            } else {
-                document.getElementById('menu-admin').style.display = 'none';
-            }
-
-            userCredit = 150; 
-            updateHeaderData();
-            
-            closeAuthWithAnimation('auth-login-overlay');
-            
-            setTimeout(() => {
-                Swal.fire({ icon: 'success', title: 'Giriş Başarılı!', text: 'Hoş geldin ' + currentUser + '!', confirmButtonText: 'Harika', iconColor: '#00cc7d' });
-            }, 360);
-        }
-
-        function updateHeaderData() {
-            document.getElementById('nav-user-credit').innerText = userCredit + " TL";
-            document.getElementById('global-chest-count').innerText = userChest.length;
-        }
-
-        function buyItem(itemName, price) {
-            if (!currentUser) {
-                Swal.fire({ icon: 'error', title: 'Hata!', text: 'Satın alım yapmak için önce giriş yapmalısınız!', confirmButtonText: 'Tamam' });
-                return;
-            }
-
-            if (userCredit >= price) {
-                userCredit -= price;
-                userChest.push(itemName);
-                updateHeaderData();
-                Swal.fire({ icon: 'success', title: 'Satın Alındı!', text: `${itemName} başarıyla sandığına eklendi!`, confirmButtonText: 'Harika', iconColor: '#00cc7d' });
-            } else {
-                Swal.fire({ icon: 'error', title: 'Yetersiz Bakiye!', text: 'Bu işlem için yeterli kredin bulunmuyor.', confirmButtonText: 'Kapat' });
-            }
-        }
-
-        function renderChest() {
-            const emptyMsg = document.getElementById('chest-empty-msg');
-            const grid = document.getElementById('chest-items-grid');
-            
-            grid.innerHTML = '';
-            
-            if (userChest.length === 0) {
-                emptyMsg.style.display = 'block';
-                grid.style.display = 'none';
-            } else {
-                emptyMsg.style.display = 'none';
-                grid.style.display = 'grid';
-                
-                userChest.forEach((item, index) => {
-                    const box = document.createElement('div');
-                    box.className = 'chest-item';
-                    box.innerHTML = `
-                        <i class="fa-solid fa-gift"></i>
-                        <h4>${item}</h4>
-                        <p>Satın Alındı</p>
-                        <button class="activate-btn" onclick="activateItem(${index}, '${item}')">Aktifleştir</button>
-                    `;
-                    grid.appendChild(box);
-                });
-            }
-        }
-
-        function activateItem(index, itemName) {
-            userChest.splice(index, 1);
-            updateHeaderData();
-            renderChest();
-            Swal.fire({ icon: 'success', title: 'Aktifleştirildi!', text: `${itemName} oyun içi hesabına tanımlandı! İyi eğlenceler.`, confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
-        }
-
-        function copyIP() {
-            const ipText = document.getElementById("ipAddress").innerText;
-            navigator.clipboard.writeText(ipText).then(() => {
-                Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Sunucu adresi kopyalandı!', confirmButtonText: 'OK', iconColor: '#00cc7d' });
-            });
-        }
-    </script>
+        
+    </main>
+</div>
 </body>
 </html>
