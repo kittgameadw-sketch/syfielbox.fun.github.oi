@@ -268,7 +268,7 @@
             transform: translateY(0);
         }
 
-        /* 🛍️ MAĞAZA 🛍️ */
+        /* 🛍️ MAĞAZA KATEGORİ KARTLARI 🛍️ */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -283,31 +283,29 @@
             text-align: center;
             overflow: hidden;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .cat-vip { background: linear-gradient(135deg, rgba(7, 48, 102, 0.8), rgba(0, 168, 255, 0.4)); }
         .cat-kasa { background: linear-gradient(135deg, rgba(21, 31, 61, 0.9), rgba(67, 100, 247, 0.5)); }
         .cat-gear { background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(111, 177, 252, 0.5)); }
 
-        .category-card:hover {
-            transform: translateY(-10px);
+        .category-card:hover, .category-card.active-card {
+            transform: translateY(-5px);
             border-color: #00a8ff;
-            box-shadow: 0 15px 35px rgba(0, 168, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 168, 255, 0.3);
         }
 
         .category-card i {
             font-size: 50px;
             color: #fff;
             margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s ease;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
-        .category-card:hover i { transform: scale(1.15) rotate(5deg); }
-        .category-card h3 { font-size: 26px; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; }
-        .category-card p { color: #e2e8f0; font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+        .category-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; }
+        .category-card p { color: #e2e8f0; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
 
         .category-btn {
             background-color: rgba(255, 255, 255, 0.15);
@@ -321,10 +319,85 @@
             transition: all 0.3s;
         }
 
-        .category-card:hover .category-btn {
+        .category-card:hover .category-btn, .category-card.active-card .category-btn {
             background-color: #fff;
             color: #0b0f17;
-            transform: scale(1.05);
+        }
+
+        /* 🛒 DETAYLI MAĞAZA ÜRÜN PANELİ (Tıklayınca Açılan Yer) 🛒 */
+        .shop-sub-panel {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            border-radius: 12px;
+            padding: 35px;
+            margin-top: 20px;
+            display: none; /* JS ile açılacak */
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .sub-panel-title {
+            font-size: 22px;
+            color: #00b4db;
+            margin-bottom: 25px;
+            border-left: 4px solid #00b4db;
+            padding-left: 15px;
+            text-transform: uppercase;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: #070a0f;
+            border: 1px solid #1f293d;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .product-card:hover {
+            border-color: #00b4db;
+            transform: translateY(-3px);
+        }
+
+        .product-icon {
+            font-size: 36px;
+            color: #00b4db;
+            margin-bottom: 15px;
+        }
+
+        .product-card h4 { font-size: 20px; margin-bottom: 10px; color: #fff; }
+        .product-card p { color: #b9bbbe; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        
+        .product-price-tag {
+            font-size: 22px;
+            font-weight: 800;
+            color: #00ff87;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .buy-submit-btn {
+            background: linear-gradient(135deg, #0052d4, #00a8ff);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: box-shadow 0.2s;
+        }
+
+        .buy-submit-btn:hover {
+            box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4);
         }
 
         /* 📦 SANDIK SİSTEMİ 📦 */
@@ -473,7 +546,7 @@
             width: 100%;
         }
 
-        /* Oyun Modları & Ekstra Alanlar */
+        /* Anasayfa Kadro ve Modlar */
         .modes-grid { display: flex; justify-content: center; }
         .mode-card {
             background-color: #121824; border: 1px solid #1f293d; border-radius: 10px;
@@ -516,11 +589,10 @@
         .big-logo-side i { font-size: 80px; color: #00b4db; margin-bottom: 15px; text-shadow: 0 0 30px rgba(0, 180, 219, 0.4); }
         .big-logo-side h3 { font-size: 32px; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* SweetAlert Tasarımları */
-        .swal2-popup { background-color: #121824 !important; border: 1px solid #1f293d !important; border-radius: 12px !important; color: #fff !important; }
-        .swal2-title { color: #fff !important; font-size: 26px !important; font-weight: 700 !important; }
-        .swal2-html-container { color: #b9bbbe !important; font-size: 16px !important; }
-        .swal2-confirm { background: linear-gradient(135deg, #00b4db, #00cc7d) !important; padding: 12px 30px !important; font-size: 15px !important; font-weight: bold !important; border-radius: 6px !important; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         footer { background-color: #070a0f; text-align: center; padding: 20px; color: #72767d; font-size: 14px; border-top: 1px solid #1f293d; margin-top: 40px; }
     </style>
@@ -619,30 +691,41 @@
     </div>
 
 
-    <!-- ================= MAĞAZA BÖLÜMÜ ================= -->
+    <!-- ================= 🛍️ DİNAMİK MAĞAZA BÖLÜMÜ 🛍️ ================= -->
     <div id="page-magaza" class="page-section">
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
+            
+            <!-- Ana Kategoriler -->
             <div class="category-grid">
-                <div class="category-card cat-vip" onclick="buyItem('VİP Üyelik', 50)">
+                <div class="category-card cat-vip" id="card-vip" onclick="toggleShopCategory('vip')">
                     <i class="fa-solid fa-crown"></i>
-                    <h3>VİP Üyelik</h3>
-                    <p>Özel yetkiler, renkli isim ve kitler içerir.</p>
-                    <button class="category-btn">50 TL - Satın Al</button>
+                    <h3>VİP Üyelikler</h3>
+                    <p>Sunucuda ayrıcalık kazanmak için VIP paketlerini inceleyin.</p>
+                    <button class="category-btn">Paketleri Gör</button>
                 </div>
-                <div class="category-card cat-kasa" onclick="buyItem('Kasa Anahtarı x5', 20)">
+                <div class="category-card cat-kasa" id="card-kasa" onclick="toggleShopCategory('kasa')">
                     <i class="fa-solid fa-box-open"></i>
-                    <h3>Kasa Anahtarı x5</h3>
-                    <p>Özel kozmetikler ve gizemli ödüller kazandırır.</p>
-                    <button class="category-btn">20 TL - Satın Al</button>
+                    <h3>Kasa Anahtarları</h3>
+                    <p>Syfiel ve Koth kasalarından efsanevi ödüller kazanın.</p>
+                    <button class="category-btn">Anahtarları Gör</button>
                 </div>
-                <div class="category-card cat-gear" onclick="buyItem('Edit Set Paketi', 75)">
+                <div class="category-card cat-gear" id="card-gear" onclick="toggleShopCategory('gear')">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h3>Edit Set Paketi</h3>
-                    <p>Savaş meydanları için özel korumalı koruyucu zırhlar.</p>
-                    <button class="category-btn">75 TL - Satın Al</button>
+                    <h3>Gear & Editler</h3>
+                    <p>Panda ve Fish özel setleri ile gücünüze güç katın.</p>
+                    <button class="category-btn">Gearları Gör</button>
                 </div>
             </div>
+
+            <!-- Tıklayınca Açılan Detay Paneli -->
+            <div class="shop-sub-panel" id="shop-sub-panel">
+                <h3 class="sub-panel-title" id="sub-panel-title">Ürünler</h3>
+                <div class="products-grid" id="products-grid">
+                    <!-- Ürün Kartları JS tarafından dinamik basılacak -->
+                </div>
+            </div>
+
         </section>
     </div>
 
@@ -654,10 +737,10 @@
             <div class="chest-container">
                 <div id="chest-empty-msg" class="chest-empty">
                     <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px; display:block;"></i>
-                    Sandığınızda şu an hiç ürün bulunmamaktadır. Alışveriş yaptığınızda veya yetkililer ürün gönderdiğinde burada listelenir.
+                    Sandığınızda şu an hiç ürün bulunmamaktadır. Alışveriş yaptığınızda burada listelenir.
                 </div>
                 <div id="chest-items-grid" class="chest-grid" style="display: none;">
-                    <!-- Dinamik Ürünler Buraya Gelecek -->
+                    <!-- Dinamik Ürünler -->
                 </div>
             </div>
         </section>
@@ -670,7 +753,7 @@
             <h2 class="section-title">Kredi Yükle</h2>
             <div class="credit-wrapper">
                 <div class="credit-info-box">
-                    <i class="fa-solid fa-circle-info"></i> Yüklediğiniz krediler anında hesabınıza tanımlanır ve Mağaza sayfasında dilediğiniz gibi harcayabilirsiniz.
+                    <i class="fa-solid fa-circle-info"></i> Yüklediğiniz krediler anında hesabınıza tanımlanır ve Mağaza sayfasında harcayabilirsiniz.
                 </div>
                 <form onsubmit="handleLoadCredit(event)">
                     <div class="form-group">
@@ -699,7 +782,6 @@
             <div class="admin-wrapper">
                 <div class="admin-grid">
                     
-                    <!-- Oyuncuya Sınırsız Kredi Gönderme -->
                     <div class="admin-box">
                         <h3><i class="fa-solid fa-coins"></i> Oyuncuya Kredi Gönder</h3>
                         <form onsubmit="adminSendCredit(event)">
@@ -709,13 +791,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Gönderilecek Kredi Miktarı</label>
-                                <input type="number" id="admin-credit-amount" class="form-input" placeholder="İstediğiniz miktarı yazın" required>
+                                <input type="number" id="admin-credit-amount" class="form-input" placeholder="Miktar girin" required>
                             </div>
                             <button type="submit" class="admin-btn">Krediyi Tanımla</button>
                         </form>
                     </div>
 
-                    <!-- Oyuncunun Sandığına Doğrudan Eşya Gönderme -->
                     <div class="admin-box">
                         <h3><i class="fa-solid fa-box"></i> Oyuncu Sandığına Eşya Gönder</h3>
                         <form onsubmit="adminSendItem(event)">
@@ -726,10 +807,13 @@
                             <div class="form-group">
                                 <label class="form-label">Gönderilecek Ürün</label>
                                 <select id="admin-item-name" class="form-input">
-                                    <option value="VİP Üyelik">VİP Üyelik</option>
-                                    <option value="Kasa Anahtarı x5">Kasa Anahtarı x5</option>
-                                    <option value="Edit Set Paketi">Edit Set Paketi</option>
-                                    <option value="Kurucu Özel Hediyesi">Kurucu Özel Hediyesi</option>
+                                    <option value="Syfiel Crate">Syfiel Crate</option>
+                                    <option value="Koth Crate">Koth Crate</option>
+                                    <option value="Panda Gear">Panda Gear</option>
+                                    <option value="Fish Gear">Fish Gear</option>
+                                    <option value="VIP">VIP</option>
+                                    <option value="Elite">Elite</option>
+                                    <option value="Custom VIP">Custom VIP</option>
                                 </select>
                             </div>
                             <button type="submit" class="admin-btn">Sandığa Gönder</button>
@@ -819,14 +903,39 @@
         &copy; 2026 Syfielbox. Tüm Hakları Saklıdır.
     </footer>
 
-    <!-- SİSTEM LOGIC SCRIPT KODLARI -->
+    <!-- LOGIC SCRIPTS -->
     <script>
-        // Tarayıcı hafızasını simüle etmek için temel veriler
         let currentUser = null;
         let userCredit = 0;
         let userChest = [];
 
-        // Sayfa Yapısı Değişimi
+        // Detaylı Kategori Ürün Verileri
+        const shopData = {
+            vip: {
+                title: "VİP Üyelik Paketleri",
+                products: [
+                    { name: "VIP", price: 15, desc: "Temel VIP özellikleri, sunucu doluyken giriş hakkı ve VIP kiti.", icon: "fa-crown" },
+                    { name: "Elite", price: 25, desc: "Gelişmiş Elite özellikleri, özel yazı rengi ve Elite özel kiti.", icon: "fa-gem" },
+                    { name: "Custom VIP", price: 40, desc: "En üst düzey yetkiler, özel tag hakkı ve tüm edit kitlere erişim.", icon: "fa-dragon" }
+                ]
+            },
+            kasa: {
+                title: "Kasa Anahtarı Paketleri",
+                products: [
+                    { name: "Syfiel Crate", price: 20, desc: "Syfiel kasasını açarak nadir oyun içi eşyalar kazanma şansı yakalayın.", icon: "fa-box-open" },
+                    { name: "Koth Crate", price: 15, desc: "Koth etkinliğine özel kasayı açın ve rekabetçi ödülleri kapın.", icon: "fa-key" }
+                ]
+            },
+            gear: {
+                title: "Gear & Edit Ekipmanlar",
+                products: [
+                    { name: "Panda Gear", price: 30, desc: "Özel Panda efektli zırh ve silah bileşenleri içeren set.", icon: "fa-shield-halved" },
+                    { name: "Fish Gear", price: 40, desc: "Sualtı ve hız avantajları sunan efsanevi Fish Edit seti.", icon: "fa-fish" }
+                ]
+            }
+        };
+
+        // Sayfa Değiştirme
         function showPage(pageName) {
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active-page');
@@ -848,6 +957,50 @@
             if(pageName === 'sandik') { renderChest(); }
         }
 
+        // Mağaza Kategori Paneli Açma / Kapatma ve Listeleme Fonksiyonu
+        function toggleShopCategory(catKey) {
+            const panel = document.getElementById('shop-sub-panel');
+            const grid = document.getElementById('products-grid');
+            const titleEl = document.getElementById('sub-panel-title');
+            
+            // Tüm aktif kart tasarımlarını temizle
+            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active-card'));
+
+            // Eğer tıklanan zaten açıksa kapat
+            if (panel.style.display === 'block' && panel.dataset.current === catKey) {
+                panel.style.display = 'none';
+                return;
+            }
+
+            // Aktif kartı işaretle
+            document.getElementById('card-' + catKey).classList.add('active-card');
+            
+            // Panel verilerini doldur
+            panel.dataset.current = catKey;
+            titleEl.innerText = shopData[catKey].title;
+            grid.innerHTML = '';
+
+            shopData[catKey].products.forEach(prod => {
+                const pCard = document.createElement('div');
+                pCard.className = 'product-card';
+                pCard.innerHTML = `
+                    <div>
+                        <div class="product-icon"><i class="fa-solid ${prod.icon}"></i></div>
+                        <h4>${prod.name}</h4>
+                        <p>${prod.desc}</p>
+                    </div>
+                    <div>
+                        <span class="product-price-tag">${prod.price} TL</span>
+                        <button class="buy-submit-btn" onclick="buyItem('${prod.name}', ${prod.price})"><i class="fa-solid fa-shopping-cart"></i> Satın Al</button>
+                    </div>
+                `;
+                grid.appendChild(pCard);
+            });
+
+            panel.style.display = 'block';
+        }
+
+        // Giriş, Kayıt ve Profil Yönetimi
         function openAuth(mode) {
             closeAuth();
             if (mode === 'login') document.getElementById('auth-login-overlay').style.display = 'block';
@@ -869,7 +1022,6 @@
             document.getElementById('login-username').value = username;
         }
 
-        // Giriş Yapıldığında Admin Kontrolü (28grad ise yetkili paneli açılır)
         function handleLogin(event) {
             event.preventDefault();
             currentUser = document.getElementById('login-username').value;
@@ -877,7 +1029,6 @@
             document.getElementById('nav-username-display').innerText = currentUser;
             document.getElementById('global-avatar').src = 'https://mc-heads.net/avatar/' + currentUser;
             
-            // Eğer giriş yapan kişi 28grad ise admin panel linkini görünür kıl
             if(currentUser.toLowerCase() === '28grad') {
                 document.getElementById('menu-admin').style.display = 'block';
                 document.getElementById('admin-badge-count').style.display = 'inline-block';
@@ -886,11 +1037,9 @@
                 document.getElementById('menu-admin').style.display = 'none';
             }
 
-            // Test amaçlı giriş yapan her kullanıcıya 100 TL hazır bakiye tanımlayalım
-            userCredit = 100;
+            userCredit = 150; // Demo amaçlı bakiye
             updateHeaderData();
             closeAuth();
-
             Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Hoş geldin ' + currentUser + '!', confirmButtonText: 'OK', iconColor: '#00cc7d' });
         }
 
@@ -899,22 +1048,21 @@
             document.getElementById('global-chest-count').innerText = userChest.length;
         }
 
-        // Kredi Yükleme Alanı İşlemi
         function handleLoadCredit(event) {
             event.preventDefault();
             if(!currentUser) {
-                Swal.fire({ icon: 'error', title: 'Hata', text: 'Kredi yüklemek için önce giriş yapmalısınız.' });
+                Swal.fire({ icon: 'error', title: 'Hata', text: 'Önce giriş yapmalısınız.' });
                 openAuth('login');
                 return;
             }
             const amount = parseInt(document.getElementById('credit-amount').value);
             userCredit += amount;
             updateHeaderData();
-            Swal.fire({ icon: 'success', title: 'Başarılı!', text: amount + ' TL hesabınıza başarıyla eklendi.', confirmButtonText: 'OK', iconColor: '#00cc7d' });
+            Swal.fire({ icon: 'success', title: 'Başarılı!', text: amount + ' TL yüklendi.', confirmButtonText: 'OK', iconColor: '#00cc7d' });
             document.getElementById('credit-amount').value = '';
         }
 
-        // Mağazadan Alışveriş Yapıldığında Doğrudan Sandığa Gitme Kuralı
+        // Mağazadan Satın Alma -> Doğrudan Sandığa Gönderme
         function buyItem(itemName, price) {
             if(!currentUser) {
                 Swal.fire({ icon: 'error', title: 'Hata', text: 'Satın almak için önce giriş yapmalısınız.' });
@@ -922,25 +1070,24 @@
                 return;
             }
             if(userCredit < price) {
-                Swal.fire({ icon: 'error', title: 'Yetersiz Bakiye', text: 'Bu ürünü almak için yeterli krediniz yok. Lütfen bakiye yükleyin.' });
+                Swal.fire({ icon: 'error', title: 'Yetersiz Bakiye', text: 'Yeterli krediniz yok. Lütfen bakiye yükleyin.' });
                 return;
             }
             
             userCredit -= price;
-            // Sandığa ekle
             userChest.push({ id: Date.now(), name: itemName });
             updateHeaderData();
 
             Swal.fire({ 
                 icon: 'success', 
                 title: 'Satın Alındı!', 
-                text: itemName + ' başarıyla satın alındı ve aktif edilmek üzere "Sandık" sayfasına gönderildi!', 
+                text: itemName + ' satın alındı ve "Sandık" sayfasına eklendi!', 
                 confirmButtonText: 'OK', 
                 iconColor: '#00cc7d' 
             });
         }
 
-        // 📦 Sandık Listeleyici ve Aktif Etme Yapısı 📦
+        // Oyuncu Sandığı
         function renderChest() {
             const emptyMsg = document.getElementById('chest-empty-msg');
             const grid = document.getElementById('chest-items-grid');
@@ -959,7 +1106,7 @@
                     card.innerHTML = `
                         <i class="fa-solid fa-box-open"></i>
                         <h4>${item.name}</h4>
-                        <p>Sunucu içerisinde aktif edilmeye hazır bekliyor.</p>
+                        <p>Sunucu içerisinde aktif edilmeyi bekliyor.</p>
                         <button class="activate-btn" onclick="activateChestItem(${item.id}, '${item.name}')">Aktif Et (Kullan)</button>
                     `;
                     grid.appendChild(card);
@@ -967,42 +1114,24 @@
             }
         }
 
-        // Sandıktaki Eşyayı Aktif Etme Komutu
         function activateChestItem(id, name) {
-            // Sandıktan sil
             userChest = userChest.filter(item => item.id !== id);
             updateHeaderData();
             renderChest();
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Başarıyla Aktif Edildi!',
-                text: name + ' ürünü şu anda oyundaki hesabınıza başarıyla gönderildi ve aktif edildi!',
-                confirmButtonText: 'Tamam',
-                iconColor: '#00cc7d'
-            });
+            Swal.fire({ icon: 'success', title: 'Aktif Edildi!', text: name + ' oyundaki hesabınıza gönderildi!', confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
         }
 
-        // 👑 28GRAD ADMIN PANELİ METODLARI 👑
+        // Admin Paneli
         function adminSendCredit(event) {
             event.preventDefault();
             const targetUser = document.getElementById('admin-credit-user').value;
             const amount = parseInt(document.getElementById('admin-credit-amount').value);
 
-            // Eğer hedef o anki giriş yapmış kullanıcıysa arayüze yansıması için güncelleyelim
             if(currentUser && targetUser.toLowerCase() === currentUser.toLowerCase()) {
                 userCredit += amount;
                 updateHeaderData();
             }
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Yönetici Onayı',
-                text: targetUser + ' isimli oyuncunun hesabına ' + amount + ' TL limit gözetmeksizin gönderildi.',
-                confirmButtonText: 'OK',
-                iconColor: '#ff3838'
-            });
-
+            Swal.fire({ icon: 'success', title: 'Kredi Gönderildi', text: targetUser + ' hesabına ' + amount + ' TL eklendi.', confirmButtonText: 'OK', iconColor: '#ff3838' });
             document.getElementById('admin-credit-user').value = '';
             document.getElementById('admin-credit-amount').value = '';
         }
@@ -1012,24 +1141,14 @@
             const targetUser = document.getElementById('admin-item-user').value;
             const itemName = document.getElementById('admin-item-name').value;
 
-            // Eğer hedef o anki giriş yapmış kullanıcıysa direkt sandığına ekleyelim
             if(currentUser && targetUser.toLowerCase() === currentUser.toLowerCase()) {
                 userChest.push({ id: Date.now(), name: itemName });
                 updateHeaderData();
             }
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Yönetici Onayı',
-                text: targetUser + ' oyuncusunun Sandık (Kutu) sayfasına 1 adet "' + itemName + '" eklendi. Oyuncu sandığından aktif edebilir.',
-                confirmButtonText: 'OK',
-                iconColor: '#ff3838'
-            });
-
+            Swal.fire({ icon: 'success', title: 'Eşya Gönderildi', text: targetUser + ' oyuncusunun sandığına "' + itemName + '" eklendi.', confirmButtonText: 'OK', iconColor: '#ff3838' });
             document.getElementById('admin-item-user').value = '';
         }
 
-        // IP Adresi Kopyalama Penceresi
         function copyIP() {
             const ipText = document.getElementById("ipAddress").innerText;
             navigator.clipboard.writeText(ipText).then(() => {
