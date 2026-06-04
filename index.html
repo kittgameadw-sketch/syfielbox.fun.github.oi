@@ -6,7 +6,7 @@
     <title>Syfielbox - Minecraft Sunucusu</title>
     <!-- Font Awesome (İkonlar) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SweetAlert2 (image_4219ba.png görselindeki şık bildirim pencereleri için) -->
+    <!-- SweetAlert2 (Şık bildirim pencereleri için) -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* Genel Ayarlar */
@@ -268,7 +268,7 @@
             transform: translateY(0);
         }
 
-        /* 🛍️ MAĞAZA KATEGORİ KARTLARI 🛍️ */
+        /* MAĞAZA KATEGORİ KARTLARI */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -324,14 +324,14 @@
             color: #0b0f17;
         }
 
-        /* 🛒 DETAYLI MAĞAZA ÜRÜN PANELİ (Tıklayınca Açılan Yer) 🛒 */
+        /* DETAYLI MAĞAZA ÜRÜN PANELİ */
         .shop-sub-panel {
             background-color: #121824;
             border: 1px solid #1f293d;
             border-radius: 12px;
             padding: 35px;
             margin-top: 20px;
-            display: none; /* JS ile açılacak */
+            display: none;
             animation: fadeIn 0.4s ease forwards;
         }
 
@@ -400,7 +400,7 @@
             box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4);
         }
 
-        /* 📦 SANDIK SİSTEMİ 📦 */
+        /* SANDIK SİSTEMİ */
         .chest-container {
             background-color: #121824;
             border: 1px solid #1f293d;
@@ -456,7 +456,7 @@
 
         .activate-btn:hover { transform: translateY(-2px); }
 
-        /* 💳 KREDİ YÜKLE ALANI 💳 */
+        /* KREDİ YÜKLE ALANI */
         .credit-wrapper {
             background-color: #121824;
             border: 1px solid #1f293d;
@@ -476,7 +476,7 @@
             color: #e2e8f0;
         }
 
-        /* 👑 SADECE 28GRAD ADMİN PANELİ 👑 */
+        /* YÖNETİM PANELİ */
         .admin-wrapper {
             background-color: #121824;
             border: 1px solid #ff3838;
@@ -568,8 +568,29 @@
         .role-owner { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
         .role-manager { background: linear-gradient(135deg, #11998e, #38ef7d); color: #fff; }
 
-        /* Giriş & Kayıt Panelleri */
-        .auth-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0f17; z-index: 200; display: none; overflow-y: auto; }
+        /* 🚪 GİRİŞ & KAYIT PANELLERİ (GEÇİŞLİ ANIMASYONLAR) 🚪 */
+        .auth-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background-color: #0b0f17; 
+            z-index: 200; 
+            display: none; 
+            overflow-y: auto; 
+        }
+
+        /* Giriş animasyon sınıfları */
+        .auth-animate-in {
+            animation: authFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Çıkış animasyon sınıfları (Yukarı kayarak şeffaflaşma) */
+        .auth-animate-out {
+            animation: authFadeOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
         .auth-container { display: flex; min-height: 100vh; width: 100%; }
         .auth-left { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; max-width: 650px; background-color: #0b0f17; }
         .auth-right { flex: 1; background-color: #070a0f; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; border-left: 1px solid rgba(255, 255, 255, 0.05); }
@@ -589,9 +610,22 @@
         .big-logo-side i { font-size: 80px; color: #00b4db; margin-bottom: 15px; text-shadow: 0 0 30px rgba(0, 180, 219, 0.4); }
         .big-logo-side h3 { font-size: 32px; letter-spacing: 2px; text-transform: uppercase; }
 
+        /* Kategori paneli animasyonu */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Giriş Paneli Açılış Efekti (Aşağıdan hafifçe belirme) */
+        @keyframes authFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Giriş Paneli Kapanış Efekti (Yukarı kayarak kaybolma) */
+        @keyframes authFadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-30px); }
         }
 
         footer { background-color: #070a0f; text-align: center; padding: 20px; color: #72767d; font-size: 14px; border-top: 1px solid #1f293d; margin-top: 40px; }
@@ -653,7 +687,7 @@
                 <div class="mode-card">
                     <i class="fa-solid fa-feather-pointed"></i>
                     <h3>Elytra PvP</h3>
-                    <p>Gökyüzünün hakimi ol! Elytra kanatlarınla havada süzülürken rakiplerine karşı yeteneklerini sergile, kombolar yap ve zirveye tırman!</p>
+                    <p>Gökyüzünün hakimi ol! Elytra kanatlarınla havada süzülürken rakiplerine karşı yeteneklerini sergile, kombolar yap và zirveye tırman!</p>
                 </div>
             </div>
         </section>
@@ -691,12 +725,11 @@
     </div>
 
 
-    <!-- ================= 🛍️ DİNAMİK MAĞAZA BÖLÜMÜ 🛍️ ================= -->
+    <!-- ================= MAĞAZA BÖLÜMÜ ================= -->
     <div id="page-magaza" class="page-section">
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
             
-            <!-- Ana Kategoriler -->
             <div class="category-grid">
                 <div class="category-card cat-vip" id="card-vip" onclick="toggleShopCategory('vip')">
                     <i class="fa-solid fa-crown"></i>
@@ -718,19 +751,15 @@
                 </div>
             </div>
 
-            <!-- Tıklayınca Açılan Detay Paneli -->
             <div class="shop-sub-panel" id="shop-sub-panel">
                 <h3 class="sub-panel-title" id="sub-panel-title">Ürünler</h3>
-                <div class="products-grid" id="products-grid">
-                    <!-- Ürün Kartları JS tarafından dinamik basılacak -->
-                </div>
+                <div class="products-grid" id="products-grid"></div>
             </div>
-
         </section>
     </div>
 
 
-    <!-- ================= 📦 SANDIK ALANI 📦 ================= -->
+    <!-- ================= SANDIK ALANI ================= -->
     <div id="page-sandik" class="page-section">
         <section class="container">
             <h2 class="section-title">Oyuncu Sandığı</h2>
@@ -739,15 +768,13 @@
                     <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px; display:block;"></i>
                     Sandığınızda şu an hiç ürün bulunmamaktadır. Alışveriş yaptığınızda burada listelenir.
                 </div>
-                <div id="chest-items-grid" class="chest-grid" style="display: none;">
-                    <!-- Dinamik Ürünler -->
-                </div>
+                <div id="chest-items-grid" class="chest-grid" style="display: none;"></div>
             </div>
         </section>
     </div>
 
 
-    <!-- ================= 💳 KREDİ YÜKLE ALANI 💳 ================= -->
+    <!-- ================= KREDİ YÜKLE ALANI ================= -->
     <div id="page-krediyukle" class="page-section">
         <section class="container">
             <h2 class="section-title">Kredi Yükle</h2>
@@ -775,13 +802,12 @@
     </div>
 
 
-    <!-- ================= 👑 SADECE 28GRAD YÖNETİM PANELİ 👑 ================= -->
+    <!-- ================= YÖNETİM PANELİ ================= -->
     <div id="page-admin" class="page-section">
         <section class="container">
             <h2 class="section-title" style="color: #ff3838;">28grad Yönetim Paneli</h2>
             <div class="admin-wrapper">
                 <div class="admin-grid">
-                    
                     <div class="admin-box">
                         <h3><i class="fa-solid fa-coins"></i> Oyuncuya Kredi Gönder</h3>
                         <form onsubmit="adminSendCredit(event)">
@@ -819,7 +845,6 @@
                             <button type="submit" class="admin-btn">Sandığa Gönder</button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -853,7 +878,7 @@
                 </form>
             </div>
             <div class="auth-right">
-                <button class="back-btn" onclick="closeAuth()"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
+                <button class="back-btn" onclick="closeAuthWithAnimation('auth-login-overlay')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
                 <div class="big-logo-side">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <h3>Giriş Yap</h3>
@@ -886,11 +911,14 @@
                         <label class="auth-label">Şifre</label>
                         <input type="password" class="auth-input" placeholder="******" required>
                     </div>
-                    <button type="submit" class="auth-submit-btn">Kayıt Ol</button>
+                    <div class="form-footer-links">
+                        <a class="auth-link" onclick="openAuth('login')">Zaten Hesabım Var</a>
+                        <button type="submit" class="auth-submit-btn">Kayıt Ol</button>
+                    </div>
                 </form>
             </div>
             <div class="auth-right">
-                <button class="back-btn" onclick="closeAuth()"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
+                <button class="back-btn" onclick="closeAuthWithAnimation('auth-register-overlay')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
                 <div class="big-logo-side">
                     <i class="fa-solid fa-user-plus"></i>
                     <h3>Kayıt Ol</h3>
@@ -909,7 +937,6 @@
         let userCredit = 0;
         let userChest = [];
 
-        // Detaylı Kategori Ürün Verileri
         const shopData = {
             vip: {
                 title: "VİP Üyelik Paketleri",
@@ -935,7 +962,6 @@
             }
         };
 
-        // Sayfa Değiştirme
         function showPage(pageName) {
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active-page');
@@ -957,25 +983,20 @@
             if(pageName === 'sandik') { renderChest(); }
         }
 
-        // Mağaza Kategori Paneli Açma / Kapatma ve Listeleme Fonksiyonu
         function toggleShopCategory(catKey) {
             const panel = document.getElementById('shop-sub-panel');
             const grid = document.getElementById('products-grid');
             const titleEl = document.getElementById('sub-panel-title');
             
-            // Tüm aktif kart tasarımlarını temizle
             document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active-card'));
 
-            // Eğer tıklanan zaten açıksa kapat
             if (panel.style.display === 'block' && panel.dataset.current === catKey) {
                 panel.style.display = 'none';
                 return;
             }
 
-            // Aktif kartı işaretle
             document.getElementById('card-' + catKey).classList.add('active-card');
             
-            // Panel verilerini doldur
             panel.dataset.current = catKey;
             titleEl.innerText = shopData[catKey].title;
             grid.innerHTML = '';
@@ -1000,26 +1021,47 @@
             panel.style.display = 'block';
         }
 
-        // Giriş, Kayıt ve Profil Yönetimi
+        // Açılış Geçiş Animasyonlu Auth Yönetimi
         function openAuth(mode) {
-            closeAuth();
-            if (mode === 'login') document.getElementById('auth-login-overlay').style.display = 'block';
-            else if (mode === 'register') document.getElementById('auth-register-overlay').style.display = 'block';
+            // Açık olan varsa temizle
+            document.getElementById('auth-login-overlay').style.display = 'none';
+            document.getElementById('auth-register-overlay').style.display = 'none';
+            document.getElementById('auth-login-overlay').classList.remove('auth-animate-in', 'auth-animate-out');
+            document.getElementById('auth-register-overlay').classList.remove('auth-animate-in', 'auth-animate-out');
+
+            let targetId = (mode === 'login') ? 'auth-login-overlay' : 'auth-register-overlay';
+            let el = document.getElementById(targetId);
+            
+            el.style.display = 'block';
+            el.classList.add('auth-animate-in');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeAuth() {
-            document.getElementById('auth-login-overlay').style.display = 'none';
-            document.getElementById('auth-register-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        // Kapanış Geçiş Animasyonlu Auth Yönetimi
+        function closeAuthWithAnimation(overlayId) {
+            let el = document.getElementById(overlayId);
+            el.classList.remove('auth-animate-in');
+            el.classList.add('auth-animate-out');
+            
+            // Animasyon süresi (350ms) bitince elementi tamamen gizle
+            setTimeout(() => {
+                el.style.display = 'none';
+                el.classList.remove('auth-animate-out');
+                document.body.style.overflow = 'auto';
+            }, 350);
         }
 
         function handleRegister(event) {
             event.preventDefault();
             const username = document.getElementById('register-username').value;
-            Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Kayıt olundu, giriş yapabilirsiniz.', confirmButtonText: 'OK', iconColor: '#00cc7d' });
-            openAuth('login');
-            document.getElementById('login-username').value = username;
+            
+            // Paneli geçişli kapat ve giriş yap panelini aç
+            closeAuthWithAnimation('auth-register-overlay');
+            setTimeout(() => {
+                openAuth('login');
+                document.getElementById('login-username').value = username;
+                Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Kayıt olundu, şimdi giriş yapabilirsiniz.', confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
+            }, 355);
         }
 
         function handleLogin(event) {
@@ -1037,10 +1079,15 @@
                 document.getElementById('menu-admin').style.display = 'none';
             }
 
-            userCredit = 150; // Demo amaçlı bakiye
+            userCredit = 150; // Başlangıç demosu
             updateHeaderData();
-            closeAuth();
-            Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Hoş geldin ' + currentUser + '!', confirmButtonText: 'OK', iconColor: '#00cc7d' });
+            
+            // Başarılı girişte paneli yukarı kaydırarak kapat
+            closeAuthWithAnimation('auth-login-overlay');
+            
+            setTimeout(() => {
+                Swal.fire({ icon: 'success', title: 'Giriş Başarılı!', text: 'Hoş geldin ' + currentUser + '!', confirmButtonText: 'Harika', iconColor: '#00cc7d' });
+            }, 360);
         }
 
         function updateHeaderData() {
@@ -1062,7 +1109,6 @@
             document.getElementById('credit-amount').value = '';
         }
 
-        // Mağazadan Satın Alma -> Doğrudan Sandığa Gönderme
         function buyItem(itemName, price) {
             if(!currentUser) {
                 Swal.fire({ icon: 'error', title: 'Hata', text: 'Satın almak için önce giriş yapmalısınız.' });
@@ -1078,16 +1124,9 @@
             userChest.push({ id: Date.now(), name: itemName });
             updateHeaderData();
 
-            Swal.fire({ 
-                icon: 'success', 
-                title: 'Satın Alındı!', 
-                text: itemName + ' satın alındı ve "Sandık" sayfasına eklendi!', 
-                confirmButtonText: 'OK', 
-                iconColor: '#00cc7d' 
-            });
+            Swal.fire({ icon: 'success', title: 'Satın Alındı!', text: itemName + ' satın alındı ve "Sandık" sayfasına eklendi!', confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
         }
 
-        // Oyuncu Sandığı
         function renderChest() {
             const emptyMsg = document.getElementById('chest-empty-msg');
             const grid = document.getElementById('chest-items-grid');
@@ -1121,7 +1160,6 @@
             Swal.fire({ icon: 'success', title: 'Aktif Edildi!', text: name + ' oyundaki hesabınıza gönderildi!', confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
         }
 
-        // Admin Paneli
         function adminSendCredit(event) {
             event.preventDefault();
             const targetUser = document.getElementById('admin-credit-user').value;
