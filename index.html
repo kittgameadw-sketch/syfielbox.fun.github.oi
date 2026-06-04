@@ -9,43 +9,21 @@
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="LeaderOS">
-    <link rel="shortcut icon" type="image/x-icon" href="https://demo-site.leaderos.net/favicon.ico?cache=1750630063">
+    <meta name="author" content="Syfielbox">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
-    <title>LeaderOS - Minecraft Server</title>
-    <meta name="description" content="">
-    <link rel="canonical" href="https://demo-site.leaderos.net/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="LeaderOS - Minecraft Server">
-    <meta property="og:description" content="">
-    <meta property="og:url" content="https://demo-site.leaderos.net">
-    <meta property="og:site_name" content="LeaderOS">
+    <title>Syfielbox - Minecraft Sunucusu</title>
+    <meta name="description" content="Türkiye'nin en iyi Minecraft sunucusu Syfielbox'a katılın!">
     
-    <!-- CSRF -->
-    <meta name="csrf-token" content="2b9f97a6b7d8218c443f4a8132ac8a008e15245a0d72221d791cb3fc2572cc6a">
-
-    <!-- EXTRAS -->
-    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/sweetalert2.min.css">
-    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/select2.min.css">
-    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
 
-    <!-- THEMES -->
-    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/app.1775153159.css">
-    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/bootstrap-grid.min.1750251520.css">
-    <link rel="stylesheet" type="text/css" href="./LeaderOS - Minecraft Server_files/content-styles.1750251520.css">
-    <link rel="stylesheet" href="./LeaderOS - Minecraft Server_files/scale.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/content-styles.css">
 
-    <!-- AlpineJS Plugins & Core -->
-    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min.js.indir"></script>
-    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min(1).js.indir"></script>
-    <script defer="" src="./LeaderOS - Minecraft Server_files/cdn.min(2).js.indir"></script>
-    
-    <!-- Fast Average Color Plugin & Theme -->
-    <script src="./LeaderOS - Minecraft Server_files/index.browser.min.js.indir"></script>
-    <script src="./LeaderOS - Minecraft Server_files/theme.1750251520.js.indir"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- THEME SETTINGS -->
     <style>
         :root {
             --color-indigo-50: 240 249 255; --color-indigo-100: 224 242 254; --color-indigo-200: 186 230 253;
@@ -58,135 +36,114 @@
             --color-voon-background: 18 18 18;
             --color-voon-card: 14 14 14;
             --color-neutral-900: 23 23 23;
-            --color-zinc-600: 82 82 91;        
+            --color-zinc-600: 82 82 91;
         }
-    </style>
-        
-    <!-- CUSTOM CSS -->
-    <style type="text/css">
+
         .role__admin {
             color: #fff !important;
             background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 0%, rgba(255,0,0,1) 100%) !important;
         }
+
         .username__admin {
             color: #ff0000 !important
-        }    
+        }
     </style>
-    
-    <!-- Font Awesome (İkonlar için gerekli olabilir, ekledim) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body x-data="body">
 <div id="app">
     
-    <!-- HEADER -->
     <header id="header" class="hidden sm:block">
         <div class="section flex justify-between items-center py-3">
             <div class="flex gap-20 items-center">
-                <a href="https://demo-site.leaderos.net/">
-                    <img class="h-[5.5rem]" src="./LeaderOS - Minecraft Server_files/d671265c6425823502a7e0d518025053.png" alt="LeaderOS - Logo">
+                <a href="/">
+                    <img class="h-[5.5rem]" src="logo.png" alt="Syfielbox Logo">
                 </a>
                 <nav class="gap-6 lg:flex">
-                    <a href="https://demo-site.leaderos.net/" class="nav-item mr-2 active">Anasayfa</a>
-                    <a href="https://demo-site.leaderos.net/store" class="nav-item mr-2 ">Mağaza</a>
-                    <a href="https://demo-site.leaderos.net/forum" class="nav-item mr-2 ">Forum</a>
-                    <a href="https://demo-site.leaderos.net/help" class="nav-item mr-2 ">Yardım</a>
-                    <a href="https://demo-site.leaderos.net/support/tickets" class="nav-item mr-2 ">Destek</a>
+                    <a href="/" class="nav-item mr-2 active">Anasayfa</a>
+                    <a href="/store" class="nav-item mr-2 ">Mağaza</a>
+                    <a href="/forum" class="nav-item mr-2 ">Forum</a>
+                    <a href="/help" class="nav-item mr-2 ">Yardım</a>
+                    <a href="/support/tickets" class="nav-item mr-2 ">Destek</a>
                 </nav>
             </div>
             <div>
-                <a href="https://demo-site.leaderos.net/login/" class="rounded-xl bg-indigo-500 py-3 px-6 text-white text-sm flex gap-3 items-center font-medium">
-                    Giriş Yap <i class="fas fa-angle-right"></i>
+                <a href="/login" class="rounded-xl bg-indigo-500 py-3 px-6 text-white text-sm flex gap-3 items-center font-medium transition hover:bg-indigo-600">
+                    Giriş Yap <i class="fas fa-right-to-bracket"></i>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- MOBILE MENU -->
     <div class="sm:hidden" id="mobile-menu" x-data="{mainMenu: false}">
         <div class="flex items-center justify-between space-y-1 px-2 pt-2 pb-3">
-            <a href="https://demo-site.leaderos.net/">
-                <img class="h-[3rem]" src="./LeaderOS - Minecraft Server_files/d671265c6425823502a7e0d518025053.png" alt="LeaderOS - Logo">
+            <a href="/">
+                <img class="h-[3rem]" src="logo.png" alt="Syfielbox Logo">
             </a>
-            <button @click="mainMenu = ! mainMenu" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg x-show="!mainMenu" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                </svg>
-                <svg x-show="mainMenu" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" style="display: none;">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+            <button @click="mainMenu = ! mainMenu" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none">
+                <span class="sr-only">Menüyü Aç</span>
+                <i class="fa-solid fa-bars text-2xl" x-show="!mainMenu"></i>
+                <i class="fa-solid fa-xmark text-2xl" x-show="mainMenu" style="display: none;"></i>
             </button>
         </div>
         <div x-show="mainMenu" class="space-y-1 px-2 pt-2 pb-3" style="display: none;">
-            <a href="https://demo-site.leaderos.net/" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Anasayfa</a>
-            <a href="https://demo-site.leaderos.net/store" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Mağaza</a>
-            <a href="https://demo-site.leaderos.net/forum" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Forum</a>
-            <a href="https://demo-site.leaderos.net/help" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Yardım</a>
-            <a href="https://demo-site.leaderos.net/support/tickets" class="text-white block px-3 py-2 rounded-md text-base font-medium " aria-current="page">Destek</a>
-            <a href="https://demo-site.leaderos.net/login/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Giriş Yap</a>
-            <a href="https://demo-site.leaderos.net/register/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Kayıt Ol</a>
+            <a href="/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Anasayfa</a>
+            <a href="/store" class="text-white block px-3 py-2 rounded-md text-base font-medium">Mağaza</a>
+            <a href="/forum" class="text-white block px-3 py-2 rounded-md text-base font-medium">Forum</a>
+            <a href="/help" class="text-white block px-3 py-2 rounded-md text-base font-medium">Yardım</a>
+            <a href="/support/tickets" class="text-white block px-3 py-2 rounded-md text-base font-medium">Destek</a>
+            <a href="/login" class="text-white block px-3 py-2 rounded-md text-base font-medium bg-indigo-600 mt-2">Giriş Yap</a>
+            <a href="/register" class="text-white block px-3 py-2 rounded-md text-base font-medium bg-voon-800 mt-2">Kayıt Ol</a>
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <main class="main" role="main">
         
-        <!-- HERO SECTION -->
-        <section id="__heroSection" x-data="carousel()" x-init="init()">
-            <div class="carousel overflow-hidden flickity-enabled" x-ref="carousel" tabindex="0">
-                <div class="flickity-viewport" style="height: 855.972px;">
-                    <div class="flickity-slider" style="transform: translateX(0%);">
-                        <div class="flickity-cell is-selected" style="transform: translateX(0%); w-full">
-                            <div class="absolute top-0 left-0 bg-cover bg-center w-full h-full" style="background-image: url('/assets/gale/img/bg-hero.png?cache=1750630063')">
-                                <div class="bg-gradient-to-tl from-indigo-800/50 to-indigo-800/20 absolute top-0 left-0 w-full h-full"></div>
-                            </div>
-                            <div class="section pt-36 pb-60 lg:pt-48 lg:pb-96 relative px-6 z-20">
-                                <h1 class="text-white text-5xl font-extrabold mt-6 max-w-2xl">
-                                    1 Numaralı Minecraft Sunucusuna Katılın!
-                                </h1>
-                                <p class="text-white/75 text-xl font-semibold max-w-lg mt-2">
-                                    LeaderOS ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!
-                                </p>
-                                <div class="flex items-center gap-4 mt-10 relative z-10">
-                                    <a href="https://demo-site.leaderos.net/play/" class="rounded-2xl py-3 px-8 font-semibold bg-gradient-to-r from-indigo-500 to-indigo-600 text-white relative flex items-center">
-                                        <i class="fas fa-gamepad text-2xl mr-3"></i> Şimdi Oyna
-                                    </a>
-                                    <a href="https://demo-site.leaderos.net/register/" class="font-semibold bg-voon-800 rounded-2xl relative text-white py-3 px-8 flex items-center">
-                                        <i class="fas fa-user-plus text-2xl mr-3"></i> Kayıt Ol
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+        <section id="__heroSection">
+            <div class="carousel overflow-hidden">
+                <div class="absolute top-0 left-0 bg-cover bg-center w-full h-full" style="background-image: url('https://demo-site.leaderos.net/assets/gale/img/bg-hero.png')">
+                    <div class="bg-gradient-to-tl from-indigo-800/50 to-indigo-800/20 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+                <div class="section pt-36 pb-60 lg:pt-48 lg:pb-96 relative px-6 z-20">
+                    <h1 class="text-white text-5xl font-extrabold mt-6 max-w-2xl">
+                        1 Numaralı Minecraft Sunucusuna Katılın!
+                    </h1>
+                    <p class="text-white/75 text-xl font-semibold max-w-lg mt-2">
+                        Syfielbox eğlencenin yeni adresi. Aramıza katılın ve sunucunun en iyisi olun!
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 mt-10 relative z-10">
+                        <a href="/play" class="rounded-2xl py-3 px-8 font-semibold bg-gradient-to-r from-indigo-500 to-indigo-600 text-white relative flex items-center transition hover:scale-105">
+                            <i class="fas fa-gamepad text-2xl mr-3"></i> Şimdi Oyna
+                        </a>
+                        <a href="/register" class="font-semibold bg-voon-800 rounded-2xl relative text-white py-3 px-8 flex items-center transition hover:scale-105">
+                            <i class="fas fa-user-plus text-2xl mr-3"></i> Kayıt Ol
+                        </a>
                     </div>
                 </div>
             </div>
-            <svg class="absolute -bottom-12 w-full left-0 z-20" style="filter: drop-shadow(0 -85px 45px rgba(0, 0, 0, .5))" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1366 134">
+            
+            <svg class="absolute -bottom-12 w-full left-0 z-20" style="filter: drop-shadow(0 -85px 45px rgba(0, 0, 0, .5))" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 134">
                 <path class="fill-voon-bg" d="M0,91.94C43.71,59.18,114.51,16.29,207.47,3.82c6.79-0.91,32.2-3.96,66.16-3.42 c107.54,1.74,148.6,36.78,252.32,50.55c34.39,4.57,60.71,5.41,78.43,5.96c42.7,1.34,62.27-1.19,67.62-1.92 c32.33-4.43,52.86-13.09,65-17c55.04-17.72,92.95,11.78,189,35c44.78,10.83,82.19,14.22,157,21c0,0,136.88,12.41,195.62-26.42 c0.33-0.22,3.48-2.33,7.91-4.91c4.28-2.49,9.99-5.54,16.95-8.53C1328,43.62,1350.63,41.3,1366,41c0,31,0,62,0,93 c-455.33,0-910.67,0-1366,0C0,119.98,0,105.96,0,91.94z"></path>
             </svg>
         </section>
 
-        <!-- JOIN WIDGET -->
         <section class="relative z-20 pb-10 -mt-32 section">
             <div class="grid gap-12 lg:grid-cols-10">
-                <div class="lg:col-span-10 card card-simple p-6 text-white" style="background-color: var(--color-voon-card); border-radius: 1rem;">
-                    <div class="absolute opacity-5 top-0 left-0 w-full h-full bg-cover bg-bottom" style="background-image: url('/assets/gale/img/join-widget-bg.png')"></div>
+                <div class="lg:col-span-10 card card-simple p-6 text-white bg-voon-card rounded-2xl shadow-xl">
+                    <div class="absolute opacity-5 top-0 left-0 w-full h-full bg-cover bg-bottom" style="background-image: url('https://demo-site.leaderos.net/assets/gale/img/join-widget-bg.png')"></div>
                     <div class="flex flex-col md:flex-row justify-between gap-6 items-center text-center md:text-left relative">
                         <div>
-                            <div>
-                                <h2 class="font-bold text-2xl mb-2">Oyuna dahil olma zamanı!</h2>
-                            </div>
+                            <h2 class="font-bold text-2xl mb-2">Oyuna dahil olma zamanı!</h2>
                             <div class="text-indigo-100/75">
-                                LeaderOS ile minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.
+                                Syfielbox ile minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.
                             </div>
                         </div>
                         <div class="flex flex-col items-center justify-center">
-                            <div class="cursor-pointer btn-before rounded-lg bg-indigo-600 py-3 px-5 text-white relative font-semibold" data-toggle="copyip" data-clipboard-action="copy" data-clipboard-text="play.hypixel.net">
-                                play.hypixel.net
+                            <div class="cursor-pointer btn-before rounded-lg bg-indigo-600 py-3 px-8 text-white font-bold text-lg relative transition hover:bg-indigo-500" data-clipboard-text="syfielbox.fun" onclick="alert('IP Kopyalandı: syfielbox.fun')">
+                                syfielbox.fun
                             </div>
-                            <span class="text-white/50 text-sm mt-3 active" data-toggle="onlinebox">
-                                <span class="text-white font-bold" data-toggle="onlinetext" server-ip="play.hypixel.net">33645</span> oyuncu aktif
+                            <span class="text-white/50 text-sm mt-3">
+                                <span class="text-white font-bold">124</span> oyuncu aktif
                             </span>
                         </div>
                     </div>
@@ -194,49 +151,138 @@
             </div>
         </section>
 
-        <!-- NEWS SECTION -->
         <section class="section pt-12 pb-20 gap-12 grid lg:grid-cols-10">
+            
             <div class="lg:col-span-7">
-                <h3 class="text-white font-bold text-2xl">Haber</h3>
-                <div class="grid gap-12 mt-12">
-                    
-                    <!-- NEWS CARD -->
-                    <div class="flex flex-col lg:flex-row group" style="background-color: var(--color-voon-card); border-radius: 1.5rem;">
-                        <div class="flex-1">
-                            <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="block rounded-l-3xl relative overflow-hidden h-full">
-                                <div class="bg-cover bg-center h-72 lg:h-full w-full group-hover:scale-110 transition-all duration-300 group-hover:rotate-3" style="background-image: url('/assets/core/images/blog/posts/88a1d1eea79993724fdcdc5a78850d9d.png')"></div>
-                                <div class="absolute bottom-0 left-0 right-0 pb-3 pt-20 px-5 bg-gradient-to-t from-black/75 flex items-center"></div>
-                            </a>
+                <h3 class="text-white font-bold text-2xl border-b border-gray-800 pb-3">Son Haberler</h3>
+                
+                <div class="grid gap-8 mt-8">
+                    <div class="flex flex-col lg:flex-row group bg-voon-card rounded-2xl overflow-hidden border border-gray-800/50 hover:border-indigo-500/50 transition">
+                        <div class="flex-1 relative overflow-hidden h-64 lg:h-auto">
+                            <div class="bg-cover bg-center absolute w-full h-full group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://demo-site.leaderos.net/assets/core/images/blog/posts/88a1d1eea79993724fdcdc5a78850d9d.png')"></div>
                         </div>
                         <div class="flex-1 flex flex-col p-6">
-                            <div class="py-3">
-                                <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="block">
-                                    <h3 class="line-clamp-1 text-2xl font-semibold text-gray-200 hover:text-indigo-400 transition-colors">
-                                        What is Lorem Ipsum?
-                                    </h3>
-                                </a>
-                                <div class="text-indigo-50/75 mt-4 text-sm line-clamp-3 leading-relaxed">
-                                    The standard Lorem Ipsum passage, used since the 1500s"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco la......
+                            <a href="#" class="block mb-2">
+                                <h3 class="line-clamp-2 text-xl font-semibold text-white group-hover:text-indigo-400 transition-colors">
+                                    Yeni Sezon Başladı! Büyük Güncelleme Notları
+                                </h3>
+                            </a>
+                            <div class="text-indigo-50/70 text-sm line-clamp-3 mb-6">
+                                Syfielbox'un yepyeni sezonuna hoş geldiniz! Yeni eklenen kasalar, Elytra PvP arenasındaki devasa güncellemeler ve daha fazlası için detayları okuyun...
+                            </div>
+                            <div class="mt-auto flex justify-between items-center border-t border-gray-800 pt-4">
+                                <span class="py-1 px-3 text-xs font-semibold rounded-lg text-indigo-300 bg-indigo-900/40">
+                                    Duyuru
+                                </span>
+                                <div class="flex items-center text-gray-500 text-sm gap-4">
+                                    <span><i class="fas fa-comment mr-1"></i> 12</span>
+                                    <span><i class="fas fa-eye mr-1"></i> 345</span>
                                 </div>
                             </div>
-                            
-                            <!-- BURA YARIM KALMIŞTI, TAMAMLANDI VE DÜZELTİLDİ -->
-                            <div class="mt-auto flex justify-between items-center border-t border-gray-800 pt-4 mt-4">
-                                <span class="text-xs text-gray-400 font-medium"><i class="far fa-calendar-alt mr-1"></i> 14 Mayıs 2026</span>
-                                <a href="https://demo-site.leaderos.net/blog/posts/what-is-lorem-ipsum-2/" class="text-sm text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
-                                    Devamını Oku <i class="fas fa-arrow-right ml-1"></i>
-                                </a>
-                            </div>
-                            <!-- YARIM KALAN KISIM BİTİŞ -->
-                            
                         </div>
                     </div>
-                    
                 </div>
             </div>
+
+            <div class="lg:col-span-3 flex flex-col gap-8">
+                
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-white font-bold text-lg">En Çok Destekleyen</span>
+                    </div>
+                    <div class="bg-voon-card rounded-2xl p-6 flex gap-4 items-center border border-gray-800/50 relative overflow-hidden">
+                        <div class="relative z-10">
+                            <img src="https://mc-heads.net/avatar/28grad/70" alt="28grad" class="rounded-xl shadow-lg">
+                        </div>
+                        <div class="relative z-10">
+                            <span class="text-indigo-400 text-xs uppercase font-bold tracking-wider">Kral Destekçi</span>
+                            <div class="font-bold text-white text-xl">28grad</div>
+                            <p class="mt-1 text-gray-400 text-sm">
+                                <strong class="text-green-400">1,500.00 TL</strong>
+                            </p>
+                        </div>
+                        <i class="fas fa-crown absolute -right-4 -bottom-4 text-8xl text-white opacity-5"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-white font-bold text-lg block mb-4">Son Alışverişler</span>
+                    <div class="bg-voon-card rounded-2xl overflow-hidden border border-gray-800/50">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-voon-950 text-gray-400 uppercase text-xs">
+                                <tr>
+                                    <th class="px-4 py-3 font-semibold">Oyuncu</th>
+                                    <th class="px-4 py-3 font-semibold">Ürün</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-200 divide-y divide-gray-800/50">
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-4 py-3 font-medium text-indigo-300">Axurz</td>
+                                    <td class="px-4 py-3">Custom VIP</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-4 py-3 font-medium text-indigo-300">waxyy02</td>
+                                    <td class="px-4 py-3">Fish Gear</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="px-4 py-3 font-medium text-indigo-300">elytragainner76_</td>
+                                    <td class="px-4 py-3">Syfiel Crate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </section>
-        
     </main>
+
+    <div class="bg-voon-800 border-t border-gray-800/50 py-10 relative z-20">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <div class="md:col-span-2">
+                    <h3 class="text-white font-bold text-xl mb-4">Syfielbox Hakkında</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        Syfielbox, Türkiye'nin en rekabetçi ve eğlenceli Elytra PvP deneyimini sunar. Kesintisiz oyun keyfi, özel ekipmanlar ve adil yönetim anlayışıyla sunucumuzda yerini al!
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Hızlı Menü</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="/" class="hover:text-indigo-400 transition">Anasayfa</a></li>
+                        <li><a href="/store" class="hover:text-indigo-400 transition">Mağaza</a></li>
+                        <li><a href="/rules" class="hover:text-indigo-400 transition">Kurallar</a></li>
+                        <li><a href="/support" class="hover:text-indigo-400 transition">Destek Talebi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Sosyal Medya</h3>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center hover:bg-red-600 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-800/50 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <div>&copy; 2026 <strong class="text-white">Syfielbox</strong>. Tüm hakları saklıdır.</div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
