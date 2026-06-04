@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syfielbox - Minecraft Sunucusu</title>
+    <!-- Font Awesome (İkonlar) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 (image_4219ba.png görselindeki şık bildirim pencereleri için) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* Genel Ayarlar */
         * {
@@ -484,7 +487,7 @@
             background-color: #0b0f17;
         }
 
-        /* Sağ Bölüm (Logo Alanı) */
+        /* Sağ Bölüm (Logo/Yazı Alanı) */
         .auth-right {
             flex: 1;
             background-color: #070a0f;
@@ -642,6 +645,33 @@
         .big-logo-side h3 {
             font-size: 32px;
             letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* SweetAlert2 Koyu Tema ve image_4219ba.png Uyumluluk CSS Özelleştirmeleri */
+        .swal2-popup {
+            background-color: #121824 !important;
+            border: 1px solid #1f293d !important;
+            border-radius: 12px !important;
+            color: #fff !important;
+        }
+        .swal2-title {
+            color: #fff !important;
+            font-size: 26px !important;
+            font-weight: 700 !important;
+        }
+        .swal2-html-container {
+            color: #b9bbbe !important;
+            font-size: 16px !important;
+        }
+        .swal2-confirm {
+            background-color: #00b4db !important;
+            background: linear-gradient(135deg, #00b4db, #00cc7d) !important;
+            padding: 12px 30px !important;
+            font-size: 15px !important;
+            font-weight: bold !important;
+            border-radius: 6px !important;
+            box-shadow: 0 4px 12px rgba(0, 204, 125, 0.2) !important;
         }
 
         /* Footer */
@@ -671,6 +701,7 @@
             </ul>
         </div>
 
+        <!-- IP Kopyalama Butonu (image_42197d.png tasarımı) -->
         <div class="server-ip-box" onclick="copyIP()">
             <i class="fa-solid fa-server"></i>
             <span class="ip-text" id="ipAddress">syfielbox.fun</span>
@@ -683,7 +714,7 @@
                 <span class="cart-badge">0</span>
             </div>
             <div class="user-profile" onclick="openAuth('login')">
-                <img src="https://mc-heads.net/avatar/triggermain01" alt="Oyuncu Kafası" class="avatar">
+                <img src="https://mc-heads.net/avatar/elytragainner76_" alt="Oyuncu Kafası" class="avatar">
                 <div class="user-info">
                     <span class="username" id="nav-username-display">Giriş Yap</span>
                     <span class="menu-lbl">MENU</span>
@@ -722,18 +753,18 @@
             <h2 class="section-title">Yetkili Kadromuz</h2>
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/Kittgamead" alt="Kittgamead" class="team-avatar">
-                    <div class="team-name">Kittgamead</div>
+                    <img src="https://mc-heads.net/avatar/28grad" alt="28grad" class="team-avatar">
+                    <div class="team-name">28grad</div>
                     <span class="team-role role-kurucu">Kurucu</span>
                 </div>
                 <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/triggermain01" alt="triggermain01" class="team-avatar">
-                    <div class="team-name">triggermain01</div>
+                    <img src="https://mc-heads.net/avatar/elytragainner76_" alt="elytragainner76_" class="team-avatar">
+                    <div class="team-name">elytragainner76_</div>
                     <span class="team-role role-kurucu">Kurucu</span>
                 </div>
                 <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/rulling" alt="rulling" class="team-avatar">
-                    <div class="team-name">rulling</div>
+                    <img src="https://mc-heads.net/avatar/Axurz" alt="Axurz" class="team-avatar">
+                    <div class="team-name">Axurz</div>
                     <span class="team-role role-owner">Co-Owner</span>
                 </div>
                 <div class="team-card">
@@ -742,8 +773,8 @@
                     <span class="team-role role-manager">Manager</span>
                 </div>
                 <div class="team-card">
-                    <img src="https://mc-heads.net/avatar/waxy" alt="waxy" class="team-avatar">
-                    <div class="team-name">waxy</div>
+                    <img src="https://mc-heads.net/avatar/waxyy02" alt="waxyy02" class="team-avatar">
+                    <div class="team-name">waxyy02</div>
                     <span class="team-role role-manager">Manager</span>
                 </div>
             </div>
@@ -784,31 +815,24 @@
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
             <div class="category-grid">
-                
-                <!-- VİP Kutusu -->
                 <div class="category-card cat-vip">
                     <i class="fa-solid fa-crown"></i>
                     <h3>VİP Üyelikler</h3>
                     <p>Sunucuda özel yetkilere, havalı isim renklerine ve muhteşem kitlere sahip olarak öne geçin!</p>
                     <button class="category-btn">Görüntüle</button>
                 </div>
-
-                <!-- Kasa Kutusu -->
                 <div class="category-card cat-kasa">
                     <i class="fa-solid fa-box-open"></i>
                     <h3>Kasa Anahtarları</h3>
                     <p>Şansınızı deneyin! Birbirinden değerli eşyalar, özel kozmetikler ve gizemli ödüller kazandıran kasaları açın.</p>
                     <button class="category-btn">Görüntüle</button>
                 </div>
-
-                <!-- Gear Kutusu -->
                 <div class="category-card cat-gear">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <h3>Gear & Editler</h3>
                     <p>Savaş meydanlarında rakiplerinizi alt edecek özel yapım setlere, silahlara ve takviyelere göz atın.</p>
                     <button class="category-btn">Görüntüle</button>
                 </div>
-
             </div>
         </section>
     </div>
@@ -827,7 +851,6 @@
                         <p>Hesabına erişmek için giriş yap.</p>
                     </div>
                 </div>
-                <!-- onsubmit eylemi simülasyon fonksiyonuna bağlandı -->
                 <form onsubmit="handleLogin(event)">
                     <div class="auth-form-group">
                         <label class="auth-label">Kullanıcı Adı</label>
@@ -846,11 +869,12 @@
                     </div>
                 </form>
             </div>
+            <!-- Sağ Bölüm: Syfielbox yerine "Giriş Yap" dikkat edilerek değiştirildi -->
             <div class="auth-right">
                 <button class="back-btn" onclick="closeAuth()"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
                 <div class="big-logo-side">
-                    <i class="fa-solid fa-cubes"></i>
-                    <h3>Syfielbox</h3>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <h3>Giriş Yap</h3>
                 </div>
             </div>
         </div>
@@ -870,7 +894,6 @@
                         <p>Sunucumuza katılmak için kayıt ol.</p>
                     </div>
                 </div>
-                <!-- onsubmit eylemi simülasyon fonksiyonuna bağlandı -->
                 <form onsubmit="handleRegister(event)">
                     <div class="auth-form-row">
                         <div class="auth-form-group">
@@ -896,11 +919,12 @@
                     </div>
                 </form>
             </div>
+            <!-- Sağ Bölüm: Syfielbox yerine "Kayıt Ol" getirildi -->
             <div class="auth-right">
                 <button class="back-btn" onclick="closeAuth()"><i class="fa-solid fa-arrow-left"></i> Geri Dön</button>
                 <div class="big-logo-side">
-                    <i class="fa-solid fa-cubes"></i>
-                    <h3>Syfielbox</h3>
+                    <i class="fa-solid fa-user-plus"></i>
+                    <h3>Kayıt Ol</h3>
                 </div>
             </div>
         </div>
@@ -968,37 +992,53 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 🛠️ FIX: Kayıt Olma Fonksiyonu
+        // image_4219ba.png stiline sadık kalınarak hazırlanan Kayıt Olma Fonksiyonu
         function handleRegister(event) {
-            event.preventDefault(); // Sayfa yenilenmesini engelle
+            event.preventDefault(); 
             const username = document.getElementById('register-username').value;
             
-            alert("Başarıyla kayıt olundu! Hoş geldin, " + username + ". Şimdi giriş yapabilirsin.");
-            
-            // Kayıt sonrası otomatik olarak Giriş Yap ekranına yönlendir
-            openAuth('login');
-            document.getElementById('login-username').value = username; // İsmi giriş alanına taşı
+            Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: 'Başarıyla kayıt olundu! Hoş geldin, ' + username + '. Şimdi giriş yapabilirsin.',
+                confirmButtonText: 'OK',
+                iconColor: '#00cc7d'
+            }).then(() => {
+                openAuth('login');
+                document.getElementById('login-username').value = username; 
+            });
         }
 
-        // 🛠️ FIX: Giriş Yapma Fonksiyonu
+        // image_4219ba.png stiline sadık kalınarak hazırlanan Giriş Yapma Fonksiyonu
         function handleLogin(event) {
-            event.preventDefault(); // Sayfa yenilenmesini engelle
+            event.preventDefault(); 
             const username = document.getElementById('login-username').value;
             
-            alert("Başarıyla giriş yapıldı! Keyifli oyunlar, " + username + ".");
-            
-            // Sağ üstteki "Giriş Yap" yazısını oyuncu ismiyle güncelle
-            document.getElementById('nav-username-display').innerText = username;
-            
-            // Paneli kapat
-            closeAuth();
+            Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: 'Başarıyla giriş yapıldı! Keyifli oyunlar, ' + username + '.',
+                confirmButtonText: 'OK',
+                iconColor: '#00cc7d'
+            }).then(() => {
+                document.getElementById('nav-username-display').innerText = username;
+                // Oyuncunun skin kafasını da sağ üstte dinamik güncelleyelim
+                document.querySelector('.user-profile .avatar').src = 'https://mc-heads.net/avatar/' + username;
+                closeAuth();
+            });
         }
 
-        // IP Kopyalama Fonksiyonu
+        // image_4219ba.png görselindeki şık başarılı penceresiyle IP Kopyalama Fonksiyonu
         function copyIP() {
             const ipText = document.getElementById("ipAddress").innerText;
             navigator.clipboard.writeText(ipText).then(() => {
-                alert("IP Adresi kopyalandı: " + ipText + " - Sunucumuza davetlisin!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı!',
+                    text: 'Sunucu adresi kopyalandı!',
+                    confirmButtonText: 'OK',
+                    iconColor: '#00cc7d' // Tam yeşil onay ikonu rengi
+                });
             }).catch(err => {
                 console.error("Kopyalanamadı: ", err);
             });
