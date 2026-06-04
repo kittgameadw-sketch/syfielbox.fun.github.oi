@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syfielbox - Minecraft Sunucusu</title>
-    <!-- Font Awesome (İkonlar) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SweetAlert2 (Şık bildirim pencereleri için) -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* Genel Ayarlar */
@@ -547,7 +545,7 @@
         }
 
         /* Anasayfa Kadro ve Modlar */
-        .modes-grid { display: flex; justify-content: center; }
+        .modes-grid { display: flex; justify-content: center; margin-bottom: 50px; }
         .mode-card {
             background-color: #121824; border: 1px solid #1f293d; border-radius: 10px;
             padding: 40px; text-align: center; max-width: 500px; width: 100%;
@@ -559,11 +557,13 @@
         .team-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
         .team-card {
             background-color: #121824; border: 1px solid #1f293d; border-radius: 8px;
-            padding: 25px 20px; width: 210px; text-align: center;
+            padding: 25px 20px; width: 210px; text-align: center; transition: transform 0.3s, border-color 0.3s;
         }
-        .team-avatar { width: 70px; height: 70px; margin-bottom: 15px; image-rendering: pixelated; border-radius: 4px; }
+        .team-card:hover { transform: translateY(-5px); border-color: #00b4db; }
+        .team-avatar { width: 70px; height: 70px; margin-bottom: 15px; image-rendering: pixelated; border-radius: 8px; }
         .team-name { font-weight: bold; font-size: 16px; margin-bottom: 10px; }
         .team-role { font-size: 12px; font-weight: bold; padding: 5px 14px; border-radius: 4px; display: inline-block; text-transform: uppercase; }
+        
         .role-kurucu { background: linear-gradient(135deg, #0052d4, #4364f7); color: #fff; }
         .role-owner { background: linear-gradient(135deg, #00b4db, #0083b0); color: #fff; }
         .role-manager { background: linear-gradient(135deg, #11998e, #38ef7d); color: #fff; }
@@ -644,7 +644,6 @@
 </head>
 <body>
 
-    <!-- Header / Navigasyon -->
     <nav class="navbar">
         <div class="nav-left">
             <img src="logo.png" alt="Syfielbox Logo" class="logo">
@@ -668,7 +667,7 @@
                 <span class="cart-badge" id="global-chest-count">0</span>
             </div>
             <div class="user-profile" onclick="openAuth('login')">
-                <img src="https://mc-heads.net/avatar/elytragainner76_" alt="Oyuncu Kafası" class="avatar" id="global-avatar">
+                <img src="https://mc-heads.net/avatar/steve" alt="Oyuncu Kafası" class="avatar" id="global-avatar">
                 <div class="user-info">
                     <span class="username" id="nav-username-display">Giriş Yap</span>
                     <span class="menu-lbl" id="nav-user-credit">0 TL</span>
@@ -677,7 +676,6 @@
         </div>
     </nav>
 
-    <!-- Tanıtım (Hero) -->
     <section class="hero">
         <h1>Syfielbox Sunucusuna Hoş Geldin!</h1>
         <p>Türkiye'nin en hareketli Minecraft topluluğuna katılmak için yukarıdaki IP adresine tıklayarak kopyalayabilirsin.</p>
@@ -687,9 +685,7 @@
         </div>
     </section>
 
-    <!-- ================= ANASAYFA BÖLÜMÜ ================= -->
     <div id="page-anasayfa" class="page-section active-page">
-        <!-- Anasayfa içerikleri (Kadro ve Modlar)... -->
         <section class="container">
             <h2 class="section-title">Oyun Modumuz</h2>
             <div class="modes-grid">
@@ -700,10 +696,29 @@
                 </div>
             </div>
         </section>
-        <!-- Diğer kadro kartları vs. burada duruyor (Kısaltıldı) -->
+
+        <section class="container">
+            <h2 class="section-title">Yetkili Kadrosu</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://mc-heads.net/avatar/28grad" alt="Kurucu" class="team-avatar">
+                    <div class="team-name">28grad</div>
+                    <div class="team-role role-kurucu">Kurucu</div>
+                </div>
+                <div class="team-card">
+                    <img src="https://mc-heads.net/avatar/elytragainner76_" alt="Yönetici" class="team-avatar">
+                    <div class="team-name">ElytraGamer</div>
+                    <div class="team-role role-manager">Yönetici</div>
+                </div>
+                <div class="team-card">
+                    <img src="https://mc-heads.net/avatar/Notch" alt="Admin" class="team-avatar">
+                    <div class="team-name">Kral</div>
+                    <div class="team-role role-owner">Owner</div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- ================= MAĞAZA BÖLÜMÜ ================= -->
     <div id="page-magaza" class="page-section">
         <section class="container">
             <h2 class="section-title">Sunucu Mağazası</h2>
@@ -732,7 +747,6 @@
         </section>
     </div>
 
-    <!-- ================= SANDIK ALANI ================= -->
     <div id="page-sandik" class="page-section">
         <section class="container">
             <h2 class="section-title">Oyuncu Sandığı</h2>
@@ -745,17 +759,51 @@
         </section>
     </div>
 
-    <!-- ================= KREDİ YÜKLE ================= -->
     <div id="page-krediyukle" class="page-section">
-        <!-- Kredi Yükle HTML -->
+        <section class="container">
+            <h2 class="section-title">Kredi Yükle</h2>
+            <div class="credit-wrapper">
+                <div class="credit-info-box">
+                    <i class="fa-solid fa-circle-info"></i> Ödemeleriniz 3D Secure güvencesiyle anında hesabınıza yansır.
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Yüklenecek Tutar (TL)</label>
+                    <input type="number" class="form-input" placeholder="Örn: 50" min="1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ödeme Yöntemi</label>
+                    <select class="form-input">
+                        <option>Kredi / Banka Kartı</option>
+                        <option>İninal Kart</option>
+                        <option>Papara</option>
+                        <option>Mobil Ödeme</option>
+                    </select>
+                </div>
+                <button class="submit-btn" onclick="Swal.fire({icon:'info', title:'Ödeme Adımı', text:'Bu özellik test aşamasındadır.'})">Ödemeye Geç</button>
+            </div>
+        </section>
     </div>
 
-    <!-- ================= YÖNETİM PANELİ ================= -->
     <div id="page-admin" class="page-section">
-        <!-- Yönetim Paneli HTML -->
+        <section class="container">
+            <h2 class="section-title" style="color: #ff3838;">Yönetim Paneli</h2>
+            <div class="admin-wrapper">
+                <div class="admin-grid">
+                    <div class="admin-box">
+                        <h3>Oyuncu İşlemleri</h3>
+                        <button class="admin-btn">Oyuncu Banla</button>
+                        <button class="admin-btn">Mute At</button>
+                    </div>
+                    <div class="admin-box">
+                        <h3>Sunucu İşlemleri</h3>
+                        <button class="admin-btn">Sunucuyu Kapat (Stop)</button>
+                        <button class="admin-btn">Bakım Modunu Aç</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- ================= GİRİŞ YAP PANELİ ================= -->
     <div id="auth-login-overlay" class="auth-overlay">
         <div class="auth-container">
             <div class="auth-left">
@@ -774,7 +822,6 @@
                     </div>
                     <div class="auth-form-group">
                         <label class="auth-label">Şifre</label>
-                        <!-- Şifre inputuna ID eklendi -->
                         <input type="password" id="login-password" class="auth-input" placeholder="******" required>
                     </div>
                     <div class="form-footer-links">
@@ -793,7 +840,6 @@
         </div>
     </div>
 
-    <!-- ================= KAYIT OL PANELİ ================= -->
     <div id="auth-register-overlay" class="auth-overlay">
         <div class="auth-container">
             <div class="auth-left">
@@ -816,7 +862,6 @@
                     </div>
                     <div class="auth-form-group">
                         <label class="auth-label">Şifre</label>
-                        <!-- Şifre inputuna ID eklendi -->
                         <input type="password" id="register-password" class="auth-input" placeholder="******" required>
                     </div>
                     <div class="form-footer-links">
@@ -839,13 +884,12 @@
         &copy; 2026 Syfielbox. Tüm Hakları Saklıdır.
     </footer>
 
-    <!-- LOGIC SCRIPTS -->
     <script>
         let currentUser = null;
         let userCredit = 0;
         let userChest = [];
 
-        // YENİ: Kayıt olan kullanıcıları ve şifrelerini geçici olarak tutacağımız veritabanı (Obje)
+        // Kayıt olan kullanıcıları ve şifrelerini geçici olarak tutacağımız veritabanı (Obje)
         const registeredUsers = {};
 
         const shopData = {
@@ -958,13 +1002,13 @@
             }, 350);
         }
 
-        // YENİ: KAYIT OLMA MANTIĞI VE ŞİFRE KONTROLLERİ
+        // KAYIT OLMA MANTIĞI VE ŞİFRE KONTROLLERİ
         function handleRegister(event) {
             event.preventDefault();
             const username = document.getElementById('register-username').value;
-            const password = document.getElementById('register-password').value; // Şifreyi al
+            const password = document.getElementById('register-password').value;
 
-            // 1. Kural: 4 haneden uzun olmalı (yani en az 5 karakter)
+            // 1. Kural: 4 haneden uzun olmalı
             if (password.length <= 4) {
                 Swal.fire({ 
                     icon: 'warning', 
@@ -976,7 +1020,7 @@
                 return;
             }
 
-            // 2. Kural: En az bir büyük harf içermeli (Regex kontrolü)
+            // 2. Kural: En az bir büyük harf içermeli
             if (!/[A-Z]/.test(password)) {
                 Swal.fire({ 
                     icon: 'warning', 
@@ -997,7 +1041,7 @@
             setTimeout(() => {
                 openAuth('login');
                 document.getElementById('login-username').value = username;
-                document.getElementById('login-password').value = ''; // Giriş formundaki şifreyi temizle
+                document.getElementById('login-password').value = '';
                 Swal.fire({ 
                     icon: 'success', 
                     title: 'Başarılı!', 
@@ -1008,7 +1052,7 @@
             }, 355);
         }
 
-        // YENİ: GİRİŞ YAPMA MANTIĞI VE ŞİFRE DOĞRULAMASI
+        // GİRİŞ YAPMA MANTIĞI VE ŞİFRE DOĞRULAMASI
         function handleLogin(event) {
             event.preventDefault();
             const inputUsername = document.getElementById('login-username').value;
@@ -1031,7 +1075,6 @@
             document.getElementById('nav-username-display').innerText = currentUser;
             document.getElementById('global-avatar').src = 'https://mc-heads.net/avatar/' + currentUser;
             
-            // Senin admin hesabı için özel yetki kontrolü
             if(currentUser.toLowerCase() === '28grad') {
                 document.getElementById('menu-admin').style.display = 'block';
                 document.getElementById('admin-badge-count').style.display = 'inline-block';
@@ -1055,8 +1098,55 @@
             document.getElementById('global-chest-count').innerText = userChest.length;
         }
 
-        // Kredi ve alışveriş fonksiyonları...
-        // ... (Diğer scriptler bir öncekiyle aynı olduğu için burada yer kaplamaması adına kırpıldı, fakat sen kendi dosyanın kalan script kısımlarını bozmadan bırakabilirsin.)
+        function buyItem(itemName, price) {
+            if (!currentUser) {
+                Swal.fire({ icon: 'error', title: 'Hata!', text: 'Satın alım yapmak için önce giriş yapmalısınız!', confirmButtonText: 'Tamam' });
+                return;
+            }
+
+            if (userCredit >= price) {
+                userCredit -= price;
+                userChest.push(itemName);
+                updateHeaderData();
+                Swal.fire({ icon: 'success', title: 'Satın Alındı!', text: `${itemName} başarıyla sandığına eklendi!`, confirmButtonText: 'Harika', iconColor: '#00cc7d' });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Yetersiz Bakiye!', text: 'Bu işlem için yeterli kredin bulunmuyor.', confirmButtonText: 'Kapat' });
+            }
+        }
+
+        function renderChest() {
+            const emptyMsg = document.getElementById('chest-empty-msg');
+            const grid = document.getElementById('chest-items-grid');
+            
+            grid.innerHTML = '';
+            
+            if (userChest.length === 0) {
+                emptyMsg.style.display = 'block';
+                grid.style.display = 'none';
+            } else {
+                emptyMsg.style.display = 'none';
+                grid.style.display = 'grid';
+                
+                userChest.forEach((item, index) => {
+                    const box = document.createElement('div');
+                    box.className = 'chest-item';
+                    box.innerHTML = `
+                        <i class="fa-solid fa-gift"></i>
+                        <h4>${item}</h4>
+                        <p>Satın Alındı</p>
+                        <button class="activate-btn" onclick="activateItem(${index}, '${item}')">Aktifleştir</button>
+                    `;
+                    grid.appendChild(box);
+                });
+            }
+        }
+
+        function activateItem(index, itemName) {
+            userChest.splice(index, 1);
+            updateHeaderData();
+            renderChest();
+            Swal.fire({ icon: 'success', title: 'Aktifleştirildi!', text: `${itemName} oyun içi hesabına tanımlandı! İyi eğlenceler.`, confirmButtonText: 'Tamam', iconColor: '#00cc7d' });
+        }
 
         function copyIP() {
             const ipText = document.getElementById("ipAddress").innerText;
