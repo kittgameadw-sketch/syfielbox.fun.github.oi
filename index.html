@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Syfielbox.Fun - ElytraPvP Sunucusu</title>
+  <title>Syfielbox.Fun | ElytraPvP Sunucusu</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -12,7 +12,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Verdana', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
@@ -25,32 +25,49 @@
       position: relative;
     }
 
-    /* GERÇEK MINECRAFT ARKA PLANI & MAVİ-SİYAH FİLTRE */
-    .bg-overlay {
+    /* 3D PARALLAX ARKA PLAN */
+    .bg-wrapper {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: 
-        linear-gradient(180deg, rgba(3, 7, 18, 0.82) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(3, 7, 18, 0.95) 100%),
-        url('https://minecraft.wiki/images/thumb/Minecraft_1.20_Key_Art.png/1200px-Minecraft_1.20_Key_Art.png') center/cover no-repeat;
+      top: -5%;
+      left: -5%;
+      width: 110vw;
+      height: 110vh;
       z-index: 0;
       pointer-events: none;
+      transition: transform 0.08s ease-out;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 50% 35%, rgba(14, 165, 233, 0.25) 0%, rgba(3, 7, 18, 0.9) 75%),
+        linear-gradient(180deg, rgba(3, 7, 18, 0.6) 0%, rgba(3, 7, 18, 0.95) 100%),
+        url('https://minecraft.wiki/images/thumb/Minecraft_1.20_Key_Art.png/1200px-Minecraft_1.20_Key_Art.png') center/cover no-repeat;
+      filter: contrast(115%) brightness(80%);
     }
 
     .dark-grid {
-      position: fixed;
-      top: 0;
-      left: 0;
+      position: absolute;
       width: 100%;
       height: 100%;
       background-image: 
         linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
       background-size: 40px 40px;
-      z-index: 0;
+    }
+
+    .mouse-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: left 0.1s ease-out, top 0.1s ease-out;
     }
 
     /* NAVBAR */
@@ -62,59 +79,64 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 5%;
+      padding: 1.2rem 8%;
       background: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
       z-index: 1000;
-      border-bottom: 2px solid rgba(56, 189, 248, 0.25);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.15);
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1.2rem;
+      font-weight: 800;
       color: #38bdf8;
       text-decoration: none;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+      letter-spacing: 0.5px;
     }
 
     .logo-badge {
-      background: linear-gradient(135deg, #0284c7, #0f172a);
-      color: #38bdf8;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
       width: 38px;
       height: 38px;
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #38bdf8;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
       font-weight: bold;
+      font-size: 1.1rem;
     }
 
     nav {
       display: flex;
-      gap: 24px;
+      gap: 32px;
+      align-items: center;
     }
 
     nav a, .dropdown-btn {
       color: #94a3b8;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       background: none;
       border: none;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     nav a.active, nav a:hover, .dropdown:hover .dropdown-btn {
       color: #38bdf8;
-      text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+      transform: translateY(-1px);
     }
 
+    /* DROPDOWN */
     .dropdown {
       position: relative;
     }
@@ -123,27 +145,36 @@
       display: none;
       position: absolute;
       top: 100%;
-      left: 0;
-      background-color: #0b1329;
-      min-width: 180px;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      box-shadow: 0px 10px 25px rgba(0,0,0,0.8);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      min-width: 200px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      box-shadow: 0px 14px 35px rgba(0,0,0,0.8);
       z-index: 1001;
-      margin-top: 10px;
+      margin-top: 14px;
       padding: 8px 0;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, 10px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
     }
 
     .dropdown-content a {
       color: #cbd5e1;
-      padding: 10px 16px;
+      padding: 12px 20px;
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .dropdown-content a:hover {
-      background-color: #0f172a;
+      background: rgba(56, 189, 248, 0.1);
       color: #38bdf8;
     }
 
@@ -154,242 +185,250 @@
     .user-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .cart-btn {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #38bdf8;
       position: relative;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cart-btn:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
     }
 
     .cart-count {
       position: absolute;
-      top: -5px;
-      right: -5px;
+      top: -6px;
+      right: -6px;
       background: #0284c7;
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #0f172a;
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 1px solid #1e293b;
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-
-    .avatar {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      background: #0284c7;
-    }
-
-    /* SMOOTH PAGE TRANSITION */
+    /* PAGES */
     .page {
       display: none;
-      margin-top: 85px;
+      margin-top: 90px;
       width: 100%;
       position: relative;
       z-index: 2;
       opacity: 0;
-      transform: scale(0.98) translateY(12px);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(15px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .page.active {
       display: block;
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: translateY(0);
     }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero {
-      position: relative;
-      min-height: 50vh;
+      padding: 4rem 5% 2rem 5%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 3rem 5%;
     }
 
-    .hero-brand {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 0.8rem;
-      text-shadow: 
-        0 0 15px rgba(56, 189, 248, 0.8),
-        0 0 30px rgba(2, 132, 199, 0.6),
-        3px 3px 0px #0284c7;
+    .hero-badge {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .hero h1 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      color: #e2e8f0;
+    .hero-brand {
+      font-size: 3.8rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+      letter-spacing: 2px;
     }
 
     .hero p {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: #94a3b8;
       max-width: 650px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
     }
 
-    .btn-primary {
-      display: inline-flex;
+    /* DİNAMİK STATS / İSTATİSTİK KARTLARI */
+    .stats-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .stat-box {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem 2rem;
+      border-radius: 12px;
+      display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+      flex: 1;
+      min-width: 220px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-box:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      color: #38bdf8;
+    }
+
+    .stat-info .number {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-info .label {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* MODERN SADE IP KART */
+    .ip-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      backdrop-filter: blur(12px);
+      margin: 0 auto 3rem auto;
+      width: 100%;
+      max-width: 580px;
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .ip-card:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 12px 40px rgba(2, 132, 199, 0.25);
+    }
+
+    .ip-text {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .ip-address {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: 0.5px;
+    }
+
+    .ip-btn {
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #fff;
-      padding: 14px 32px;
+      border: none;
+      padding: 10px 22px;
       border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: bold;
-      text-decoration: none;
-      border: 1px solid #38bdf8;
-      box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.7);
-    }
-
-    /* IP BANNER */
-    .ip-banner {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      backdrop-filter: blur(12px);
-      margin: 0 8% 4rem 8%;
-      border-radius: 16px;
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .ip-banner-text h3 {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 6px;
-      color: #f8fafc;
-    }
-
-    .ip-banner-text p {
-      color: #64748b;
-      font-size: 0.95rem;
-    }
-
-    .ip-box {
-      background: #030712;
-      border: 1px solid #0284c7;
-      color: #38bdf8;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: bold;
+      font-size: 0.9rem;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
+      gap: 8px;
+      transition: all 0.25s ease;
     }
 
-    .ip-box:hover {
-      background: #0284c7;
-      color: #fff;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    .ip-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
     }
 
-    .online-count {
-      color: #22c55e;
-      font-size: 0.85rem;
-      font-weight: bold;
-      text-align: right;
-      margin-top: 6px;
-    }
-
-    /* CARDS */
+    /* CARDS CONTAINER */
     .container {
-      padding: 2rem 8% 4rem 8%;
+      padding: 2rem 8% 5rem 8%;
     }
 
     .page-title {
       font-size: 1.5rem;
-      font-weight: bold;
+      font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      margin-bottom: 0.4rem;
     }
 
     .page-desc {
       color: #94a3b8;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #f8fafc;
-      margin: 2rem 0 1rem 0;
-      border-left: 4px solid #38bdf8;
-      padding-left: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
     }
 
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 25px;
+      gap: 24px;
     }
 
     .item-card {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.75);
       border: 1px solid rgba(56, 189, 248, 0.15);
       border-radius: 14px;
       padding: 2rem 1.5rem;
       text-align: center;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(8px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
     }
 
     .item-card:hover {
       transform: translateY(-6px);
-      border-color: #0284c7;
-      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 12px 30px rgba(2, 132, 199, 0.25);
     }
 
     .card-icon-box {
@@ -399,16 +438,16 @@
 
     .card-title {
       font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-weight: 700;
+      margin-bottom: 8px;
       color: #f8fafc;
     }
 
     .card-price {
       font-size: 1.3rem;
-      font-weight: bold;
+      font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
 
     .btn-buy {
@@ -417,41 +456,47 @@
       color: #fff;
       padding: 12px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 0.9rem;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .btn-buy:hover {
       background: #0369a1;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
     }
 
+    /* TOAST NOTIFICATION */
     .toast {
       position: fixed;
       bottom: -70px;
-      right: 20px;
+      right: 25px;
       background: #0f172a;
       color: #38bdf8;
       border: 1px solid #0284c7;
-      padding: 14px 22px;
+      padding: 14px 24px;
       border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      transition: all 0.4s ease;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: all 0.35s ease;
       z-index: 9999;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
-    .toast.show { bottom: 20px; }
+    .toast.show { bottom: 25px; }
   </style>
 </head>
 <body>
 
-  <div class="bg-overlay"></div>
-  <div class="dark-grid"></div>
+  <!-- MOUSE PARALLAX BACKDROP -->
+  <div class="bg-wrapper" id="bgWrapper">
+    <div class="bg-overlay"></div>
+    <div class="dark-grid"></div>
+  </div>
+  
+  <div class="mouse-glow" id="mouseGlow"></div>
 
   <!-- NAVBAR -->
   <header>
@@ -462,27 +507,26 @@
     <nav>
       <a href="#" id="nav-home" class="active" onclick="switchPage('home')">Anasayfa</a>
       
+      <!-- MAĞAZA DOWPDOWN (VIP BURADA) -->
       <div class="dropdown">
-        <button class="dropdown-btn" id="nav-store" onclick="switchPage('vips')">Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></button>
+        <button class="dropdown-btn" id="nav-store">
+          Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i>
+        </button>
         <div class="dropdown-content">
-          <a href="#" onclick="switchPage('vips')">👑 VIP Rütbeleri</a>
+          <a href="#" onclick="switchPage('vips')">👑 VIP Paketi</a>
           <a href="#" onclick="switchPage('crates')">📦 Kasalar</a>
-          <a href="#" onclick="switchPage('items')">⚔️ İtemler</a>
+          <a href="#" onclick="switchPage('items')">⚔️ Özel İtemler</a>
         </div>
       </div>
 
-      <a href="#" id="nav-vips" onclick="switchPage('vips')">VIP Paketi</a>
       <a href="#" id="nav-crates" onclick="switchPage('crates')">Kasalar</a>
       <a href="#">Kredi Yükle</a>
     </nav>
+    
     <div class="user-actions">
       <div class="cart-btn">
         <i class="fa-solid fa-cart-shopping"></i>
         <div class="cart-count">0</div>
-      </div>
-      <div class="user-profile">
-        <div class="avatar"></div>
-        <span>Oyuncu</span>
       </div>
     </div>
   </header>
@@ -490,34 +534,55 @@
   <!-- ANASAYFA -->
   <div id="page-home" class="page active">
     <section class="hero">
+      <div class="hero-badge">🚀 SEZON 2 BAŞLADI</div>
       <div class="hero-brand">SYFIELBOX.FUN</div>
-      <h1>GÖKYÜZÜNÜN LİDERİ OLMAYA HAZIR MISIN? ⚔️</h1>
-      <p>ElytraPvP arenasının en yetenekli savaşçısı sen ol! Özel kitler, kıyasıya rekabet ve kesintisiz gökyüzü savaşları seni bekliyor.</p>
-      <a href="#play" onclick="copyIp()" class="btn-primary">
-        <i class="fa-solid fa-gamepad"></i> OYUNA KATIL
-      </a>
-    </section>
+      <p>Sınırları zorlayan Elytra PvP deneyimi. Özel setlerini kuşan, gökyüzündeki amansız savaşta yerini al ve en iyilerin arasına adını yazdır!</p>
 
-    <div class="ip-banner">
-      <div class="ip-banner-text">
-        <h3>Aksiyon Seni Bekliyor! 🚀</h3>
-        <p>Sunucu adresini kopyala ve savaşa dahil ol.</p>
-      </div>
-      <div>
-        <div class="ip-box" onclick="copyIp()">
-          <span>Syfielbox.Fun</span>
-          <i class="fa-regular fa-copy"></i>
+      <!-- İSTATİSTİK KARTLARI (CANLILIK İÇİN) -->
+      <div class="stats-container">
+        <div class="stat-box">
+          <i class="fa-solid fa-users stat-icon"></i>
+          <div class="stat-info">
+            <div class="number">128+</div>
+            <div class="label">Aktif Oyuncu</div>
+          </div>
         </div>
-        <div class="online-count"><i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> 0 Oyuncu Aktif</div>
+
+        <div class="stat-box">
+          <i class="fa-solid fa-shield-halved stat-icon"></i>
+          <div class="stat-info">
+            <div class="number">ElytraPvP</div>
+            <div class="label">Oyun Modu</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <i class="fa-solid fa-bolt stat-icon"></i>
+          <div class="stat-info">
+            <div class="number">0ms Lag</div>
+            <div class="label">Yüksek Performans</div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- SADE VE MODERN IP KART -->
+      <div class="ip-card">
+        <div class="ip-text">
+          <div class="status-dot"></div>
+          <span class="ip-address">Syfielbox.Fun</span>
+        </div>
+        <button class="ip-btn" onclick="copyIp()">
+          <i class="fa-regular fa-copy"></i> IP Kopyala
+        </button>
+      </div>
+    </section>
   </div>
 
-  <!-- VIP KATEGORİSİ -->
+  <!-- VIP KATEGORİSİ (SADECE MAĞAZA TIKLANINCA GÖZÜKÜR) -->
   <div id="page-vips" class="page">
     <div class="container">
-      <div class="page-title">VIP RÜTBELERİ 👑</div>
-      <div class="page-desc">Özel ayrıcalıklar, renkli isimler ve güçlü kitlerle rakiplerinin önüne geç.</div>
+      <div class="page-title">👑 VIP PAKETLERİ</div>
+      <div class="page-desc">Savaştan önce avantajı kapın! Özel efektler, rütbeler ve ayrıcalıklar.</div>
       
       <div class="cards-grid">
         <div class="item-card">
@@ -547,8 +612,8 @@
   <!-- İTEMLER -->
   <div id="page-items" class="page">
     <div class="container">
-      <div class="page-title">ÖZEL İTEMLER ⚔️</div>
-      <div class="page-desc">Arenada avantaj sağlayacak özel ekipmanlar ve setler.</div>
+      <div class="page-title">⚔️ ÖZEL İTEMLER</div>
+      <div class="page-desc">Rakiplerinizi alt etmek için özel büyülü ve güçlü ekipmanlar.</div>
       
       <div class="cards-grid">
         <div class="item-card">
@@ -564,8 +629,8 @@
   <!-- KASALAR -->
   <div id="page-crates" class="page">
     <div class="container">
-      <div class="page-title">KASALAR 📦</div>
-      <div class="page-desc">Efsanevi ekipmanlar kazanmak için kasa anahtarlarını aç.</div>
+      <div class="page-title">📦 KASA ANAHTARLARI</div>
+      <div class="page-desc">Efsanevi ganimetler çıkarmak için şansını hemen dene.</div>
 
       <div class="cards-grid">
         <div class="item-card">
@@ -588,6 +653,20 @@
   <div id="toast" class="toast"></div>
 
   <script>
+    /* MOUSE PARALLAX KONTROLÜ */
+    const bgWrapper = document.getElementById('bgWrapper');
+    const mouseGlow = document.getElementById('mouseGlow');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - window.innerWidth / 2) / 40;
+      const y = (e.clientY - window.innerHeight / 2) / 40;
+
+      bgWrapper.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      mouseGlow.style.left = e.clientX + 'px';
+      mouseGlow.style.top = e.clientY + 'px';
+    });
+
+    /* GEÇİŞ DİNANİKLERİ */
     function switchPage(pageId) {
       const activePage = document.querySelector('.page.active');
       const targetPage = document.getElementById('page-' + pageId);
@@ -596,7 +675,7 @@
 
       if (activePage) {
         activePage.style.opacity = '0';
-        activePage.style.transform = 'scale(0.98) translateY(12px)';
+        activePage.style.transform = 'translateY(15px)';
         
         setTimeout(() => {
           activePage.classList.remove('active');
@@ -604,15 +683,14 @@
             targetPage.classList.add('active');
             setTimeout(() => {
               targetPage.style.opacity = '1';
-              targetPage.style.transform = 'scale(1) translateY(0)';
+              targetPage.style.transform = 'translateY(0)';
             }, 20);
           }
-        }, 180);
+        }, 200);
       }
 
       document.querySelectorAll('nav a').forEach(nav => nav.classList.remove('active'));
       if (pageId === 'home') document.getElementById('nav-home')?.classList.add('active');
-      if (pageId === 'vips') document.getElementById('nav-vips')?.classList.add('active');
       if (pageId === 'crates') document.getElementById('nav-crates')?.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -621,7 +699,7 @@
     function copyIp() {
       const ip = "Syfielbox.Fun";
       navigator.clipboard.writeText(ip);
-      showToast("✨ IP Kopyalandı: " + ip);
+      showToast("⚡ IP Başarıyla Kopyalandı: " + ip);
     }
 
     let cartCount = 0;
