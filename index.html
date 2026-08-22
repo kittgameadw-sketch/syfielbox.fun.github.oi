@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Syfielbox - ElytraPvP Sunucusu</title>
+  <title>Syfielbox - ElytraPvP Minecraft Sunucusu</title>
   
-  <!-- Fontlar: Gamer başlıklar ve Modern Gövde metinleri -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <!-- FontAwesome İkon Seti -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -17,241 +15,429 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background: #090a0f;
+      background-color: #0d0e12;
       color: #fff;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* üst NAVİGASYON */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(13, 14, 18, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #ff6b00, #ff8800);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      overflow-x: hidden;
-      position: relative;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
     }
 
-    /* Dinamik Işık ve Izgara Arka Planı */
-    .bg-grid {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 1;
+    nav {
+      display: flex;
+      gap: 25px;
     }
 
-    .glow-purple {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      background: #8a2be2;
-      filter: blur(160px);
-      opacity: 0.35;
-      top: 10%;
-      left: 15%;
-      border-radius: 50%;
-      animation: pulse 6s ease-in-out infinite alternate;
-      z-index: 1;
-    }
-
-    .glow-cyan {
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: #00f2fe;
-      filter: blur(160px);
-      opacity: 0.3;
-      bottom: 10%;
-      right: 15%;
-      border-radius: 50%;
-      animation: pulse 8s ease-in-out infinite alternate-reverse;
-      z-index: 1;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.15) translate(20px, -20px); }
-    }
-
-    /* Ana Konteyner */
-    .main-card {
-      position: relative;
-      z-index: 2;
-      background: rgba(18, 20, 29, 0.65);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 2.5rem 3rem;
-      max-width: 800px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Sunucu Başlığı */
-    .server-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 2.2rem;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(138, 43, 226, 0.8);
-      margin-bottom: 0.8rem;
-      letter-spacing: 2px;
-    }
-
-    .server-subtitle {
-      color: #00f2fe;
+    nav a {
+      color: #a0a5b5;
+      text-decoration: none;
       font-weight: 600;
-      letter-spacing: 3px;
       font-size: 0.95rem;
-      text-transform: uppercase;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    nav a.active, nav a:hover {
+      color: #fff;
+    }
+
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #ff6b00;
+      border-radius: 2px;
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .cart-btn {
+      background: rgba(255, 255, 255, 0.05);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #ff6b00;
+      font-size: 0.7rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #ff6b00;
+    }
+
+    /* HERO BÖLÜMÜ */
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      margin-top: 60px;
+      background: linear-gradient(180deg, rgba(13, 14, 18, 0.3) 0%, #0d0e12 100%),
+                  url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 550px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: #a0a5b5;
+      font-size: 1.05rem;
+      line-height: 1.6;
       margin-bottom: 2rem;
     }
 
-    /* IP Kopyalama Butonu */
-    .ip-box {
-      background: rgba(0, 0, 0, 0.4);
-      border: 2px dashed rgba(138, 43, 226, 0.6);
-      padding: 1rem 1.5rem;
-      border-radius: 16px;
+    .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      cursor: pointer;
+      gap: 10px;
+      background: #ff6b00;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
       transition: all 0.3s ease;
-      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #ff7b1a;
+      box-shadow: 0 12px 30px rgba(255, 107, 0, 0.6);
+    }
+
+    /* IP KOPYALAMA BANNERI */
+    .ip-banner {
+      background: #14161d;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin: -60px 8% 4rem 8%;
+      border-radius: 16px;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .ip-banner-text h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .ip-banner-text p {
+      color: #6c7284;
+      font-size: 0.9rem;
+    }
+
+    .ip-btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .ip-box {
+      background: #ff6b00;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
     }
 
     .ip-box:hover {
-      border-color: #00f2fe;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2);
+      background: #ff7b1a;
     }
 
-    .ip-text {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1rem;
-      color: #fff;
-    }
-
-    .copy-btn {
-      background: linear-gradient(135deg, #8a2be2, #4a00e0);
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.85rem;
+    .online-count {
+      color: #6c7284;
+      font-size: 0.8rem;
       font-weight: 600;
     }
 
-    /* Mağaza & Kredi Butonları Grid */
-    .nav-grid {
+    /* ALT İÇERİK ALANI (HABERLER & ÇEREZ) */
+    .content-section {
+      padding: 0 8% 4rem 8%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
     }
 
-    .nav-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 1.2rem;
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-card {
+      background: #14161d;
       border-radius: 16px;
-      text-decoration: none;
-      color: #fff;
-      transition: all 0.3s ease;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
-      flex-direction: column;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    .news-img {
+      width: 180px;
+      height: 110px;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #1e222d, #ff6b00);
+      display: flex;
       align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .news-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .news-info p {
+      color: #6c7284;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Çerez Kutusu */
+    .cookie-card {
+      background: #14161d;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      height: fit-content;
+    }
+
+    .cookie-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .cookie-card p {
+      color: #6c7284;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .cookie-btns {
+      display: flex;
       gap: 10px;
     }
 
-    .nav-card i {
-      font-size: 1.8rem;
-      color: #8a2be2;
-      transition: all 0.3s ease;
+    .btn-sm {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
     }
 
-    .nav-card:hover {
-      background: rgba(138, 43, 226, 0.15);
-      border-color: #8a2be2;
-      transform: translateY(-5px);
-    }
+    .btn-accept { background: #00d26a; color: #fff; }
+    .btn-settings { background: #222634; color: #fff; }
 
-    .nav-card:hover i {
-      color: #00f2fe;
-      transform: scale(1.1);
-    }
-
-    .nav-card span {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    /* Bildirim Toast */
+    /* Toast Bildirim */
     .toast {
       position: fixed;
       bottom: -60px;
-      background: #00f2fe;
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 800;
-      transition: all 0.4s ease;
-      z-index: 10;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+      right: 20px;
+      background: #00d26a;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      z-index: 9999;
     }
 
-    .toast.show {
-      bottom: 30px;
-    }
+    .toast.show { bottom: 20px; }
   </style>
 </head>
 <body>
 
-  <div class="bg-grid"></div>
-  <div class="glow-purple"></div>
-  <div class="glow-cyan"></div>
-
-  <div class="main-card">
-    <div class="server-title">SYFIELBOX</div>
-    <div class="server-subtitle"><i class="fa-solid fa-feather-pointed"></i> ElytraPvP Sunucusu</div>
-
-    <!-- Tıklayınca IP Kopyalayan Alan -->
-    <div class="ip-box" onclick="copyIp()">
-      <i class="fa-solid fa-server" style="color: #00f2fe;"></i>
-      <span class="ip-text">play.syfielbox.fun</span>
-      <div class="copy-btn"><i class="fa-regular fa-copy"></i> KOPYALA</div>
+  <!-- NAVBAR -->
+  <header>
+    <a href="#" class="logo">
+      <div class="logo-badge">S</div>
+      Syfielbox
+    </a>
+    <nav>
+      <a href="#" class="active">Anasayfa</a>
+      <a href="#">Mağaza</a>
+      <a href="#">Sandık</a>
+      <a href="#">Kredi Yükle</a>
+      <a href="#">Kredi Gönder</a>
+    </nav>
+    <div class="user-actions">
+      <div class="cart-btn">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <div class="cart-count">0</div>
+      </div>
+      <div class="user-profile">
+        <div class="avatar"></div>
+        <span style="font-size: 0.85rem; font-weight: 700;">Oyuncu</span>
+      </div>
     </div>
+  </header>
 
-    <!-- Menü Kartları -->
-    <div class="nav-grid">
-      <a href="#" class="nav-card">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span>Magaza</span>
+  <!-- HERO BÖLÜMÜ -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>1 Numaralı ElytraPvP Sunucusuna Katılın!</h1>
+      <p>Syfielbox ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!</p>
+      <a href="#play" onclick="copyIp()" class="btn-primary">
+        <i class="fa-solid fa-gamepad"></i> Şimdi Oyna
       </a>
-      <a href="#" class="nav-card">
-        <i class="fa-solid fa-coins"></i>
-        <span>Kredi Yukle</span>
-      </a>
-      <a href="#" class="nav-card">
-        <i class="fa-brands fa-discord"></i>
-        <span>Discord</span>
-      </a>
+    </div>
+  </section>
+
+  <!-- IP BANNER -->
+  <div class="ip-banner">
+    <div class="ip-banner-text">
+      <h3>Oyuna dahil olma zamanı!</h3>
+      <p>Syfielbox ile Minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.</p>
+    </div>
+    <div class="ip-btn-group">
+      <div class="ip-box" onclick="copyIp()">
+        <span>play.syfielbox.fun</span>
+        <i class="fa-regular fa-copy"></i>
+      </div>
+      <div class="online-count">182 oyuncu aktif</div>
     </div>
   </div>
 
-  <!-- Kopyalandı Bildirimi -->
-  <div id="toast" class="toast">IP ADRESİ KOPYALANDI!</div>
+  <!-- İÇERİK: HABERLER VE ÇEREZLER -->
+  <div class="content-section">
+    <div>
+      <div class="section-title">Haber</div>
+      <div class="news-card">
+        <div class="news-img">YENİ SEZON</div>
+        <div class="news-info">
+          <h4>Yeni Sezon Başladı!</h4>
+          <p>ElytraPvP Sezonu aktif edildi! Yeni market eşyaları ve rütbe ödülleri sizleri bekliyor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title" style="opacity: 0;">Çerez</div>
+      <div class="cookie-card">
+        <h4>Çerezleri kullanıyoruz</h4>
+        <p>Web sitemizde gezinme deneyiminizi geliştirmek ve istatistikleri analiz etmek için çerezleri kullanıyoruz.</p>
+        <div class="cookie-btns">
+          <button class="btn-sm btn-accept" onclick="this.parentElement.parentElement.style.display='none'">Kabul et</button>
+          <button class="btn-sm btn-settings">Tercihleri değiştir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BİLDİRİM -->
+  <div id="toast" class="toast"><i class="fa-solid fa-check"></i> IP Adresi Kopyalandı!</div>
 
   <script>
     function copyIp() {
       const ip = "play.syfielbox.fun";
       navigator.clipboard.writeText(ip);
-      
       const toast = document.getElementById("toast");
       toast.classList.add("show");
-      
       setTimeout(() => {
         toast.classList.remove("show");
       }, 2500);
