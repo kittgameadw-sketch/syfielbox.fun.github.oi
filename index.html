@@ -28,31 +28,63 @@
       position: relative;
     }
 
-    /* MAVİ-SİYAH KOYU ARKA PLAN */
-    .bg-overlay {
+    /* MAVİ - SİYAH SAF CSS MINECRAFT ARKA PLAN */
+    .bg-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(180deg, rgba(3, 7, 18, 0.75) 0%, rgba(15, 23, 42, 0.90) 60%, #030712 100%),
-                  url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      background: radial-gradient(circle at 50% 20%, #0f172a 0%, #080d1a 50%, #020617 100%);
       z-index: 0;
       pointer-events: none;
     }
 
-    .dark-grid {
+    /* PİKSEL MAVİ İZLER VE 3D NEON EFEKT */
+    .sky-grid {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background-image: 
-        linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
-      background-size: 50px 50px;
+        linear-gradient(to right, rgba(14, 165, 233, 0.07) 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(14, 165, 233, 0.07) 2px, transparent 2px);
+      background-size: 40px 40px;
       z-index: 0;
       pointer-events: none;
+    }
+
+    /* GECE MAVİSİ ORB / PARILTI EFEKTLERİ */
+    .glow-orb-1 {
+      position: fixed;
+      top: -15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, rgba(3, 7, 18, 0) 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      animation: pulseGlow 8s infinite alternate ease-in-out;
+    }
+
+    .glow-orb-2 {
+      position: fixed;
+      bottom: -20%;
+      right: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
     }
 
     /* NAVBAR */
@@ -66,16 +98,16 @@
       align-items: center;
       padding: 1.2rem 5%;
       background: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       z-index: 1000;
-      border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+      border-bottom: 2px solid rgba(56, 189, 248, 0.25);
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #38bdf8;
       text-decoration: none;
       text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
@@ -204,7 +236,7 @@
       background: #0284c7;
     }
 
-    /* SMOOTH SAYFA GEÇİŞİ */
+    /* ULTRA SMOOTH PAGE ANIMATION */
     .page {
       display: none;
       margin-top: 85px;
@@ -212,7 +244,7 @@
       position: relative;
       z-index: 2;
       opacity: 0;
-      transform: scale(0.98) translateY(10px);
+      transform: scale(0.98) translateY(12px);
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -222,7 +254,7 @@
       transform: scale(1) translateY(0);
     }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero {
       position: relative;
       min-height: 55vh;
@@ -234,16 +266,19 @@
       padding: 3rem 5%;
     }
 
-    .server-brand-title {
-      font-size: 2.5rem;
+    .hero-brand {
+      font-size: 2.8rem;
       color: #ffffff;
       margin-bottom: 1rem;
-      text-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 40px rgba(2, 132, 199, 0.4);
+      text-shadow: 
+        0 0 15px rgba(56, 189, 248, 0.8),
+        0 0 30px rgba(2, 132, 199, 0.6),
+        4px 4px 0px #0284c7;
       letter-spacing: 2px;
     }
 
     .hero h1 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 1.2rem;
       color: #cbd5e1;
@@ -251,7 +286,7 @@
 
     .hero p {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: #94a3b8;
       max-width: 650px;
       margin-bottom: 2rem;
@@ -264,7 +299,7 @@
       gap: 10px;
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #fff;
-      padding: 16px 32px;
+      padding: 16px 34px;
       border-radius: 10px;
       font-size: 0.7rem;
       text-decoration: none;
@@ -281,16 +316,16 @@
 
     /* IP BANNER */
     .ip-banner {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(56, 189, 248, 0.3);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       margin: 0 8% 4rem 8%;
       border-radius: 16px;
       padding: 1.8rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .ip-banner-text h3 {
@@ -336,7 +371,7 @@
       margin-top: 6px;
     }
 
-    /* KARTLAR */
+    /* CARDS CONTAINER */
     .container {
       padding: 2rem 8% 4rem 8%;
     }
@@ -363,19 +398,19 @@
     }
 
     .item-card {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.15);
       border-radius: 14px;
       padding: 2rem 1.5rem;
       text-align: center;
       transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
     }
 
     .item-card:hover {
       transform: translateY(-6px);
       border-color: #0284c7;
-      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3);
     }
 
     .card-icon-box {
@@ -434,8 +469,11 @@
 </head>
 <body>
 
-  <div class="bg-overlay"></div>
-  <div class="dark-grid"></div>
+  <!-- SAF CSS MINECRAFT DARK SKY ARKA PLAN -->
+  <div class="bg-canvas"></div>
+  <div class="sky-grid"></div>
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
 
   <!-- NAVBAR -->
   <header>
@@ -473,7 +511,7 @@
   <!-- ANASAYFA -->
   <div id="page-home" class="page active">
     <section class="hero">
-      <div class="server-brand-title">SYFIELBOX.FUN</div>
+      <div class="hero-brand">SYFIELBOX.FUN</div>
       <h1>GÖKYÜZÜNÜN LİDERİ OLMAYA HAZIR MISIN? ⚔️</h1>
       <p>ElytraPvP arenasının en yetenekli savaşçısı sen ol! Özel kitler, kıyasıya rekabet ve kesintisiz gökyüzü savaşları seni bekliyor.</p>
       <a href="#play" onclick="copyIp()" class="btn-primary">
@@ -562,7 +600,7 @@
 
       if (activePage) {
         activePage.style.opacity = '0';
-        activePage.style.transform = 'scale(0.98) translateY(10px)';
+        activePage.style.transform = 'scale(0.98) translateY(12px)';
         
         setTimeout(() => {
           activePage.classList.remove('active');
