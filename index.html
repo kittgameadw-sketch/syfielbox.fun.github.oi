@@ -19,12 +19,67 @@
     }
 
     body {
-      background-color: #0d0e12;
+      background-color: #08090c;
       color: #fff;
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    /* DİNAMİK ARKA PLAN ANİMASYONLARI */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to right, rgba(255, 107, 0, 0.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 107, 0, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .glow-orange {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: #ff6b00;
+      filter: blur(180px);
+      opacity: 0.18;
+      top: -10%;
+      right: 10%;
+      border-radius: 50%;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .glow-purple {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: #7928ca;
+      filter: blur(180px);
+      opacity: 0.15;
+      bottom: -10%;
+      left: 5%;
+      border-radius: 50%;
+      animation: floatGlow2 10s ease-in-out infinite alternate;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, 40px) scale(1.15); }
+    }
+
+    @keyframes floatGlow2 {
+      0% { transform: translate(0, 0) scale(1.1); }
+      100% { transform: translate(40px, -30px) scale(0.9); }
     }
 
     /* NAVBAR */
@@ -37,8 +92,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 4%;
-      background: rgba(13, 14, 18, 0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 9, 12, 0.85);
+      backdrop-filter: blur(16px);
       z-index: 1000;
       border-bottom: 2px solid rgba(255, 107, 0, 0.3);
     }
@@ -55,7 +110,7 @@
     }
 
     .logo-badge {
-      background: #ff6b00;
+      background: linear-gradient(135deg, #ff6b00, #ff8800);
       width: 36px;
       height: 36px;
       border-radius: 6px;
@@ -63,7 +118,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.1rem;
-      box-shadow: inset -2px -2px 0px #aa4400;
+      box-shadow: inset -2px -2px 0px #aa4400, 0 0 15px rgba(255, 107, 0, 0.4);
     }
 
     nav {
@@ -75,7 +130,7 @@
       color: #a0a5b5;
       text-decoration: none;
       font-size: 0.65rem;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       background: none;
       border: none;
@@ -84,6 +139,7 @@
 
     nav a.active, nav a:hover, .dropdown:hover .dropdown-btn {
       color: #ff6b00;
+      text-shadow: 0 0 8px rgba(255, 107, 0, 0.6);
     }
 
     .dropdown {
@@ -96,15 +152,20 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #14161d;
+      background-color: #12141c;
       min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.8);
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.9);
       border: 1px solid rgba(255, 107, 0, 0.4);
       border-radius: 8px;
       z-index: 1001;
       margin-top: 10px;
       padding: 8px 0;
-      animation: fadeIn 0.3s ease;
+      animation: dropAnim 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes dropAnim {
+      from { opacity: 0; transform: translateY(-12px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .dropdown-content a {
@@ -114,11 +175,13 @@
       display: block;
       font-size: 0.55rem;
       line-height: 1.5;
+      transition: background 0.2s, padding-left 0.2s;
     }
 
     .dropdown-content a:hover {
       background-color: #ff6b00;
       color: #fff;
+      padding-left: 18px;
     }
 
     .dropdown:hover .dropdown-content {
@@ -132,7 +195,7 @@
     }
 
     .cart-btn {
-      background: #14161d;
+      background: #12141c;
       border: 1px solid rgba(255, 255, 255, 0.1);
       width: 36px;
       height: 36px;
@@ -144,6 +207,12 @@
       position: relative;
       cursor: pointer;
       font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .cart-btn:hover {
+      border-color: #ff6b00;
+      transform: scale(1.05);
     }
 
     .cart-count {
@@ -164,7 +233,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #14161d;
+      background: #12141c;
       padding: 6px 12px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -178,56 +247,53 @@
       background: #ff6b00;
     }
 
-    /* SAYFA GEÇİŞ ANİMASYONLARI VE DÜZENİ */
+    /* AKICI SAYFA GEÇİŞ ANİMASYONLARI */
     .page {
       display: none;
       margin-top: 80px;
       opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: scale(0.97) translateY(20px);
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       width: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .page.active {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* HOME PAGE STYLES */
+    /* ANASAYFA HERO */
     .hero {
       position: relative;
       min-height: 75vh;
       display: flex;
       align-items: center;
       padding: 0 6%;
-      background: linear-gradient(180deg, rgba(13, 14, 18, 0.4) 0%, #0d0e12 100%),
+      background: linear-gradient(180deg, rgba(8, 9, 12, 0.2) 0%, #08090c 100%),
                   url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
 
     .hero-content {
-      max-width: 650px;
+      max-width: 700px;
       z-index: 2;
     }
 
     .hero h1 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       line-height: 1.5;
       margin-bottom: 1.5rem;
       color: #fff;
-      text-shadow: 3px 3px #000;
+      text-shadow: 3px 3px 0px #000;
     }
 
     .hero p {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #c0c5d5;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 2rem;
       font-weight: 600;
     }
@@ -236,24 +302,25 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #ff6b00;
+      background: linear-gradient(135deg, #ff6b00, #ff8800);
       color: #fff;
-      padding: 14px 24px;
+      padding: 14px 26px;
       border-radius: 8px;
       font-size: 0.7rem;
       text-decoration: none;
-      box-shadow: inset -3px -3px 0px #aa4400;
-      transition: all 0.2s ease;
+      box-shadow: inset -3px -3px 0px #aa4400, 0 5px 20px rgba(255, 107, 0, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #ff7b1a;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: inset -3px -3px 0px #aa4400, 0 10px 30px rgba(255, 107, 0, 0.7);
     }
 
     .ip-banner {
-      background: #14161d;
+      background: rgba(18, 20, 28, 0.8);
+      backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 107, 0, 0.3);
       margin: -60px 6% 4rem 6%;
       border-radius: 12px;
@@ -273,7 +340,7 @@
     .ip-banner-text p {
       font-family: 'Rajdhani', sans-serif;
       color: #8c92a4;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
     }
 
@@ -285,7 +352,7 @@
     }
 
     .ip-box {
-      background: #ff6b00;
+      background: linear-gradient(135deg, #ff6b00, #ff8800);
       color: #fff;
       padding: 12px 20px;
       border-radius: 8px;
@@ -294,7 +361,13 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: inset -3px -3px 0px #aa4400;
+      box-shadow: inset -3px -3px 0px #aa4400, 0 4px 15px rgba(255, 107, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .ip-box:hover {
+      transform: translateY(-2px);
+      box-shadow: inset -3px -3px 0px #aa4400, 0 8px 25px rgba(255, 107, 0, 0.6);
     }
 
     .online-count {
@@ -304,13 +377,13 @@
       font-weight: 700;
     }
 
-    /* MAĞAZA & KASA KARTLARI */
+    /* KART GRID & ANİMASYONLARI */
     .container {
       padding: 2rem 6% 4rem 6%;
     }
 
     .page-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #ff6b00;
       margin-bottom: 0.5rem;
       text-shadow: 2px 2px #000;
@@ -319,7 +392,7 @@
     .page-desc {
       font-family: 'Rajdhani', sans-serif;
       color: #8c92a4;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       margin-bottom: 2rem;
     }
@@ -331,31 +404,32 @@
     }
 
     .item-card {
-      background: #14161d;
+      background: rgba(18, 20, 28, 0.85);
+      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.8rem 1.5rem;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
     }
 
     .item-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-10px) scale(1.02);
       border-color: #ff6b00;
-      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.2);
+      box-shadow: 0 15px 30px rgba(255, 107, 0, 0.25);
     }
 
     .card-icon {
-      font-size: 3rem;
+      font-size: 3.2rem;
       color: #ff6b00;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
+      margin-bottom: 1.2rem;
+      transition: transform 0.4s ease;
     }
 
     .item-card:hover .card-icon {
-      transform: scale(1.15) rotate(5deg);
+      transform: scale(1.2) rotate(6deg);
     }
 
     .card-title {
@@ -365,7 +439,7 @@
 
     .card-price {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: #00ff66;
       margin-bottom: 1.2rem;
@@ -375,17 +449,18 @@
       width: 100%;
       background: #ff6b00;
       color: #fff;
-      padding: 10px;
+      padding: 12px;
       border: none;
       border-radius: 6px;
       font-size: 0.6rem;
       cursor: pointer;
       box-shadow: inset -2px -2px 0px #aa4400;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
     }
 
     .btn-buy:hover {
       background: #ff7b1a;
+      transform: translateY(-2px);
     }
 
     .toast {
@@ -397,14 +472,20 @@
       padding: 12px 20px;
       border-radius: 8px;
       font-size: 0.65rem;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 9999;
+      box-shadow: 0 5px 20px rgba(0, 210, 106, 0.4);
     }
 
     .toast.show { bottom: 20px; }
   </style>
 </head>
 <body>
+
+  <!-- DİNAMİK ARKA PLAN -->
+  <div class="bg-grid"></div>
+  <div class="glow-orange"></div>
+  <div class="glow-purple"></div>
 
   <!-- NAVBAR -->
   <header>
@@ -424,7 +505,7 @@
         </div>
       </div>
 
-      <a href="#" onclick="switchPage('crates')">Kasalar</a>
+      <a href="#" id="nav-crates" onclick="switchPage('crates')">Kasalar</a>
       <a href="#">Kredi Yükle</a>
     </nav>
     <div class="user-actions">
@@ -443,18 +524,18 @@
   <div id="page-home" class="page active">
     <section class="hero">
       <div class="hero-content">
-        <h1>1 Numaralı ElytraPvP Sunucusuna Katılın!</h1>
-        <p>Syfielbox ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!</p>
+        <h1>GÖKYÜZÜNÜN HÂKİMİ OLMAYA HAZIR MISIN?</h1>
+        <p>Syfielbox ElytraPvP arenasının en hızlı ve amansız savaşçısı ol! Özel kitler, rekabetçi sıralama ve kesintisiz aksiyon seni bekliyor.</p>
         <a href="#play" onclick="copyIp()" class="btn-primary">
-          <i class="fa-solid fa-gamepad"></i> Şimdi Oyna
+          <i class="fa-solid fa-gamepad"></i> SAVAŞA KATIL
         </a>
       </div>
     </section>
 
     <div class="ip-banner">
       <div class="ip-banner-text">
-        <h3>Oyuna dahil olma zamanı!</h3>
-        <p>Syfielbox ile Minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.</p>
+        <h3>Arenaya Giriş Yap!</h3>
+        <p>Syfielbox topluluğuna sen de katıl, ElytraPvP ustalarıyla hemen kapışmaya başla.</p>
       </div>
       <div class="ip-btn-group">
         <div class="ip-box" onclick="copyIp()">
@@ -470,7 +551,7 @@
   <div id="page-store" class="page">
     <div class="container">
       <div class="page-title">SUNUCU MAĞAZASI</div>
-      <div class="page-desc">Karakterinizi güçlendirmek ve özel yetenekler kazanmak için rütbe ve eşyaları keşfedin.</div>
+      <div class="page-desc">Rütbeler, özel yetenekler ve güçlü ekipmanlarla Elytra arenasında rakiplerine fark at.</div>
       
       <div class="cards-grid">
         <div class="item-card">
@@ -481,7 +562,7 @@
         </div>
 
         <div class="item-card" onclick="switchPage('crates')" style="cursor: pointer;">
-          <i class="fa-solid fa-box-open card-icon"></i>
+          <i class="fa-solid fa-box-open card-icon" style="color: #00f2fe;"></i>
           <div class="card-title">ÖZEL KASALAR</div>
           <div class="card-price">Çeşitli</div>
           <button class="btn-buy">KASALARI İNCELE</button>
@@ -489,9 +570,9 @@
 
         <div class="item-card">
           <i class="fa-solid fa-shield-halved card-icon"></i>
-          <div class="card-title">ELYTRA SETİ</div>
+          <div class="card-title">ELYTRA PACT SET</div>
           <div class="card-price">75 ₺</div>
-          <button class="btn-buy" onclick="addToCart('Elytra Seti')">SATIN AL</button>
+          <button class="btn-buy" onclick="addToCart('Elytra Pact Set')">SATIN AL</button>
         </div>
       </div>
     </div>
@@ -500,29 +581,29 @@
   <!-- KASALAR SAYFASI -->
   <div id="page-crates" class="page">
     <div class="container">
-      <div class="page-title">SUNUCU KASALARI</div>
-      <div class="page-desc">Kasaları açarak efsanevi eşyalar ve özel yetenekler kazanın.</div>
+      <div class="page-title">ÖZEL KASALAR</div>
+      <div class="page-desc">Kasa anahtarlarını al, efsanevi Elytra setleri ve paha biçilemez ganimetler kazan!</div>
 
       <div class="cards-grid">
         <div class="item-card">
           <i class="fa-solid fa-gem card-icon" style="color: #00f2fe;"></i>
           <div class="card-title">SYFIEL KASA</div>
           <div class="card-price">50 ₺</div>
-          <button class="btn-buy" onclick="addToCart('Syfiel Kasa')">KASA ANAHTARI AL</button>
+          <button class="btn-buy" onclick="addToCart('Syfiel Kasa Anahtarı')">ANAHTAR AL</button>
         </div>
 
         <div class="item-card">
           <i class="fa-solid fa-trophy card-icon" style="color: #ff0055;"></i>
           <div class="card-title">KOTH KASA</div>
           <div class="card-price">35 ₺</div>
-          <button class="btn-buy" onclick="addToCart('Koth Kasa')">KASA ANAHTARI AL</button>
+          <button class="btn-buy" onclick="addToCart('Koth Kasa Anahtarı')">ANAHTAR AL</button>
         </div>
 
         <div class="item-card">
           <i class="fa-solid fa-gear card-icon" style="color: #ffaa00;"></i>
           <div class="card-title">GEAR KASA</div>
           <div class="card-price">25 ₺</div>
-          <button class="btn-buy" onclick="addToCart('Gear Kasa')">KASA ANAHTARI AL</button>
+          <button class="btn-buy" onclick="addToCart('Gear Kasa Anahtarı')">ANAHTAR AL</button>
         </div>
       </div>
     </div>
@@ -545,8 +626,9 @@
         targetPage.classList.add('active');
       }
 
-      if (pageId === 'home') document.getElementById('nav-home').classList.add('active');
-      if (pageId === 'store') document.getElementById('nav-store').classList.add('active');
+      if (pageId === 'home') document.getElementById('nav-home')?.classList.add('active');
+      if (pageId === 'store') document.getElementById('nav-store')?.classList.add('active');
+      if (pageId === 'crates') document.getElementById('nav-crates')?.classList.add('active');
       
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
