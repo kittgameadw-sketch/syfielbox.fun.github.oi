@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Syfielbox - ElytraPvP Minecraft Sunucusu</title>
+  <title>Syfielbox - ElytraPvP Sunucusu</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,8 @@
     }
 
     body {
-      background-color: #050608;
-      color: #fff;
+      background-color: #f0f9ff;
+      color: #1e293b;
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
@@ -28,55 +28,66 @@
       position: relative;
     }
 
-    /* BELİRGİN HAREKETLİ MINECRAFT ARKA PLANI */
-    .mc-bg-grid {
+    /* AÇIK MAVİ VE BEYAZ DİNAMİK ARKA PLAN */
+    .sky-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #ffffff 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .sky-grid {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background-image: 
-        linear-gradient(to right, rgba(255, 107, 0, 0.1) 2px, transparent 2px),
-        linear-gradient(to bottom, rgba(255, 107, 0, 0.1) 2px, transparent 2px);
+        linear-gradient(to right, rgba(14, 165, 233, 0.08) 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 2px, transparent 2px);
       background-size: 40px 40px;
       z-index: 0;
       pointer-events: none;
     }
 
-    .lava-orb-1 {
+    .cloud-orb-1 {
       position: fixed;
-      top: 10%;
-      right: 5%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 107, 0, 0.35) 0%, rgba(0,0,0,0) 70%);
-      border-radius: 50%;
-      z-index: 0;
-      animation: floatLava1 6s infinite alternate ease-in-out;
-      pointer-events: none;
-    }
-
-    .lava-orb-2 {
-      position: fixed;
-      bottom: 5%;
-      left: 5%;
+      top: -10%;
+      right: 10%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(255,255,255,0) 70%);
       border-radius: 50%;
       z-index: 0;
-      animation: floatLava2 8s infinite alternate ease-in-out;
+      animation: floatSmooth1 10s infinite alternate ease-in-out;
       pointer-events: none;
     }
 
-    @keyframes floatLava1 {
-      0% { transform: translateY(0px) scale(1); }
-      100% { transform: translateY(50px) scale(1.2); }
+    .cloud-orb-2 {
+      position: fixed;
+      bottom: -10%;
+      left: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(186, 230, 253, 0.4) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      z-index: 0;
+      animation: floatSmooth2 12s infinite alternate ease-in-out;
+      pointer-events: none;
     }
 
-    @keyframes floatLava2 {
-      0% { transform: translateY(0px) scale(1.1); }
-      100% { transform: translateY(-60px) scale(0.9); }
+    @keyframes floatSmooth1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-40px, 40px) scale(1.15); }
+    }
+
+    @keyframes floatSmooth2 {
+      0% { transform: translate(0, 0) scale(1.1); }
+      100% { transform: translate(50px, -30px) scale(0.95); }
     }
 
     /* NAVBAR */
@@ -89,33 +100,34 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 4%;
-      background: rgba(10, 11, 16, 0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
       z-index: 1000;
-      border-bottom: 3px solid #ff6b00;
+      border-bottom: 3px solid #0284c7;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.08);
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 1rem;
-      color: #fff;
+      font-size: 0.95rem;
+      color: #0284c7;
       text-decoration: none;
-      text-shadow: 2px 2px #000;
       cursor: pointer;
     }
 
     .logo-badge {
-      background: #ff6b00;
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.1rem;
-      box-shadow: inset -3px -3px 0px #aa4400;
+      box-shadow: inset -3px -3px 0px #0369a1, 0 4px 12px rgba(2, 132, 199, 0.3);
     }
 
     nav {
@@ -124,10 +136,10 @@
     }
 
     nav a, .dropdown-btn {
-      color: #a0a5b5;
+      color: #64748b;
       text-decoration: none;
       font-size: 0.65rem;
-      transition: color 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       background: none;
       border: none;
@@ -135,7 +147,7 @@
     }
 
     nav a.active, nav a:hover, .dropdown:hover .dropdown-btn {
-      color: #ff6b00;
+      color: #0284c7;
     }
 
     .dropdown {
@@ -148,28 +160,36 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #12141c;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.8);
-      border: 2px solid #ff6b00;
-      border-radius: 8px;
+      background-color: #ffffff;
+      min-width: 180px;
+      box-shadow: 0px 10px 25px rgba(2, 132, 199, 0.15);
+      border: 2px solid #38bdf8;
+      border-radius: 10px;
       z-index: 1001;
       margin-top: 10px;
       padding: 8px 0;
+      animation: dropAnim 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes dropAnim {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .dropdown-content a {
-      color: #fff;
-      padding: 10px 14px;
+      color: #334155;
+      padding: 10px 16px;
       text-decoration: none;
       display: block;
       font-size: 0.55rem;
       line-height: 1.5;
+      transition: all 0.2s ease;
     }
 
     .dropdown-content a:hover {
-      background-color: #ff6b00;
-      color: #fff;
+      background-color: #e0f2fe;
+      color: #0284c7;
+      padding-left: 20px;
     }
 
     .dropdown:hover .dropdown-content {
@@ -183,28 +203,35 @@
     }
 
     .cart-btn {
-      background: #14161d;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
+      background: #ffffff;
+      border: 2px solid #bae6fd;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: #0284c7;
       position: relative;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .cart-btn:hover {
+      border-color: #0284c7;
+      transform: translateY(-2px);
     }
 
     .cart-count {
       position: absolute;
       top: -6px;
       right: -6px;
-      background: #ff6b00;
+      background: #0284c7;
+      color: #fff;
       font-size: 0.5rem;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -215,121 +242,117 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #14161d;
+      background: #ffffff;
       padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      border: 2px solid #bae6fd;
       font-size: 0.6rem;
+      color: #334155;
     }
 
     .avatar {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 4px;
-      background: #ff6b00;
+      background: #38bdf8;
     }
 
-    /* BELİRGİN SAYFA GEÇİŞ ANİMASYONU */
+    /* ULTRA SMOOTH SAYFA GEÇİŞ ANİMASYONU */
     .page {
       display: none;
-      margin-top: 80px;
+      margin-top: 85px;
       width: 100%;
       position: relative;
       z-index: 2;
+      opacity: 0;
+      transform: scale(0.97) translateY(12px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .page.active {
       display: block;
-      animation: pageEntrance 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
 
-    @keyframes pageEntrance {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.98);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* HERO VE DÜZEN */
+    /* HERO */
     .hero {
       position: relative;
-      min-height: 70vh;
+      min-height: 65vh;
       display: flex;
       align-items: center;
       padding: 0 6%;
-      background: linear-gradient(180deg, rgba(5, 6, 8, 0.3) 0%, #050608 100%),
-                  url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      background: linear-gradient(180deg, rgba(224, 242, 254, 0.4) 0%, rgba(240, 249, 255, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      border-radius: 0 0 24px 24px;
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 720px;
       z-index: 2;
     }
 
     .hero h1 {
-      font-size: 1.6rem;
-      line-height: 1.5;
+      font-size: 1.5rem;
+      line-height: 1.6;
       margin-bottom: 1.5rem;
-      color: #fff;
-      text-shadow: 3px 3px 0px #000;
+      color: #0f172a;
+      text-shadow: 2px 2px 0px #ffffff;
     }
 
     .hero p {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.3rem;
-      color: #d0d5e5;
-      line-height: 1.5;
+      font-size: 1.35rem;
+      color: #334155;
+      line-height: 1.6;
       margin-bottom: 2rem;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #ff6b00;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
       color: #fff;
-      padding: 16px 28px;
-      border-radius: 8px;
-      font-size: 0.75rem;
+      padding: 16px 30px;
+      border-radius: 10px;
+      font-size: 0.7rem;
       text-decoration: none;
-      box-shadow: inset -4px -4px 0px #aa4400, 0 5px 20px rgba(255, 107, 0, 0.4);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: inset -3px -3px 0px #0369a1, 0 8px 25px rgba(2, 132, 199, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      background: #ff7b1a;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: inset -3px -3px 0px #0369a1, 0 12px 30px rgba(2, 132, 199, 0.5);
     }
 
     .ip-banner {
-      background: rgba(18, 20, 28, 0.9);
-      border: 2px solid #ff6b00;
-      margin: -50px 6% 4rem 6%;
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
+      background: #ffffff;
+      border: 3px solid #38bdf8;
+      margin: -40px 6% 4rem 6%;
+      border-radius: 16px;
+      padding: 1.8rem 2.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
       z-index: 10;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 35px rgba(2, 132, 199, 0.12);
     }
 
     .ip-banner-text h3 {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-bottom: 8px;
+      color: #0f172a;
     }
 
     .ip-banner-text p {
       font-family: 'Rajdhani', sans-serif;
-      color: #a0a5b5;
-      font-size: 1.1rem;
+      color: #64748b;
+      font-size: 1.15rem;
       font-weight: 600;
     }
 
@@ -341,21 +364,27 @@
     }
 
     .ip-box {
-      background: #ff6b00;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
       color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 0.8rem;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 0.75rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: inset -3px -3px 0px #aa4400;
+      gap: 12px;
+      box-shadow: inset -3px -3px 0px #0369a1, 0 4px 15px rgba(2, 132, 199, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .ip-box:hover {
+      transform: translateY(-2px);
+      box-shadow: inset -3px -3px 0px #0369a1, 0 8px 20px rgba(2, 132, 199, 0.4);
     }
 
     .online-count {
       font-family: 'Rajdhani', sans-serif;
-      color: #00ff66;
+      color: #16a34a;
       font-size: 1rem;
       font-weight: 700;
     }
@@ -366,15 +395,15 @@
     }
 
     .page-title {
-      font-size: 1.4rem;
-      color: #ff6b00;
+      font-size: 1.3rem;
+      color: #0284c7;
       margin-bottom: 0.5rem;
-      text-shadow: 2px 2px #000;
+      text-shadow: 1px 1px 0px #fff;
     }
 
     .page-desc {
       font-family: 'Rajdhani', sans-serif;
-      color: #a0a5b5;
+      color: #64748b;
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 2rem;
@@ -387,68 +416,77 @@
     }
 
     .item-card {
-      background: rgba(18, 20, 28, 0.9);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 1.8rem 1.5rem;
+      background: #ffffff;
+      border: 2px solid #e0f2fe;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.05);
     }
 
     .item-card:hover {
-      transform: translateY(-8px);
-      border-color: #ff6b00;
-      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+      transform: translateY(-8px) scale(1.02);
+      border-color: #38bdf8;
+      box-shadow: 0 15px 30px rgba(2, 132, 199, 0.15);
     }
 
-    .card-icon {
+    .card-icon-box {
       font-size: 3.5rem;
-      color: #ff6b00;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
+      transition: transform 0.4s ease;
+    }
+
+    .item-card:hover .card-icon-box {
+      transform: scale(1.15) rotate(5deg);
     }
 
     .card-title {
       font-size: 0.85rem;
       margin-bottom: 10px;
+      color: #0f172a;
     }
 
     .card-price {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      color: #00ff66;
+      color: #0284c7;
       margin-bottom: 1.2rem;
     }
 
     .btn-buy {
       width: 100%;
-      background: #ff6b00;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
       color: #fff;
       padding: 12px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.65rem;
       cursor: pointer;
-      box-shadow: inset -2px -2px 0px #aa4400;
+      box-shadow: inset -2px -2px 0px #0369a1;
+      transition: all 0.2s ease;
     }
 
     .btn-buy:hover {
-      background: #ff7b1a;
+      transform: translateY(-2px);
+      box-shadow: inset -2px -2px 0px #0369a1, 0 4px 12px rgba(2, 132, 199, 0.3);
     }
 
     .toast {
       position: fixed;
-      bottom: -60px;
+      bottom: -70px;
       right: 20px;
-      background: #00d26a;
-      color: #fff;
+      background: #ffffff;
+      color: #0284c7;
+      border: 2px solid #38bdf8;
       padding: 14px 22px;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 0.65rem;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 9999;
-      box-shadow: 0 5px 20px rgba(0, 210, 106, 0.4);
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.2);
     }
 
     .toast.show { bottom: 20px; }
@@ -456,10 +494,11 @@
 </head>
 <body>
 
-  <!-- MINECRAFT ARKA PLAN BİLEŞENLERİ -->
-  <div class="mc-bg-grid"></div>
-  <div class="lava-orb-1"></div>
-  <div class="lava-orb-2"></div>
+  <!-- ARKA PLAN BİLEŞENLERİ -->
+  <div class="sky-bg"></div>
+  <div class="sky-grid"></div>
+  <div class="cloud-orb-1"></div>
+  <div class="cloud-orb-2"></div>
 
   <!-- NAVBAR -->
   <header>
@@ -473,9 +512,9 @@
       <div class="dropdown">
         <button class="dropdown-btn" id="nav-store" onclick="switchPage('store')">Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.5rem;"></i></button>
         <div class="dropdown-content">
-          <a href="#" onclick="switchPage('store')"><i class="fa-solid fa-crown"></i> Rütbeler</a>
-          <a href="#" onclick="switchPage('crates')"><i class="fa-solid fa-box-open"></i> Kasalar</a>
-          <a href="#" onclick="switchPage('store')"><i class="fa-solid fa-sword"></i> İtemler</a>
+          <a href="#" onclick="switchPage('store')">👑 Rütbeler</a>
+          <a href="#" onclick="switchPage('crates')">📦 Kasalar</a>
+          <a href="#" onclick="switchPage('store')">⚔️ İtemler</a>
         </div>
       </div>
 
@@ -484,7 +523,7 @@
     </nav>
     <div class="user-actions">
       <div class="cart-btn">
-        <i class="fa-solid fa-basket-shopping"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
         <div class="cart-count">0</div>
       </div>
       <div class="user-profile">
@@ -498,18 +537,18 @@
   <div id="page-home" class="page active">
     <section class="hero">
       <div class="hero-content">
-        <h1>ELYTRAPVP ARENASINDA SAVAŞA KATIL!</h1>
-        <p>Syfielbox gökyüzü savaşlarına hoş geldin! En hızlı reflekslere sahip ol, rakiplerini alt et ve sunucunun lideri ol.</p>
+        <h1>GÖKYÜZÜNÜN LİDERİ OLMAYA HAZIR MISIN? 🚀</h1>
+        <p>Syfielbox ElytraPvP arenasının en yetenekli savaşçısı sen ol! Özel kitler, rekabetçi gökyüzü savaşları ve kesintisiz aksiyon seni bekliyor.</p>
         <a href="#play" onclick="copyIp()" class="btn-primary">
-          <i class="fa-solid fa-gamepad"></i> HIZLICA OYNA
+          <i class="fa-solid fa-gamepad"></i> OYUNA KATIL
         </a>
       </div>
     </section>
 
     <div class="ip-banner">
       <div class="ip-banner-text">
-        <h3>Aksiyon Seni Bekliyor!</h3>
-        <p>Sunucu adresini kopyalayarak doğrudan savaşa dahil olabilirsin.</p>
+        <h3>Aksiyon Seni Bekliyor! ⚔️</h3>
+        <p>Sunucu adresini kopyala ve gökyüzü arenasındaki yerini al.</p>
       </div>
       <div class="ip-btn-group">
         <div class="ip-box" onclick="copyIp()">
@@ -524,29 +563,29 @@
   <!-- MAĞAZA SAYFASI -->
   <div id="page-store" class="page">
     <div class="container">
-      <div class="page-title">SUNUCU MAĞAZASI</div>
-      <div class="page-desc">Özel ayrıcalıklar, VIP üyelikler ve ekipmanlar ile gücüne güç kat.</div>
+      <div class="page-title">MAĞAZA 🛒</div>
+      <div class="page-desc">Rütbeler, özel yetenekler ve ekipmanlar ile gökyüzü savaşlarında üstünlük sağla.</div>
       
       <div class="cards-grid">
         <div class="item-card">
-          <i class="fa-solid fa-crown card-icon"></i>
+          <div class="card-icon-box">👑</div>
           <div class="card-title">SYFIEL VIP</div>
           <div class="card-price">150 ₺</div>
           <button class="btn-buy" onclick="addToCart('Syfiel VIP')">SATIN AL</button>
         </div>
 
         <div class="item-card" onclick="switchPage('crates')" style="cursor: pointer;">
-          <i class="fa-solid fa-box-open card-icon" style="color: #00f2fe;"></i>
+          <div class="card-icon-box">🎁</div>
           <div class="card-title">ÖZEL KASALAR</div>
           <div class="card-price">Çeşitli</div>
           <button class="btn-buy">KASALARI İNCELE</button>
         </div>
 
         <div class="item-card">
-          <i class="fa-solid fa-shield-halved card-icon"></i>
-          <div class="card-title">ELYTRA SETİ</div>
+          <div class="card-icon-box">🛡️</div>
+          <div class="card-title">ELYTRA PACT SET</div>
           <div class="card-price">75 ₺</div>
-          <button class="btn-buy" onclick="addToCart('Elytra Seti')">SATIN AL</button>
+          <button class="btn-buy" onclick="addToCart('Elytra Pact Set')">SATIN AL</button>
         </div>
       </div>
     </div>
@@ -555,26 +594,26 @@
   <!-- KASALAR SAYFASI -->
   <div id="page-crates" class="page">
     <div class="container">
-      <div class="page-title">ÖZEL KASALAR</div>
-      <div class="page-desc">Efsanevi ganimetler çıkarmak için kasa anahtarlarını incele.</div>
+      <div class="page-title">KASALAR 📦</div>
+      <div class="page-desc">Kasa anahtarlarını satın alarak efsanevi ganimetlerin ve kitlerin sahibi ol!</div>
 
       <div class="cards-grid">
         <div class="item-card">
-          <i class="fa-solid fa-gem card-icon" style="color: #00f2fe;"></i>
+          <div class="card-icon-box">💎</div>
           <div class="card-title">SYFIEL KASA</div>
           <div class="card-price">50 ₺</div>
           <button class="btn-buy" onclick="addToCart('Syfiel Kasa Anahtarı')">ANAHTAR AL</button>
         </div>
 
         <div class="item-card">
-          <i class="fa-solid fa-trophy card-icon" style="color: #ff0055;"></i>
+          <div class="card-icon-box">🏆</div>
           <div class="card-title">KOTH KASA</div>
           <div class="card-price">35 ₺</div>
           <button class="btn-buy" onclick="addToCart('Koth Kasa Anahtarı')">ANAHTAR AL</button>
         </div>
 
         <div class="item-card">
-          <i class="fa-solid fa-gear card-icon" style="color: #ffaa00;"></i>
+          <div class="card-icon-box">⚙️</div>
           <div class="card-title">GEAR KASA</div>
           <div class="card-price">25 ₺</div>
           <button class="btn-buy" onclick="addToCart('Gear Kasa Anahtarı')">ANAHTAR AL</button>
@@ -587,39 +626,52 @@
 
   <script>
     function switchPage(pageId) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(page => {
-        page.classList.remove('active');
-      });
-
-      const navs = document.querySelectorAll('nav a');
-      navs.forEach(nav => {
-        nav.classList.remove('active');
-      });
-
+      const activePage = document.querySelector('.page.active');
       const targetPage = document.getElementById('page-' + pageId);
-      if (targetPage) {
+
+      if (activePage === targetPage) return;
+
+      if (activePage) {
+        activePage.style.opacity = '0';
+        activePage.style.transform = 'scale(0.97) translateY(12px)';
+        
+        setTimeout(() => {
+          activePage.classList.remove('active');
+          if (targetPage) {
+            targetPage.classList.add('active');
+            setTimeout(() => {
+              targetPage.style.opacity = '1';
+              targetPage.style.transform = 'scale(1) translateY(0)';
+            }, 20);
+          }
+        }, 200);
+      } else if (targetPage) {
         targetPage.classList.add('active');
+        setTimeout(() => {
+          targetPage.style.opacity = '1';
+          targetPage.style.transform = 'scale(1) translateY(0)';
+        }, 20);
       }
 
+      document.querySelectorAll('nav a').forEach(nav => nav.classList.remove('active'));
       if (pageId === 'home') document.getElementById('nav-home')?.classList.add('active');
       if (pageId === 'store') document.getElementById('nav-store')?.classList.add('active');
       if (pageId === 'crates') document.getElementById('nav-crates')?.classList.add('active');
-      
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function copyIp() {
       const ip = "Syfielbox.Fun";
       navigator.clipboard.writeText(ip);
-      showToast("<i class='fa-solid fa-check'></i> IP Adresi Kopyalandı: " + ip);
+      showToast("✨ IP Adresi Kopyalandı: " + ip);
     }
 
     let cartCount = 0;
     function addToCart(itemName) {
       cartCount++;
       document.querySelector('.cart-count').innerText = cartCount;
-      showToast("<i class='fa-solid fa-basket-shopping'></i> " + itemName + " sepete eklendi!");
+      showToast("🛒 " + itemName + " sepete eklendi!");
     }
 
     function showToast(message) {
