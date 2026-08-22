@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Syfielbox - ElytraPvP Minecraft Sunucusu</title>
   
+  <!-- Minecraft Pixel Fontu (Press Start 2P) ve Modern Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -15,7 +16,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Press Start 2P', cursive;
     }
 
     body {
@@ -24,7 +25,7 @@
       overflow-x: hidden;
     }
 
-    /* üst NAVİGASYON */
+    /* NAVİGASYON */
     header {
       position: fixed;
       top: 0;
@@ -33,112 +34,144 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 5%;
-      background: rgba(13, 14, 18, 0.85);
+      padding: 1rem 4%;
+      background: rgba(13, 14, 18, 0.95);
       backdrop-filter: blur(12px);
       z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid rgba(255, 107, 0, 0.3);
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.4rem;
+      gap: 12px;
+      font-size: 1rem;
       color: #fff;
       text-decoration: none;
+      text-shadow: 2px 2px #000;
     }
 
     .logo-badge {
-      background: linear-gradient(135deg, #ff6b00, #ff8800);
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      background: #ff6b00;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+      font-size: 1.1rem;
+      box-shadow: inset -2px -2px 0px #aa4400;
     }
 
     nav {
       display: flex;
-      gap: 25px;
+      gap: 20px;
     }
 
-    nav a {
+    nav a, .dropdown-btn {
       color: #a0a5b5;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.65rem;
       transition: all 0.2s ease;
       position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
-    nav a.active, nav a:hover {
+    nav a.active, nav a:hover, .dropdown:hover .dropdown-btn {
+      color: #ff6b00;
+    }
+
+    /* MAĞAZA DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #14161d;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255, 107, 0, 0.4);
+      border-radius: 8px;
+      z-index: 1001;
+      margin-top: 10px;
+      padding: 8px 0;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-size: 0.55rem;
+      line-height: 1.5;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ff6b00;
       color: #fff;
     }
 
-    nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: #ff6b00;
-      border-radius: 2px;
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
     .user-actions {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
     }
 
     .cart-btn {
-      background: rgba(255, 255, 255, 0.05);
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      background: #14161d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       position: relative;
       cursor: pointer;
+      font-size: 0.8rem;
     }
 
     .cart-count {
       position: absolute;
-      top: -4px;
-      right: -4px;
+      top: -6px;
+      right: -6px;
       background: #ff6b00;
-      font-size: 0.7rem;
+      font-size: 0.5rem;
       width: 16px;
       height: 16px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
     }
 
     .user-profile {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 6px 14px;
-      border-radius: 10px;
-      cursor: pointer;
+      gap: 8px;
+      background: #14161d;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.6rem;
     }
 
     .avatar {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
       background: #ff6b00;
     }
 
@@ -148,29 +181,32 @@
       min-height: 80vh;
       display: flex;
       align-items: center;
-      padding: 0 8%;
+      padding: 0 6%;
       margin-top: 60px;
-      background: linear-gradient(180deg, rgba(13, 14, 18, 0.3) 0%, #0d0e12 100%),
+      background: linear-gradient(180deg, rgba(13, 14, 18, 0.4) 0%, #0d0e12 100%),
                   url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
 
     .hero-content {
-      max-width: 550px;
+      max-width: 650px;
       z-index: 2;
     }
 
     .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      text-shadow: 3px 3px #000;
     }
 
     .hero p {
-      color: #a0a5b5;
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      color: #c0c5d5;
+      line-height: 1.5;
       margin-bottom: 2rem;
+      font-weight: 600;
     }
 
     .btn-primary {
@@ -179,27 +215,26 @@
       gap: 10px;
       background: #ff6b00;
       color: #fff;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 0.7rem;
       text-decoration: none;
-      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
-      transition: all 0.3s ease;
+      box-shadow: inset -3px -3px 0px #aa4400;
+      transition: all 0.2s ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
       background: #ff7b1a;
-      box-shadow: 0 12px 30px rgba(255, 107, 0, 0.6);
     }
 
-    /* IP KOPYALAMA BANNERI */
+    /* IP BANNER */
     .ip-banner {
       background: #14161d;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      margin: -60px 8% 4rem 8%;
-      border-radius: 16px;
-      padding: 1.5rem 2.5rem;
+      border: 2px solid rgba(255, 107, 0, 0.3);
+      margin: -60px 6% 4rem 6%;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -208,34 +243,36 @@
     }
 
     .ip-banner-text h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #fff;
     }
 
     .ip-banner-text p {
-      color: #6c7284;
-      font-size: 0.9rem;
+      font-family: 'Rajdhani', sans-serif;
+      color: #8c92a4;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
     .ip-btn-group {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 6px;
+      gap: 8px;
     }
 
     .ip-box {
       background: #ff6b00;
       color: #fff;
-      padding: 10px 22px;
-      border-radius: 10px;
-      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.75rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
-      transition: all 0.2s ease;
+      box-shadow: inset -3px -3px 0px #aa4400;
     }
 
     .ip-box:hover {
@@ -243,30 +280,30 @@
     }
 
     .online-count {
-      color: #6c7284;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-family: 'Rajdhani', sans-serif;
+      color: #00ff66;
+      font-size: 0.95rem;
+      font-weight: 700;
     }
 
-    /* ALT İÇERİK ALANI (HABERLER & ÇEREZ) */
+    /* İÇERİK */
     .content-section {
-      padding: 0 8% 4rem 8%;
+      padding: 0 6% 4rem 6%;
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 30px;
+      gap: 25px;
     }
 
     .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      color: #ff6b00;
     }
 
     .news-card {
       background: #14161d;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       gap: 20px;
       padding: 15px;
@@ -274,45 +311,48 @@
 
     .news-img {
       width: 180px;
-      height: 110px;
-      border-radius: 12px;
+      height: 100px;
+      border-radius: 8px;
       background: linear-gradient(45deg, #1e222d, #ff6b00);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
+      font-size: 0.6rem;
+      text-align: center;
     }
 
     .news-info h4 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      color: #fff;
     }
 
     .news-info p {
-      color: #6c7284;
-      font-size: 0.85rem;
-      line-height: 1.5;
+      font-family: 'Rajdhani', sans-serif;
+      color: #8c92a4;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      font-weight: 600;
     }
 
-    /* Çerez Kutusu */
     .cookie-card {
       background: #14161d;
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      height: fit-content;
+      border-radius: 12px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .cookie-card h4 {
-      font-size: 1rem;
-      margin-bottom: 8px;
+      font-size: 0.7rem;
+      margin-bottom: 10px;
     }
 
     .cookie-card p {
-      color: #6c7284;
-      font-size: 0.8rem;
-      line-height: 1.4;
+      font-family: 'Rajdhani', sans-serif;
+      color: #8c92a4;
+      font-size: 0.9rem;
       margin-bottom: 1rem;
+      font-weight: 600;
     }
 
     .cookie-btns {
@@ -321,10 +361,9 @@
     }
 
     .btn-sm {
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.55rem;
       border: none;
       cursor: pointer;
     }
@@ -332,7 +371,6 @@
     .btn-accept { background: #00d26a; color: #fff; }
     .btn-settings { background: #222634; color: #fff; }
 
-    /* Toast Bildirim */
     .toast {
       position: fixed;
       bottom: -60px;
@@ -340,9 +378,8 @@
       background: #00d26a;
       color: #fff;
       padding: 12px 20px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      font-size: 0.65rem;
       transition: all 0.3s ease;
       z-index: 9999;
     }
@@ -360,7 +397,17 @@
     </a>
     <nav>
       <a href="#" class="active">Anasayfa</a>
-      <a href="#">Mağaza</a>
+      
+      <!-- Mağaza Dropdown Kategorileri -->
+      <div class="dropdown">
+        <button class="dropdown-btn">Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.5rem;"></i></button>
+        <div class="dropdown-content">
+          <a href="#"><i class="fa-solid fa-crown"></i> Rütbeler</a>
+          <a href="#"><i class="fa-solid fa-box-open"></i> Kasalar</a>
+          <a href="#"><i class="fa-solid fa-sword"></i> İtemler</a>
+        </div>
+      </div>
+
       <a href="#">Sandık</a>
       <a href="#">Kredi Yükle</a>
       <a href="#">Kredi Gönder</a>
@@ -372,7 +419,7 @@
       </div>
       <div class="user-profile">
         <div class="avatar"></div>
-        <span style="font-size: 0.85rem; font-weight: 700;">Oyuncu</span>
+        <span>Oyuncu</span>
       </div>
     </div>
   </header>
@@ -399,11 +446,12 @@
         <span>play.syfielbox.fun</span>
         <i class="fa-regular fa-copy"></i>
       </div>
-      <div class="online-count">182 oyuncu aktif</div>
+      <!-- Aktif Oyuncu Sıfırlandı -->
+      <div class="online-count"><i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> 0 oyuncu aktif</div>
     </div>
   </div>
 
-  <!-- İÇERİK: HABERLER VE ÇEREZLER -->
+  <!-- İÇERİK ALANI -->
   <div class="content-section">
     <div>
       <div class="section-title">Haber</div>
@@ -420,7 +468,7 @@
       <div class="section-title" style="opacity: 0;">Çerez</div>
       <div class="cookie-card">
         <h4>Çerezleri kullanıyoruz</h4>
-        <p>Web sitemizde gezinme deneyiminizi geliştirmek ve istatistikleri analiz etmek için çerezleri kullanıyoruz.</p>
+        <p>Web sitemizde gezinme deneyiminizi geliştirmek için çerezleri kullanıyoruz.</p>
         <div class="cookie-btns">
           <button class="btn-sm btn-accept" onclick="this.parentElement.parentElement.style.display='none'">Kabul et</button>
           <button class="btn-sm btn-settings">Tercihleri değiştir</button>
@@ -429,7 +477,7 @@
     </div>
   </div>
 
-  <!-- BİLDİRİM -->
+  <!-- TOAST BİLDİRİM -->
   <div id="toast" class="toast"><i class="fa-solid fa-check"></i> IP Adresi Kopyalandı!</div>
 
   <script>
