@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Syfielbox - ElytraPvP Minecraft Sunucusu</title>
   
-  <!-- Minecraft Pixel Fontu (Press Start 2P) ve Modern Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -23,9 +22,12 @@
       background-color: #0d0e12;
       color: #fff;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* NAVİGASYON */
+    /* NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -49,6 +51,7 @@
       color: #fff;
       text-decoration: none;
       text-shadow: 2px 2px #000;
+      cursor: pointer;
     }
 
     .logo-badge {
@@ -72,7 +75,7 @@
       color: #a0a5b5;
       text-decoration: none;
       font-size: 0.65rem;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
       position: relative;
       background: none;
       border: none;
@@ -83,7 +86,6 @@
       color: #ff6b00;
     }
 
-    /* MAĞAZA DROPDOWN */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -96,12 +98,13 @@
       left: 0;
       background-color: #14161d;
       min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.8);
       border: 1px solid rgba(255, 107, 0, 0.4);
       border-radius: 8px;
       z-index: 1001;
       margin-top: 10px;
       padding: 8px 0;
+      animation: fadeIn 0.3s ease;
     }
 
     .dropdown-content a {
@@ -175,14 +178,34 @@
       background: #ff6b00;
     }
 
-    /* HERO BÖLÜMÜ */
+    /* SAYFA GEÇİŞ ANİMASYONLARI VE DÜZENİ */
+    .page {
+      display: none;
+      margin-top: 80px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      width: 100%;
+    }
+
+    .page.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HOME PAGE STYLES */
     .hero {
       position: relative;
-      min-height: 80vh;
+      min-height: 75vh;
       display: flex;
       align-items: center;
       padding: 0 6%;
-      margin-top: 60px;
       background: linear-gradient(180deg, rgba(13, 14, 18, 0.4) 0%, #0d0e12 100%),
                   url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
@@ -221,6 +244,7 @@
       text-decoration: none;
       box-shadow: inset -3px -3px 0px #aa4400;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
 
     .btn-primary:hover {
@@ -228,7 +252,6 @@
       background: #ff7b1a;
     }
 
-    /* IP BANNER */
     .ip-banner {
       background: #14161d;
       border: 2px solid rgba(255, 107, 0, 0.3);
@@ -245,7 +268,6 @@
     .ip-banner-text h3 {
       font-size: 0.9rem;
       margin-bottom: 8px;
-      color: #fff;
     }
 
     .ip-banner-text p {
@@ -275,10 +297,6 @@
       box-shadow: inset -3px -3px 0px #aa4400;
     }
 
-    .ip-box:hover {
-      background: #ff7b1a;
-    }
-
     .online-count {
       font-family: 'Rajdhani', sans-serif;
       color: #00ff66;
@@ -286,90 +304,89 @@
       font-weight: 700;
     }
 
-    /* İÇERİK */
-    .content-section {
-      padding: 0 6% 4rem 6%;
+    /* MAĞAZA & KASA KARTLARI */
+    .container {
+      padding: 2rem 6% 4rem 6%;
+    }
+
+    .page-title {
+      font-size: 1.2rem;
+      color: #ff6b00;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    .page-desc {
+      font-family: 'Rajdhani', sans-serif;
+      color: #8c92a4;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .cards-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 25px;
     }
 
-    .section-title {
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      color: #ff6b00;
-    }
-
-    .news-card {
+    .item-card {
       background: #14161d;
-      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      gap: 20px;
-      padding: 15px;
-    }
-
-    .news-img {
-      width: 180px;
-      height: 100px;
-      border-radius: 8px;
-      background: linear-gradient(45deg, #1e222d, #ff6b00);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
+      border-radius: 12px;
+      padding: 1.5rem;
       text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .news-info h4 {
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-      color: #fff;
+    .item-card:hover {
+      transform: translateY(-8px);
+      border-color: #ff6b00;
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.2);
     }
 
-    .news-info p {
-      font-family: 'Rajdhani', sans-serif;
-      color: #8c92a4;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      font-weight: 600;
-    }
-
-    .cookie-card {
-      background: #14161d;
-      border-radius: 12px;
-      padding: 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .cookie-card h4 {
-      font-size: 0.7rem;
-      margin-bottom: 10px;
-    }
-
-    .cookie-card p {
-      font-family: 'Rajdhani', sans-serif;
-      color: #8c92a4;
-      font-size: 0.9rem;
+    .card-icon {
+      font-size: 3rem;
+      color: #ff6b00;
       margin-bottom: 1rem;
-      font-weight: 600;
+      transition: transform 0.3s ease;
     }
 
-    .cookie-btns {
-      display: flex;
-      gap: 10px;
+    .item-card:hover .card-icon {
+      transform: scale(1.15) rotate(5deg);
     }
 
-    .btn-sm {
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.55rem;
+    .card-title {
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .card-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #00ff66;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-buy {
+      width: 100%;
+      background: #ff6b00;
+      color: #fff;
+      padding: 10px;
       border: none;
+      border-radius: 6px;
+      font-size: 0.6rem;
       cursor: pointer;
+      box-shadow: inset -2px -2px 0px #aa4400;
+      transition: background 0.2s;
     }
 
-    .btn-accept { background: #00d26a; color: #fff; }
-    .btn-settings { background: #222634; color: #fff; }
+    .btn-buy:hover {
+      background: #ff7b1a;
+    }
 
     .toast {
       position: fixed;
@@ -391,26 +408,24 @@
 
   <!-- NAVBAR -->
   <header>
-    <a href="#" class="logo">
+    <a href="#" class="logo" onclick="switchPage('home')">
       <div class="logo-badge">S</div>
       Syfielbox
     </a>
     <nav>
-      <a href="#" class="active">Anasayfa</a>
+      <a href="#" id="nav-home" class="active" onclick="switchPage('home')">Anasayfa</a>
       
-      <!-- Mağaza Dropdown Kategorileri -->
       <div class="dropdown">
-        <button class="dropdown-btn">Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.5rem;"></i></button>
+        <button class="dropdown-btn" id="nav-store" onclick="switchPage('store')">Mağaza <i class="fa-solid fa-chevron-down" style="font-size: 0.5rem;"></i></button>
         <div class="dropdown-content">
-          <a href="#"><i class="fa-solid fa-crown"></i> Rütbeler</a>
-          <a href="#"><i class="fa-solid fa-box-open"></i> Kasalar</a>
-          <a href="#"><i class="fa-solid fa-sword"></i> İtemler</a>
+          <a href="#" onclick="switchPage('store')"><i class="fa-solid fa-crown"></i> Rütbeler</a>
+          <a href="#" onclick="switchPage('crates')"><i class="fa-solid fa-box-open"></i> Kasalar</a>
+          <a href="#" onclick="switchPage('store')"><i class="fa-solid fa-sword"></i> İtemler</a>
         </div>
       </div>
 
-      <a href="#">Sandık</a>
+      <a href="#" onclick="switchPage('crates')">Kasalar</a>
       <a href="#">Kredi Yükle</a>
-      <a href="#">Kredi Gönder</a>
     </nav>
     <div class="user-actions">
       <div class="cart-btn">
@@ -424,67 +439,134 @@
     </div>
   </header>
 
-  <!-- HERO BÖLÜMÜ -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>1 Numaralı ElytraPvP Sunucusuna Katılın!</h1>
-      <p>Syfielbox ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!</p>
-      <a href="#play" onclick="copyIp()" class="btn-primary">
-        <i class="fa-solid fa-gamepad"></i> Şimdi Oyna
-      </a>
-    </div>
-  </section>
-
-  <!-- IP BANNER -->
-  <div class="ip-banner">
-    <div class="ip-banner-text">
-      <h3>Oyuna dahil olma zamanı!</h3>
-      <p>Syfielbox ile Minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.</p>
-    </div>
-    <div class="ip-btn-group">
-      <div class="ip-box" onclick="copyIp()">
-        <span>play.syfielbox.fun</span>
-        <i class="fa-regular fa-copy"></i>
+  <!-- ANASAYFA -->
+  <div id="page-home" class="page active">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>1 Numaralı ElytraPvP Sunucusuna Katılın!</h1>
+        <p>Syfielbox ücretsiz bir Minecraft sunucusudur. Aramıza katılın ve sunucunun en iyisi olun!</p>
+        <a href="#play" onclick="copyIp()" class="btn-primary">
+          <i class="fa-solid fa-gamepad"></i> Şimdi Oyna
+        </a>
       </div>
-      <!-- Aktif Oyuncu Sıfırlandı -->
-      <div class="online-count"><i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> 0 oyuncu aktif</div>
-    </div>
-  </div>
+    </section>
 
-  <!-- İÇERİK ALANI -->
-  <div class="content-section">
-    <div>
-      <div class="section-title">Haber</div>
-      <div class="news-card">
-        <div class="news-img">YENİ SEZON</div>
-        <div class="news-info">
-          <h4>Yeni Sezon Başladı!</h4>
-          <p>ElytraPvP Sezonu aktif edildi! Yeni market eşyaları ve rütbe ödülleri sizleri bekliyor.</p>
-        </div>
+    <div class="ip-banner">
+      <div class="ip-banner-text">
+        <h3>Oyuna dahil olma zamanı!</h3>
+        <p>Syfielbox ile Minecraft keyfinizi ikiye katlayın. Profesyonelce yapılmış bu sunucu eğlencenin yeni adresi.</p>
       </div>
-    </div>
-
-    <div>
-      <div class="section-title" style="opacity: 0;">Çerez</div>
-      <div class="cookie-card">
-        <h4>Çerezleri kullanıyoruz</h4>
-        <p>Web sitemizde gezinme deneyiminizi geliştirmek için çerezleri kullanıyoruz.</p>
-        <div class="cookie-btns">
-          <button class="btn-sm btn-accept" onclick="this.parentElement.parentElement.style.display='none'">Kabul et</button>
-          <button class="btn-sm btn-settings">Tercihleri değiştir</button>
+      <div class="ip-btn-group">
+        <div class="ip-box" onclick="copyIp()">
+          <span>play.syfielbox.fun</span>
+          <i class="fa-regular fa-copy"></i>
         </div>
+        <div class="online-count"><i class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> 0 oyuncu aktif</div>
       </div>
     </div>
   </div>
 
-  <!-- TOAST BİLDİRİM -->
-  <div id="toast" class="toast"><i class="fa-solid fa-check"></i> IP Adresi Kopyalandı!</div>
+  <!-- MAĞAZA SAYFASI -->
+  <div id="page-store" class="page">
+    <div class="container">
+      <div class="page-title">SUNUCU MAĞAZASI</div>
+      <div class="page-desc">Karakterinizi güçlendirmek ve özel yetenekler kazanmak için rütbe ve eşyaları keşfedin.</div>
+      
+      <div class="cards-grid">
+        <div class="item-card">
+          <i class="fa-solid fa-crown card-icon"></i>
+          <div class="card-title">SYFIEL VIP</div>
+          <div class="card-price">150 ₺</div>
+          <button class="btn-buy" onclick="addToCart('Syfiel VIP')">SATIN AL</button>
+        </div>
+
+        <div class="item-card" onclick="switchPage('crates')" style="cursor: pointer;">
+          <i class="fa-solid fa-box-open card-icon"></i>
+          <div class="card-title">ÖZEL KASALAR</div>
+          <div class="card-price">Çeşitli</div>
+          <button class="btn-buy">KASALARI İNCELE</button>
+        </div>
+
+        <div class="item-card">
+          <i class="fa-solid fa-shield-halved card-icon"></i>
+          <div class="card-title">ELYTRA SETİ</div>
+          <div class="card-price">75 ₺</div>
+          <button class="btn-buy" onclick="addToCart('Elytra Seti')">SATIN AL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KASALAR SAYFASI -->
+  <div id="page-crates" class="page">
+    <div class="container">
+      <div class="page-title">SUNUCU KASALARI</div>
+      <div class="page-desc">Kasaları açarak efsanevi eşyalar ve özel yetenekler kazanın.</div>
+
+      <div class="cards-grid">
+        <div class="item-card">
+          <i class="fa-solid fa-gem card-icon" style="color: #00f2fe;"></i>
+          <div class="card-title">SYFIEL KASA</div>
+          <div class="card-price">50 ₺</div>
+          <button class="btn-buy" onclick="addToCart('Syfiel Kasa')">KASA ANAHTARI AL</button>
+        </div>
+
+        <div class="item-card">
+          <i class="fa-solid fa-trophy card-icon" style="color: #ff0055;"></i>
+          <div class="card-title">KOTH KASA</div>
+          <div class="card-price">35 ₺</div>
+          <button class="btn-buy" onclick="addToCart('Koth Kasa')">KASA ANAHTARI AL</button>
+        </div>
+
+        <div class="item-card">
+          <i class="fa-solid fa-gear card-icon" style="color: #ffaa00;"></i>
+          <div class="card-title">GEAR KASA</div>
+          <div class="card-price">25 ₺</div>
+          <button class="btn-buy" onclick="addToCart('Gear Kasa')">KASA ANAHTARI AL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
 
   <script>
+    function switchPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      document.querySelectorAll('nav a').forEach(nav => {
+        nav.classList.remove('active');
+      });
+
+      const targetPage = document.getElementById('page-' + pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+
+      if (pageId === 'home') document.getElementById('nav-home').classList.add('active');
+      if (pageId === 'store') document.getElementById('nav-store').classList.add('active');
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function copyIp() {
       const ip = "play.syfielbox.fun";
       navigator.clipboard.writeText(ip);
+      showToast("<i class='fa-solid fa-check'></i> IP Adresi Kopyalandı!");
+    }
+
+    let cartCount = 0;
+    function addToCart(itemName) {
+      cartCount++;
+      document.querySelector('.cart-count').innerText = cartCount;
+      showToast("<i class='fa-solid fa-basket-shopping'></i> " + itemName + " sepete eklendi!");
+    }
+
+    function showToast(message) {
       const toast = document.getElementById("toast");
+      toast.innerHTML = message;
       toast.classList.add("show");
       setTimeout(() => {
         toast.classList.remove("show");
