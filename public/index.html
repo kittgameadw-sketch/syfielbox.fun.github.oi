@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030c16">
+  <link rel="icon" href="/logo.png?v=11">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/assets/style.css?v=11">
+  <script src="/assets/app.js?v=11" defer></script>
+  <script type="module" src="/assets/auth.js?v=11"></script>
+  <title>Syfielbox.Fun | ElytraPvP Sunucusu</title>
+  <meta name="description" content="Syfielbox.Fun — Türkiye'nin buz gibi ElytraPvP sunucusu. IP: Syfielbox.fun · Discord: discord.gg/syfielbox">
+</head>
+<body>
+<div class="preloader" id="preloader"><img src="/logo.png?v=11" alt=""><div class="pl-wave"></div></div>
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="hero-badge"><i class="fa-solid fa-snowflake"></i> SEZON 2 BAŞLADI</span>
+        <h1><span class="grad">SYFIELBOX</span><small>ELYTRA · PVP · FUN</small></h1>
+        <p class="hero-lead">Sınırları zorlayan Elytra PvP deneyimi. Kanatlarını aç, özel setlerini kuşan ve gökyüzündeki amansız savaşta yerini al!</p>
+
+        <div class="ip-card">
+          <div class="ip-info">
+            <span class="ip-label"><span class="dot" data-status="dot"></span> <span data-status="state" class="skeleton">Durum</span> · <span data-status="players" class="skeleton">00</span> oyuncu</span>
+            <span class="ip-address">Syfielbox.fun</span>
+          </div>
+          <button class="btn btn-primary" onclick="copyIp()"><i class="fa-regular fa-copy"></i> IP Kopyala</button>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-discord" href="https://discord.gg/syfielbox" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord'a Katıl</a>
+          <a class="btn btn-ghost" href="/magaza"><i class="fa-solid fa-gem"></i> Mağazaya Göz At</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="ring r1"></div><div class="ring r2"></div>
+        <div class="logo-tilt" id="logoTilt"><img src="/logo.png?v=11" alt="Syfielbox logosu" width="500" height="500"></div>
+        <div class="bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+    <a href="#ozellikler" class="scroll-hint" aria-label="Aşağı kaydır"><span class="mouse"><span class="wheel"></span></span><span class="chevs"><i class="fa-solid fa-chevron-down"></i><i class="fa-solid fa-chevron-down"></i></span>Aşağı Kaydır</a>
+  </section>
+
+  <div class="wave-divider" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="rgba(34,211,238,0.12)" d="M0 35 Q90 5 180 35 T360 35 T540 35 T720 35 T900 35 T1080 35 T1260 35 T1440 35 V70 H0Z"/></svg><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="rgba(37,99,235,0.15)" d="M0 40 Q90 15 180 40 T360 40 T540 40 T720 40 T900 40 T1080 40 T1260 40 T1440 40 V70 H0Z"/></svg></div>
+
+  <!-- CANLI İSTATİSTİKLER -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-bar reveal">
+        <div class="stat"><i class="fa-solid fa-users"></i><div class="stat-value"><span data-status="players" class="skeleton">00</span></div><div class="stat-label">Aktif Oyuncu</div></div>
+        <div class="stat"><i class="fa-brands fa-discord"></i><div class="stat-value"><span data-status="dc-online" class="skeleton">000</span></div><div class="stat-label">Discord'da Çevrimiçi</div></div>
+        <div class="stat"><i class="fa-solid fa-people-group"></i><div class="stat-value"><span data-status="dc-members" class="skeleton">0000</span></div><div class="stat-label">Topluluk Üyesi</div></div>
+        <div class="stat"><i class="fa-solid fa-cube"></i><div class="stat-value"><span data-status="version" class="skeleton">1.21</span></div><div class="stat-label">Sürüm</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÖZELLİKLER -->
+  <section id="ozellikler">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Neden Syfielbox?</span>
+        <h2>Gökyüzü <span class="grad">senin arenan</span></h2>
+        <p>Akıcı uçuş, dengeli kitler ve rekabetçi bir topluluk. ElytraPvP'yi en iyi haliyle yaşa.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-feather-pointed"></i></div><h3>Elytra Savaşları</h3><p>Havada dönüşler, roket boost'ları ve dalış saldırıları. Refleksini konuştur, rakibini yere indir.</p></article>
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Özel Setler</h3><p>Sunucuya özel büyülü zırhlar, kılıçlar ve yay setleri. Her sette farklı bir oyun tarzı.</p></article>
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-trophy"></i></div><h3>Turnuvalar</h3><p>Haftalık turnuvalar ve sezon sonu ödülleri. Sıralamada zirveye oyna, ödülü kap.</p></article>
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-box-open"></i></div><h3>Kasalar & Ödüller</h3><p>Nadir itemler, özel efektler ve kozmetikler içeren kasalarla şansını dene.</p></article>
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-user-lock"></i></div><h3>Adil Oyun</h3><p>Aktif yetkili ekibi ve anti-hile sistemi ile herkes için eşit ve temiz bir savaş alanı.</p></article>
+        <article class="card feature reveal"><div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h3>Etkinlikler</h3><p>Sürpriz etkinlikler, çifte XP saatleri ve Discord'a özel çekilişler seni bekliyor.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NASIL BAĞLANIRIM -->
+  <section id="baglan">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Hemen Başla</span>
+        <h2>3 adımda <span class="grad">sunucuya gir</span></h2>
+      </div>
+      <div class="grid grid-3 steps">
+        <div class="card step reveal"><h3>Minecraft'ı aç</h3><p>Java Edition ile oyunu başlat ve <b>Çok Oyunculu</b> menüsüne gir.</p></div>
+        <div class="card step reveal"><h3>Sunucuyu ekle</h3><p><b>Sunucu Ekle</b>'ye tıkla ve adres kısmına <code>Syfielbox.fun</code> yaz.</p></div>
+        <div class="card step reveal"><h3>Kanatlarını aç</h3><p>Kayıt ol, kitini seç ve gökyüzüne fırla. Discord'a katılmayı unutma!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAĞIŞÇILAR -->
+  <section id="bagiscilar">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Onur Listesi</span>
+        <h2>En çok <span class="grad">kredi yükleyenler</span></h2>
+        <p>Sunucuyu ayakta tutan efsanelere teşekkürler! 💙</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card donor top reveal"><img src="https://mc-heads.net/avatar/Xx0nepixelsxX/56" alt="" loading="lazy"><div><h4>Xx0nepixelsxX</h4><p>1.250 ₺</p></div><div class="rank rank-1">1</div></div>
+        <div class="card donor reveal"><img src="https://mc-heads.net/avatar/28grad/56" alt="" loading="lazy"><div><h4>28grad</h4><p>850 ₺</p></div><div class="rank rank-2">2</div></div>
+        <div class="card donor reveal"><img src="https://mc-heads.net/avatar/Syfiel_PVPer/56" alt="" loading="lazy"><div><h4>Syfiel_PVPer</h4><p>600 ₺</p></div><div class="rank rank-3">3</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUYURULAR -->
+  <section id="duyurular">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Son Haberler</span>
+        <h2>Duyurular</h2>
+      </div>
+      <div class="grid grid-3">
+        <article class="card news reveal"><div class="news-meta"><span class="tag">Güncelleme</span> Sezon 2</div><h3>Sezon 2 yayında! ❄️</h3><p>Yeni buz temalı arena, yenilenmiş kitler ve sıfırlanan sıralama ile yeni sezon başladı.</p></article>
+        <article class="card news reveal"><div class="news-meta"><span class="tag gold">Etkinlik</span> Her Cumartesi</div><h3>Haftalık Elytra Turnuvası</h3><p>Her cumartesi 21:00'de turnuva! Birinciye özel rank ve kasa anahtarı ödülü.</p></article>
+        <article class="card news reveal"><div class="news-meta"><span class="tag teal">Alım</span> Açık</div><h3>Yetkili alımları başladı</h3><p>Ekibimize katılmak ister misin? Rehber ve moderatör pozisyonları için hemen başvur.</p><a class="btn btn-ghost btn-sm" href="/basvuru" style="align-self:flex-start;margin-top:.4rem">Başvur <i class="fa-solid fa-arrow-right"></i></a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCORD CTA -->
+  <section>
+    <div class="container">
+      <div class="cta reveal">
+        <div>
+          <span class="eyebrow">Topluluk</span>
+          <h2>Discord sunucumuza katıl, <span class="grad">ekibini kur!</span></h2>
+          <p>Duyurular, çekilişler, destek talepleri ve takım arkadaşları — hepsi Discord'da.</p>
+          <div class="dc-count">
+            <span><span class="dot on"></span> <span data-status="dc-online" class="skeleton">000</span> çevrimiçi</span>
+            <span><i class="fa-solid fa-user-group" style="color:var(--cyan)"></i> <span data-status="dc-members" class="skeleton">0000</span> üye</span>
+          </div>
+        </div>
+        <a class="btn btn-discord" href="https://discord.gg/syfielbox" target="_blank" rel="noopener" style="font-size:1.05rem;padding:1rem 1.8rem"><i class="fa-brands fa-discord"></i> discord.gg/syfielbox</a>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

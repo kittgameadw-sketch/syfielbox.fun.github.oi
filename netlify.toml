@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
+[[redirects]]
+  from = "/magaza-vips.html"
+  to = "/magaza#vip"
+  status = 301
+
+[[redirects]]
+  from = "/magaza-kasalar.html"
+  to = "/magaza#kasalar"
+  status = 301
+
+[[redirects]]
+  from = "/magaza-itemler.html"
+  to = "/magaza#itemler"
+  status = 301
+
+[[redirects]]
+  from = "/kredi-yukle.html"
+  to = "/magaza#kredi"
+  status = 301
+
+[[redirects]]
+  from = "/discord"
+  to = "https://discord.gg/syfielbox"
+  status = 302
