@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030c16">
+  <link rel="icon" href="/logo.png?v=11">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/assets/style.css?v=11">
+  <script src="/assets/app.js?v=11" defer></script>
+  <script type="module" src="/assets/auth.js?v=11"></script>
+  <title>Yetkili Başvurusu | Syfielbox.Fun</title>
+  <meta name="description" content="Syfielbox.Fun yetkili ekibine katıl — rehber, moderatör, builder ve içerik üreticisi başvuruları.">
+</head>
+<body>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Ekibe Katıl</span>
+      <h1>Yetkili <span class="grad">Başvurusu</span></h1>
+      <p>Syfielbox'u birlikte büyütelim! Formu eksiksiz doldur, başvurun ekibimiz tarafından incelenip Discord üzerinden sana dönüş yapılacak.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:2rem">
+    <div class="container apply-layout">
+      <div class="roles">
+        <div class="card role reveal"><div class="feature-icon"><i class="fa-solid fa-handshake-angle"></i></div><div><h3>Rehber</h3><p>Yeni oyunculara yardım eder, sohbeti düzenli tutar. Moderatörlüğe ilk adım.</p></div></div>
+        <div class="card role reveal"><div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div><div><h3>Moderatör</h3><p>Hilecileri yakalar, şikayetleri inceler ve cezaları uygular.</p></div></div>
+        <div class="card role reveal"><div class="feature-icon"><i class="fa-solid fa-cubes"></i></div><div><h3>Builder</h3><p>Arenalar, lobiler ve etkinlik haritaları tasarlar.</p></div></div>
+        <div class="card role reveal"><div class="feature-icon"><i class="fa-solid fa-video"></i></div><div><h3>İçerik Üreticisi</h3><p>YouTube / TikTok / Twitch'te Syfielbox içerikleri üretir.</p></div></div>
+        <div class="note reveal"><i class="fa-solid fa-list-check"></i><div><b>Şartlar:</b> En az 13 yaşında olmak, günde 2+ saat aktif olmak, son 30 günde ceza almamış olmak ve Discord'da bulunmak.</div></div>
+      </div>
+
+      <form class="card form-card reveal" id="applyForm" novalidate>
+        <h2>Başvuru Formu</h2>
+        <p>Tüm alanları dürüstçe doldur. Yanıltıcı bilgi başvurunun reddedilmesine sebep olur.</p>
+
+        <div class="form-row">
+          <div class="field"><label for="nick">Minecraft Nick</label><input id="nick" name="nick" required maxlength="16" placeholder="Örn: Syfiel_PVPer" autocomplete="off"></div>
+          <div class="field"><label for="discord">Discord Kullanıcı Adı</label><input id="discord" name="discord" required maxlength="40" placeholder="Örn: syfiel"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="age">Yaş</label><input id="age" name="age" type="number" min="10" max="80" required placeholder="16"></div>
+          <div class="field"><label for="role">Pozisyon</label>
+            <select id="role" name="role" required>
+              <option value="">Seç...</option>
+              <option>Rehber</option><option>Moderatör</option><option>Builder</option><option>İçerik Üreticisi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="playtime">Günlük Aktiflik</label><input id="playtime" name="playtime" required maxlength="60" placeholder="Örn: Hafta içi 3 saat, hafta sonu 6 saat"></div>
+        <div class="field"><label for="experience">Önceki Deneyimlerin <span>(isteğe bağlı)</span></label><textarea id="experience" name="experience" maxlength="1500" placeholder="Daha önce hangi sunucularda yetkili oldun?"></textarea></div>
+        <div class="field"><label for="reason">Neden seni seçmeliyiz?</label><textarea id="reason" name="reason" required minlength="30" maxlength="2000" placeholder="En az 30 karakter..."></textarea></div>
+        <div class="hp" aria-hidden="true"><label>Web sitesi<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+        <button class="btn btn-primary" type="submit" id="applyBtn" style="width:100%"><i class="fa-solid fa-paper-plane"></i> Başvuruyu Gönder</button>
+        <div class="form-msg" id="formMsg" role="status"></div>
+        <div class="counter"><i class="fa-solid fa-inbox" style="color:var(--teal)"></i> Bu sezon toplam <b id="appCount">—</b> başvuru alındı.</div>
+      </form>
+    </div>
+  </section>
+</main>
+<script>
+  const form = document.getElementById('applyForm');
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('applyBtn');
+  const countEl = document.getElementById('appCount');
+
+  async function loadCount() {
+    try {
+      const r = await fetch('/api/applications');
+      const j = await r.json(); if (r.ok && j.total != null) countEl.textContent = j.total.toLocaleString('tr-TR');
+    } catch {}
+  }
+  loadCount();
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.className = 'form-msg';
+    if (!form.checkValidity()) {
+      msg.className = 'form-msg err';
+      msg.textContent = 'Lütfen tüm zorunlu alanları doldur. "Neden seni seçmeliyiz?" en az 30 karakter olmalı.';
+      form.reportValidity();
+      return;
+    }
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gönderiliyor...';
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      data.age = Number(data.age);
+      const r = await fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const out = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(out.error || 'Bir hata oluştu, tekrar dene.');
+      msg.className = 'form-msg ok';
+      msg.innerHTML = '✅ Başvurun alındı! Ekibimiz inceledikten sonra Discord üzerinden sana ulaşacak. Bu sürede <a href="https://discord.gg/syfielbox" target="_blank" rel="noopener" style="color:var(--cyan);font-weight:700">Discord sunucumuzda</a> olduğundan emin ol.';
+      form.reset();
+      showToast('📨 Başvurun gönderildi!');
+      loadCount();
+    } catch (err) {
+      msg.className = 'form-msg err';
+      msg.textContent = err.message;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Başvuruyu Gönder';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030c16">
+  <link rel="icon" href="/logo.png?v=11">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/assets/style.css?v=11">
+  <script src="/assets/app.js?v=11" defer></script>
+  <script type="module" src="/assets/auth.js?v=11"></script>
+  <title>Mağaza | Syfielbox.Fun</title>
+  <meta name="description" content="Syfielbox.Fun mağazası — VIP paketleri, kasalar, özel itemler ve kredi.">
+</head>
+<body>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Mağaza</span>
+      <h1>Gökyüzünde <span class="grad">fark yarat</span></h1>
+      <p>VIP paketleri, kasalar ve özel itemler ile oyun deneyimini bir üst seviyeye taşı. Her alışveriş sunucunun gelişimine destek olur.</p>
+      <nav class="tabs" id="shopTabs">
+        <a href="#vip">👑 VIP Paketleri</a>
+        <a href="#kasalar">📦 Kasalar</a>
+        <a href="#itemler">⚔️ Özel İtemler</a>
+        <a href="#kredi">💳 Kredi Yükle</a>
+      </nav>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="note reveal"><i class="fa-solid fa-circle-info"></i><div><b>Nasıl alınır?</b> Giriş yap, kartla kredi yükle (1 kredi = 1 ₺), sonra istediğin paketi krediyle satın al. Siparişin yetkililer tarafından oyun içi nickine teslim edilir; durumunu <a href="/hesap" style="color:var(--cyan);font-weight:700">Hesabım</a> sayfasından takip edebilirsin.</div></div>
+
+    <!-- VIP -->
+    <section class="shop-section" id="vip">
+      <h2><i class="fa-solid fa-crown"></i> VIP Paketleri</h2>
+      <div class="grid grid-3">
+        <article class="card product reveal">
+          <div class="product-icon">⭐</div><h3>VIP</h3>
+          <div class="price">70 <small>kredi</small></div>
+          <ul class="perks">
+            <li><i class="fa-solid fa-check"></i> Oyunda ve sohbette <b>[VIP]</b> etiketi</li>
+            <li><i class="fa-solid fa-check"></i> <b>/kit vip</b> — VIP elytra savaş kiti</li>
+            <li><i class="fa-solid fa-check"></i> Kitte ekstra roket ve totem</li>
+            <li><i class="fa-solid fa-check"></i> Discord'da VIP rolü</li>
+          </ul>
+          <button class="btn btn-ghost" data-buy="vip" data-name="VIP" data-price="70"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+        <article class="card product featured reveal">
+          <span class="tag ribbon">En Popüler</span>
+          <div class="product-icon">💎</div><h3>SYFIELVIP</h3>
+          <div class="price">120 <small>kredi</small></div>
+          <ul class="perks">
+            <li><i class="fa-solid fa-check"></i> VIP'in tüm özellikleri</li>
+            <li><i class="fa-solid fa-check"></i> Oyunda ve sohbette <b>[SYFIELVIP]</b> etiketi</li>
+            <li><i class="fa-solid fa-check"></i> <b>/kit syfielvip</b> — güçlendirilmiş elytra kiti</li>
+            <li><i class="fa-solid fa-check"></i> Özel elytra uçuş izi efekti</li>
+            <li><i class="fa-solid fa-check"></i> Dolu sunucuya öncelikli giriş</li>
+            <li><i class="fa-solid fa-check"></i> Discord'da SYFIELVIP rolü</li>
+          </ul>
+          <button class="btn btn-primary" data-buy="syfielvip" data-name="SYFIELVIP" data-price="120"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+        <article class="card product reveal">
+          <span class="tag ribbon gold">En Güçlü</span>
+          <div class="product-icon">🔥</div><h3>GROUDON</h3>
+          <div class="price">160 <small>kredi</small></div>
+          <ul class="perks">
+            <li><i class="fa-solid fa-check"></i> SYFIELVIP'in tüm özellikleri</li>
+            <li><i class="fa-solid fa-check"></i> Oyunda ve sohbette <b>[GROUDON]</b> etiketi</li>
+            <li><i class="fa-solid fa-check"></i> <b>/kit groudon</b> — en güçlü elytra kiti</li>
+            <li><i class="fa-solid fa-check"></i> Özel ateş temalı uçuş ve öldürme efektleri</li>
+            <li><i class="fa-solid fa-check"></i> Discord'da GROUDON rolü ve özel kanal</li>
+          </ul>
+          <button class="btn btn-ghost" data-buy="groudon" data-name="GROUDON" data-price="160"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- KASALAR -->
+    <section class="shop-section" id="kasalar">
+      <h2><i class="fa-solid fa-box-open"></i> Kasalar</h2>
+      <div class="grid grid-3">
+        <article class="card product reveal">
+          <div class="product-icon">⚙️</div><h3>Gear Crate</h3>
+          <div class="price">20 <small>kredi</small></div>
+          <ul class="perks"><li><i class="fa-solid fa-check"></i> Büyülü zırh ve elytra parçaları</li><li><i class="fa-solid fa-check"></i> Kılıç, yay ve savaş ekipmanları</li><li><i class="fa-solid fa-check"></i> Roket ve totem paketleri</li></ul>
+          <button class="btn btn-ghost" data-buy="gear-crate" data-name="Gear Crate" data-price="20"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+        <article class="card product featured reveal">
+          <span class="tag ribbon">5 Al 4 Öde</span>
+          <div class="product-icon">👑</div><h3>KOTH Kasa</h3>
+          <div class="price">40 <small>kredi</small></div>
+          <ul class="perks"><li><i class="fa-solid fa-check"></i> KOTH'a özel güçlü itemler</li><li><i class="fa-solid fa-check"></i> Nadir elytra kozmetikleri</li><li><i class="fa-solid fa-check"></i> VIP kuponları</li></ul>
+          <button class="btn btn-primary" data-buy="koth-kasa" data-name="KOTH Kasa" data-price="40"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+        <article class="card product reveal">
+          <div class="product-icon">💠</div><h3>SYFIEL KASASI</h3>
+          <div class="price">60 <small>kredi</small></div>
+          <ul class="perks"><li><i class="fa-solid fa-check"></i> Sunucuya özel efsanevi itemler</li><li><i class="fa-solid fa-check"></i> Özel uçuş ve öldürme efektleri</li><li><i class="fa-solid fa-check"></i> %5 şansla GROUDON rütbesi</li></ul>
+          <button class="btn btn-ghost" data-buy="syfiel-kasasi" data-name="SYFIEL KASASI" data-price="60"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ÖZEL İTEMLER -->
+    <section class="shop-section" id="itemler">
+      <h2><i class="fa-solid fa-khanda"></i> Özel İtemler</h2>
+      <div class="grid grid-4">
+        <article class="card product reveal"><div class="product-icon">🛡️</div><h3>Buzul Elytra Seti</h3><div class="price">75 <small>kredi</small></div><ul class="perks"><li><i class="fa-solid fa-check"></i> Koruma IV tam set + Elytra</li></ul><button class="btn btn-ghost" data-buy="buzul-elytra-seti" data-name="Buzul Elytra Seti" data-price="75"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button></article>
+        <article class="card product reveal"><div class="product-icon">🗡️</div><h3>Donduran Kılıç</h3><div class="price">45 <small>kredi</small></div><ul class="perks"><li><i class="fa-solid fa-check"></i> Vuruşta yavaşlatma efekti</li></ul><button class="btn btn-ghost" data-buy="donduran-kilic" data-name="Donduran Kılıç" data-price="45"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button></article>
+        <article class="card product reveal"><div class="product-icon">🚀</div><h3>Roket Paketi</h3><div class="price">20 <small>kredi</small></div><ul class="perks"><li><i class="fa-solid fa-check"></i> 5 stack süper roket</li></ul><button class="btn btn-ghost" data-buy="roket-paketi" data-name="Roket Paketi" data-price="20"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button></article>
+        <article class="card product reveal"><div class="product-icon">✨</div><h3>Kanat İzi Efekti</h3><div class="price">30 <small>kredi</small></div><ul class="perks"><li><i class="fa-solid fa-check"></i> Kalıcı turkuaz uçuş izi</li></ul><button class="btn btn-ghost" data-buy="kanat-izi" data-name="Kanat İzi Efekti" data-price="30"><i class="fa-solid fa-cart-shopping"></i> Satın Al</button></article>
+      </div>
+    </section>
+
+    <!-- KREDİ -->
+    <section class="shop-section" id="kredi">
+      <h2><i class="fa-solid fa-coins"></i> Kredi Yükle</h2>
+      <div class="grid grid-4">
+        <article class="card product reveal"><div class="product-icon">💳</div><h3>50 Kredi</h3><div class="price">50 ₺</div><ul class="perks"><li><i class="fa-solid fa-check"></i> 50 kredi</li><li><i class="fa-solid fa-check"></i> Anında hesabına yüklenir</li></ul><button class="btn btn-ghost" data-pack="k50"><i class="fa-solid fa-credit-card"></i> Yükle</button></article>
+        <article class="card product reveal"><div class="product-icon">💳</div><h3>105 Kredi</h3><div class="price">100 ₺</div><ul class="perks"><li><i class="fa-solid fa-check"></i> 100 kredi + 5 bonus</li><li><i class="fa-solid fa-check"></i> Anında hesabına yüklenir</li></ul><button class="btn btn-ghost" data-pack="k100"><i class="fa-solid fa-credit-card"></i> Yükle</button></article>
+        <article class="card product featured reveal"><span class="tag ribbon">+25 Bonus</span><div class="product-icon">💎</div><h3>275 Kredi</h3><div class="price">250 ₺</div><ul class="perks"><li><i class="fa-solid fa-check"></i> 250 kredi + 25 bonus</li><li><i class="fa-solid fa-check"></i> Anında hesabına yüklenir</li></ul><button class="btn btn-primary" data-pack="k250"><i class="fa-solid fa-credit-card"></i> Yükle</button></article>
+        <article class="card product reveal"><span class="tag ribbon gold">+75 Bonus</span><div class="product-icon">💎</div><h3>575 Kredi</h3><div class="price">500 ₺</div><ul class="perks"><li><i class="fa-solid fa-check"></i> 500 kredi + 75 bonus</li><li><i class="fa-solid fa-check"></i> Anında hesabına yüklenir</li></ul><button class="btn btn-ghost" data-pack="k500"><i class="fa-solid fa-credit-card"></i> Yükle</button></article>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+  // Aktif sekmeyi kaydırmaya göre vurgula
+  const tabs = [...document.querySelectorAll('#shopTabs a')];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.shop-section').forEach((s) => io.observe(s));
+</script>
+</body>
+</html>
